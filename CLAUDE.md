@@ -54,11 +54,6 @@ database/
 CAUTAOWEB.docx                 ← đặc tả nghiệp vụ gốc, nguồn sự thật (chuyển vào docs/ sau)
 ```
 
-**File cũ (tiền thân, đã đưa nội dung vào cấu trúc trên):** `index.html` và `Gioithieu.html`
-ở thư mục gốc là 2 file prototype trước khi tổ chức lại — nội dung đã được đưa vào
-`public/mo-dun/dradnet.php` và `public/index.php`. Giữ lại tạm để đối chiếu, có thể xoá khi
-đã xác nhận không cần nữa.
-
 **Dùng chung mọi trang:** `includes/header.php` (mở `<html>`, `.topbar`) và
 `includes/footer.php` (`.floating-cta`, `footer`, đóng `<html>`). Mỗi trang PHP mới chỉ cần
 `require __DIR__ . '/includes/header.php';` ở đầu và `require __DIR__ . '/includes/footer.php';`
