@@ -1,9 +1,9 @@
 /* ==========================================================================
    HTSOFT WEB — style dùng chung cho toàn bộ site (dradnet.vn)
    Phong cách: tối giản, thẻ (card) kiểu bibliocad.com (viền đen + đổ bóng
-   cứng, không gradient/blur trên card). Nút bấm dùng hệ phẳng kiểu
-   BiblioCAD/Monday (không viền, đổ bóng mềm, đổi màu đậm hơn khi
-   hover/active) — xem khối "Nút bấm" bên dưới.
+   cứng, không gradient/blur trên card). Nút bấm dùng kiểu pill bóng kính
+   (bo tròn hết cỡ, gradient sáng→đậm, đổ bóng mềm bên dưới) — xem khối
+   "Nút bấm" bên dưới.
    Quy ước màu: Vàng = CTA chính, Xanh lá = xác nhận/tin cậy,
                 Đỏ = CTA khẩn cấp/giá, Xanh dương = thương hiệu HTSOFT.
    ========================================================================== */
@@ -153,52 +153,59 @@ main {
 }
 
 /* ---------------------------------------------------------------------- */
-/* Nút bấm — phẳng kiểu BiblioCAD (không viền, đổ bóng mềm, đổi màu đậm    */
-/* hơn khi hover/active). Tên class .btn-3d giữ nguyên để không phải sửa   */
-/* lại mọi trang PHP đang dùng — chỉ đổi phần định nghĩa CSS.              */
+/* Nút bấm — pill bóng kính (glossy): bo tròn hết cỡ, nền gradient         */
+/* sáng→đậm theo màu vai trò, viền sáng phía trên (bevel) + đổ bóng mềm    */
+/* bên dưới tạo cảm giác nổi. Tên class .btn-3d giữ nguyên để không phải   */
+/* sửa lại mọi trang PHP đang dùng — chỉ đổi phần định nghĩa CSS.          */
 /* ---------------------------------------------------------------------- */
 .btn-3d {
+  --btn-color: var(--bc-yellow);
+  --btn-shine: color-mix(in srgb, white 40%, var(--btn-color));
+  --btn-deep: color-mix(in srgb, black 12%, var(--btn-color));
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 8px;
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
-  font-weight: 500;
-  padding: 10px 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 12px 26px;
   border: none;
-  border-radius: 4px;
+  border-radius: 999px;
   cursor: pointer;
   text-decoration: none;
-  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  background: var(--surface);
+  background: linear-gradient(180deg, var(--btn-shine) 0%, var(--btn-color) 55%, var(--btn-deep) 100%);
   color: var(--text-main);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.12),
+    0 6px 14px rgba(0, 0, 0, 0.22);
+  transition: filter 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
 }
 
 .btn-3d:hover {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+  filter: brightness(1.05);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.12),
+    0 8px 18px rgba(0, 0, 0, 0.26);
 }
 
 .btn-3d:active {
-  transform: scale(0.98);
+  transform: translateY(2px);
+  filter: brightness(0.97);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.12),
+    0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
-.btn-3d-yellow { background: var(--bc-yellow); color: var(--gold-ink); }
-.btn-3d-yellow:hover { background: var(--bc-yellow-hover); }
-.btn-3d-yellow:active { background: var(--bc-yellow-active); }
-
-.btn-3d-blue { background: var(--bc-blue); color: var(--blue-ink); }
-.btn-3d-blue:hover { background: var(--bc-blue-hover); }
-.btn-3d-blue:active { background: var(--bc-blue-active); }
-
-.btn-3d-green { background: var(--bc-green); color: var(--green-ink); }
-.btn-3d-green:hover { background: var(--bc-green-hover); }
-.btn-3d-green:active { background: var(--bc-green-active); }
-
-.btn-3d-red { background: var(--bc-red); color: var(--red-ink); }
-.btn-3d-red:hover { background: var(--bc-red-hover); }
-.btn-3d-red:active { background: var(--bc-red-active); }
+.btn-3d-yellow { --btn-color: var(--bc-yellow); color: var(--gold-ink); }
+.btn-3d-blue   { --btn-color: var(--bc-blue);   color: var(--blue-ink); }
+.btn-3d-green  { --btn-color: var(--bc-green);  color: var(--green-ink); }
+.btn-3d-red    { --btn-color: var(--bc-red);    color: var(--red-ink); }
 
 /* ---------------------------------------------------------------------- */
 /* Thẻ (card) 3D — dùng cho lưới mô-đun trang chủ kiểu bibliocad.com       */

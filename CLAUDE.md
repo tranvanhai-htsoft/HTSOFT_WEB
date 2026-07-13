@@ -75,12 +75,16 @@ CAUTAOWEB.docx                 ← đặc tả nghiệp vụ gốc, nguồn sự
 **Card (`.card-3d`) và nút (`.btn-3d`) dùng 2 công thức khác nhau — đừng nhầm:**
 - **Thẻ**: viền đen 2px + `box-shadow` offset cứng (không blur), hover dịch chuyển
   `translate(-3px,-3px)` và tăng bóng. Giữ nguyên phong cách neo-brutalist này cho mọi thẻ mới.
-- **Nút**: phẳng kiểu BiblioCAD/Monday — không viền (trừ `.btn-3d-select` ở trạng thái chưa
-  chọn, cần viền mảnh `1px solid #d0d5db` để không vô hình trên nền trắng), bo góc 4px, đổ
-  bóng mềm `0 1px 3px rgba(0,0,0,.1)` tăng lên `0 4px 6px rgba(0,0,0,.15)` khi hover, nền đổi
-  sang tông đậm hơn khi hover/active (`--bc-*-hover`/`--bc-*-active`), bấm xuống thì
-  `transform: scale(.98)`. Class tên vẫn là `.btn-3d` (giữ nguyên để không phải sửa markup ở
-  mọi trang) dù không còn hiệu ứng 3D nữa — xem comment đầu `style.css`.
+- **Nút**: pill bóng kính (glossy) — bo tròn hết cỡ `border-radius: 999px`, nền
+  `linear-gradient` sáng→đậm tự sinh từ biến `--btn-color` của mỗi variant (`--btn-shine`/
+  `--btn-deep` dùng `color-mix()`, không cần khai riêng gradient cho từng màu), viền sáng phía
+  trên + đổ bóng mềm bên dưới (`box-shadow` 3 lớp: 2 lớp inset tạo bevel + 1 lớp outer tạo cảm
+  giác nổi). Hover thì `filter: brightness(1.05)`, bấm xuống thì `translateY(2px)` +
+  `brightness(0.97)`. Muốn thêm màu mới: chỉ cần set `--btn-color` trên class variant, không
+  phải viết lại gradient. Class tên vẫn là `.btn-3d` (giữ nguyên để không phải sửa markup ở
+  mọi trang) — xem comment đầu `style.css`. Đây là lần đổi kiểu nút thứ 3 (từng qua 3D cứng
+  → phẳng Monday → pill bóng kính); nếu đổi tiếp, chỉ cần sửa trong khối "Nút bấm" của
+  `style.css`, không phải sửa markup.
 
 ---
 
