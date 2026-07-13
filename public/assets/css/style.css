@@ -1,9 +1,8 @@
 /* ==========================================================================
    HTSOFT WEB — style dùng chung cho toàn bộ site (dradnet.vn)
    Phong cách: tối giản, thẻ (card) kiểu bibliocad.com (viền đen + đổ bóng
-   cứng, không gradient/blur trên card). Nút bấm dùng kiểu pill bóng kính
-   (bo tròn hết cỡ, gradient sáng→đậm, đổ bóng mềm bên dưới) — xem khối
-   "Nút bấm" bên dưới.
+   cứng, không gradient/blur trên card). Nút bấm hình chữ nhật bo nhẹ 4 góc,
+   nền gradient sáng→đậm, đổ bóng mềm bên dưới — xem khối "Nút bấm" bên dưới.
    Quy ước màu: Vàng = CTA chính, Xanh lá = xác nhận/tin cậy,
                 Đỏ = CTA khẩn cấp/giá, Xanh dương = thương hiệu HTSOFT.
    ========================================================================== */
@@ -27,11 +26,11 @@
   --red-ink: #ffffff;          /* chữ đặt trên nền đỏ */
   --blue-ink: #ffffff;         /* chữ đặt trên nền xanh dương */
 
-  /* Nút bấm phẳng kiểu BiblioCAD — màu nền + biến thể hover/active */
-  --bc-blue: #0073ea;    --bc-blue-hover: #005ec2;    --bc-blue-active: #004da1;
-  --bc-red: #e03131;     --bc-red-hover: #c92a2a;     --bc-red-active: #b01e1e;
-  --bc-yellow: #fcc419;  --bc-yellow-hover: #fab005;  --bc-yellow-active: #f59f00;
-  --bc-green: #2e7d32;   --bc-green-hover: #266a2a;   --bc-green-active: #1f5722;
+  /* Màu nền nút — gradient sáng/đậm tự sinh từ các giá trị này (xem .btn-3d) */
+  --bc-blue: #159895;     /* xanh ngọc/teal — khớp mẫu ảnh */
+  --bc-red: #e2542a;      /* đỏ cam — khớp mẫu ảnh */
+  --bc-yellow: #fcc419;
+  --bc-green: #2e7d32;   --bc-green-hover: #266a2a;   /* dùng riêng cho .btn-3d-select.is-selected:hover */
 
   --radius: 10px;
   --border-width: 2px;
@@ -153,10 +152,10 @@ main {
 }
 
 /* ---------------------------------------------------------------------- */
-/* Nút bấm — pill bóng kính (glossy): bo tròn hết cỡ, nền gradient         */
-/* sáng→đậm theo màu vai trò, viền sáng phía trên (bevel) + đổ bóng mềm    */
-/* bên dưới tạo cảm giác nổi. Tên class .btn-3d giữ nguyên để không phải   */
-/* sửa lại mọi trang PHP đang dùng — chỉ đổi phần định nghĩa CSS.          */
+/* Nút bấm — hình chữ nhật bo nhẹ 4 góc, nền gradient sáng→đậm theo màu     */
+/* vai trò, viền sáng phía trên (bevel) + đổ bóng mềm bên dưới tạo cảm      */
+/* giác nổi. Tên class .btn-3d giữ nguyên để không phải sửa lại mọi trang  */
+/* PHP đang dùng — chỉ đổi phần định nghĩa CSS.                            */
 /* ---------------------------------------------------------------------- */
 .btn-3d {
   --btn-color: var(--bc-yellow);
@@ -173,7 +172,7 @@ main {
   letter-spacing: 0.04em;
   padding: 12px 26px;
   border: none;
-  border-radius: 999px;
+  border-radius: 8px;
   cursor: pointer;
   text-decoration: none;
   background: linear-gradient(180deg, var(--btn-shine) 0%, var(--btn-color) 55%, var(--btn-deep) 100%);

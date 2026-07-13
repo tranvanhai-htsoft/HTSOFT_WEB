@@ -69,22 +69,22 @@ CAUTAOWEB.docx                 ← đặc tả nghiệp vụ gốc, nguồn sự
 |---|---|---|
 | Vàng `#FCC419` (nút) / `#FFD700` (thẻ) | `--bc-yellow` / `--bamboo-gold` | CTA chính — `.btn-3d-yellow` (vd: "Xem chi tiết") |
 | Xanh lá `#2E7D32` | `--bc-green` / `--bamboo-green` | Xác nhận/tin cậy — dấu tick `.tick-3d`, nút "Đã chọn" |
-| Đỏ `#E03131` (nút) / `#E5484D` (thẻ) | `--bc-red` / `--danger-red` | CTA khẩn cấp/giá — `.btn-3d-red` (vd: "Tính báo giá ngay") |
-| Xanh dương `#0073EA` (nút) / `#0091FF` (thương hiệu) | `--bc-blue` / `--htsoft-blue` | Thương hiệu HTSOFT — logo, link, `.btn-3d-blue` |
+| Đỏ cam `#E2542A` (nút) / `#E5484D` (thẻ) | `--bc-red` / `--danger-red` | CTA khẩn cấp/giá — `.btn-3d-red` (vd: "Tính báo giá ngay") |
+| Xanh ngọc/teal `#159895` (nút) / Xanh dương `#0091FF` (thương hiệu) | `--bc-blue` / `--htsoft-blue` | `.btn-3d-blue`; xanh dương riêng cho logo/link thương hiệu |
 
 **Card (`.card-3d`) và nút (`.btn-3d`) dùng 2 công thức khác nhau — đừng nhầm:**
 - **Thẻ**: viền đen 2px + `box-shadow` offset cứng (không blur), hover dịch chuyển
   `translate(-3px,-3px)` và tăng bóng. Giữ nguyên phong cách neo-brutalist này cho mọi thẻ mới.
-- **Nút**: pill bóng kính (glossy) — bo tròn hết cỡ `border-radius: 999px`, nền
-  `linear-gradient` sáng→đậm tự sinh từ biến `--btn-color` của mỗi variant (`--btn-shine`/
-  `--btn-deep` dùng `color-mix()`, không cần khai riêng gradient cho từng màu), viền sáng phía
-  trên + đổ bóng mềm bên dưới (`box-shadow` 3 lớp: 2 lớp inset tạo bevel + 1 lớp outer tạo cảm
-  giác nổi). Hover thì `filter: brightness(1.05)`, bấm xuống thì `translateY(2px)` +
-  `brightness(0.97)`. Muốn thêm màu mới: chỉ cần set `--btn-color` trên class variant, không
-  phải viết lại gradient. Class tên vẫn là `.btn-3d` (giữ nguyên để không phải sửa markup ở
-  mọi trang) — xem comment đầu `style.css`. Đây là lần đổi kiểu nút thứ 3 (từng qua 3D cứng
-  → phẳng Monday → pill bóng kính); nếu đổi tiếp, chỉ cần sửa trong khối "Nút bấm" của
-  `style.css`, không phải sửa markup.
+- **Nút**: hình chữ nhật bo nhẹ 4 góc (`border-radius: 8px`), nền `linear-gradient` sáng→đậm
+  tự sinh từ biến `--btn-color` của mỗi variant (`--btn-shine`/`--btn-deep` dùng `color-mix()`,
+  không cần khai riêng gradient cho từng màu), viền sáng phía trên + đổ bóng mềm bên dưới
+  (`box-shadow` 3 lớp: 2 lớp inset tạo bevel + 1 lớp outer tạo cảm giác nổi). Hover thì
+  `filter: brightness(1.05)`, bấm xuống thì `translateY(2px)` + `brightness(0.97)`. Muốn thêm
+  màu mới: chỉ cần set `--btn-color` trên class variant, không phải viết lại gradient. Class
+  tên vẫn là `.btn-3d` (giữ nguyên để không phải sửa markup ở mọi trang) — xem comment đầu
+  `style.css`. Đây là lần đổi kiểu nút thứ 4 (3D cứng → phẳng Monday → pill bóng kính → chữ
+  nhật bo nhẹ hiện tại); nếu đổi tiếp, chỉ cần sửa trong khối "Nút bấm" của `style.css`,
+  không phải sửa markup.
 
 ---
 
