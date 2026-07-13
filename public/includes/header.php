@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?= isset($pageTitle) ? htmlspecialchars($pageTitle) . ' | HTSOFT' : 'HTSOFT — Phần mềm quản trị doanh nghiệp' ?></title>
+    <meta name="description" content="<?= isset($pageDescription) ? htmlspecialchars($pageDescription) : 'HTSOFT cung cấp bộ phần mềm quản trị doanh nghiệp: Dradnet, kho, kế toán, bán hàng.' ?>">
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+
+    <header class="topbar" id="topbar">
+        <div class="logo-area">
+            <span>HTSOFT</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Trang chủ</a></li>
+                <li><a href="/mo-dun/dradnet.php">Sản phẩm</a></li>
+                <li><a href="/bao-gia.php">Báo giá</a></li>
+                <li><a href="/huong-dan.php">Hướng dẫn</a></li>
+                <li><a href="/dang-nhap.php" class="btn-3d btn-3d-blue">Đăng nhập</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
