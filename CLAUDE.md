@@ -67,14 +67,20 @@ CAUTAOWEB.docx                 ← đặc tả nghiệp vụ gốc, nguồn sự
 
 | Màu | Biến CSS | Dùng cho |
 |---|---|---|
-| Vàng `#FFD700` | `--bamboo-gold` | CTA chính — `.btn-3d-yellow` (vd: "Xem chi tiết") |
-| Xanh lá `#2E7D32` | `--bamboo-green` | Xác nhận/tin cậy — dấu tick `.tick-3d` |
-| Đỏ `#E5484D` | `--danger-red` | CTA khẩn cấp/giá — `.btn-3d-red` (vd: "Tính báo giá ngay") |
-| Xanh dương `#0091FF` | `--htsoft-blue` | Thương hiệu HTSOFT — logo, link, `.btn-3d-blue` |
+| Vàng `#FCC419` (nút) / `#FFD700` (thẻ) | `--bc-yellow` / `--bamboo-gold` | CTA chính — `.btn-3d-yellow` (vd: "Xem chi tiết") |
+| Xanh lá `#2E7D32` | `--bc-green` / `--bamboo-green` | Xác nhận/tin cậy — dấu tick `.tick-3d`, nút "Đã chọn" |
+| Đỏ `#E03131` (nút) / `#E5484D` (thẻ) | `--bc-red` / `--danger-red` | CTA khẩn cấp/giá — `.btn-3d-red` (vd: "Tính báo giá ngay") |
+| Xanh dương `#0073EA` (nút) / `#0091FF` (thương hiệu) | `--bc-blue` / `--htsoft-blue` | Thương hiệu HTSOFT — logo, link, `.btn-3d-blue` |
 
-Nút 3D và thẻ 3D dùng chung 1 công thức: viền đen 2px + `box-shadow` offset cứng (không blur)
-+ khi hover dịch chuyển `translate(-2px,-2px)` và tăng bóng — xem class `.btn-3d` và `.card-3d`
-trong `style.css`. Giữ đúng công thức này cho mọi thẻ/nút mới, không tự chế biến thể khác.
+**Card (`.card-3d`) và nút (`.btn-3d`) dùng 2 công thức khác nhau — đừng nhầm:**
+- **Thẻ**: viền đen 2px + `box-shadow` offset cứng (không blur), hover dịch chuyển
+  `translate(-3px,-3px)` và tăng bóng. Giữ nguyên phong cách neo-brutalist này cho mọi thẻ mới.
+- **Nút**: phẳng kiểu BiblioCAD/Monday — không viền (trừ `.btn-3d-select` ở trạng thái chưa
+  chọn, cần viền mảnh `1px solid #d0d5db` để không vô hình trên nền trắng), bo góc 4px, đổ
+  bóng mềm `0 1px 3px rgba(0,0,0,.1)` tăng lên `0 4px 6px rgba(0,0,0,.15)` khi hover, nền đổi
+  sang tông đậm hơn khi hover/active (`--bc-*-hover`/`--bc-*-active`), bấm xuống thì
+  `transform: scale(.98)`. Class tên vẫn là `.btn-3d` (giữ nguyên để không phải sửa markup ở
+  mọi trang) dù không còn hiệu ứng 3D nữa — xem comment đầu `style.css`.
 
 ---
 

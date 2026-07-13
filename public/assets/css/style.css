@@ -1,7 +1,9 @@
 /* ==========================================================================
    HTSOFT WEB — style dùng chung cho toàn bộ site (dradnet.vn)
-   Phong cách: tối giản, thẻ (card) kiểu bibliocad.com, nút 3D sắc nét
-   (viền đen + đổ bóng cứng, không gradient/blur).
+   Phong cách: tối giản, thẻ (card) kiểu bibliocad.com (viền đen + đổ bóng
+   cứng, không gradient/blur trên card). Nút bấm dùng hệ phẳng kiểu
+   BiblioCAD/Monday (không viền, đổ bóng mềm, đổi màu đậm hơn khi
+   hover/active) — xem khối "Nút bấm" bên dưới.
    Quy ước màu: Vàng = CTA chính, Xanh lá = xác nhận/tin cậy,
                 Đỏ = CTA khẩn cấp/giá, Xanh dương = thương hiệu HTSOFT.
    ========================================================================== */
@@ -20,10 +22,16 @@
   --bamboo-green: #2e7d32;
   --danger-red: #e5484d;
 
-  --gold-ink: #5c4b00;         /* chữ đặt trên nền vàng */
+  --gold-ink: #212529;         /* chữ đặt trên nền vàng */
   --green-ink: #ffffff;        /* chữ đặt trên nền xanh lá */
   --red-ink: #ffffff;          /* chữ đặt trên nền đỏ */
   --blue-ink: #ffffff;         /* chữ đặt trên nền xanh dương */
+
+  /* Nút bấm phẳng kiểu BiblioCAD — màu nền + biến thể hover/active */
+  --bc-blue: #0073ea;    --bc-blue-hover: #005ec2;    --bc-blue-active: #004da1;
+  --bc-red: #e03131;     --bc-red-hover: #c92a2a;     --bc-red-active: #b01e1e;
+  --bc-yellow: #fcc419;  --bc-yellow-hover: #fab005;  --bc-yellow-active: #f59f00;
+  --bc-green: #2e7d32;   --bc-green-hover: #266a2a;   --bc-green-active: #1f5722;
 
   --radius: 10px;
   --border-width: 2px;
@@ -145,38 +153,52 @@ main {
 }
 
 /* ---------------------------------------------------------------------- */
-/* Nút 3D — 4 biến thể màu theo vai trò                                    */
+/* Nút bấm — phẳng kiểu BiblioCAD (không viền, đổ bóng mềm, đổi màu đậm    */
+/* hơn khi hover/active). Tên class .btn-3d giữ nguyên để không phải sửa   */
+/* lại mọi trang PHP đang dùng — chỉ đổi phần định nghĩa CSS.              */
 /* ---------------------------------------------------------------------- */
 .btn-3d {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
-  font-weight: 700;
-  font-size: 0.9rem;
-  padding: 10px 18px;
-  border: var(--border-width) solid var(--ink);
-  border-radius: 8px;
-  box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--ink);
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
   cursor: pointer;
-  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  text-decoration: none;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   background: var(--surface);
   color: var(--text-main);
 }
 
 .btn-3d:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: calc(var(--shadow-offset) + 2px) calc(var(--shadow-offset) + 2px) 0 var(--ink);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
 }
 
 .btn-3d:active {
-  transform: translate(0, 0);
-  box-shadow: 1px 1px 0 var(--ink);
+  transform: scale(0.98);
 }
 
-.btn-3d-yellow { background: var(--bamboo-gold); color: var(--gold-ink); }
-.btn-3d-blue   { background: var(--htsoft-blue);  color: var(--blue-ink); }
-.btn-3d-green  { background: var(--bamboo-green); color: var(--green-ink); }
-.btn-3d-red    { background: var(--danger-red);   color: var(--red-ink); }
+.btn-3d-yellow { background: var(--bc-yellow); color: var(--gold-ink); }
+.btn-3d-yellow:hover { background: var(--bc-yellow-hover); }
+.btn-3d-yellow:active { background: var(--bc-yellow-active); }
+
+.btn-3d-blue { background: var(--bc-blue); color: var(--blue-ink); }
+.btn-3d-blue:hover { background: var(--bc-blue-hover); }
+.btn-3d-blue:active { background: var(--bc-blue-active); }
+
+.btn-3d-green { background: var(--bc-green); color: var(--green-ink); }
+.btn-3d-green:hover { background: var(--bc-green-hover); }
+.btn-3d-green:active { background: var(--bc-green-active); }
+
+.btn-3d-red { background: var(--bc-red); color: var(--red-ink); }
+.btn-3d-red:hover { background: var(--bc-red-hover); }
+.btn-3d-red:active { background: var(--bc-red-active); }
 
 /* ---------------------------------------------------------------------- */
 /* Thẻ (card) 3D — dùng cho lưới mô-đun trang chủ kiểu bibliocad.com       */
@@ -238,15 +260,27 @@ main {
   justify-content: center;
 }
 
-/* Nút "Tích chọn mua" — toggle chọn mô-đun cho bộ tính báo giá */
+/* Nút "Tích chọn mua" — toggle chọn mô-đun cho bộ tính báo giá.
+   Cần viền mảnh riêng vì .btn-3d gốc đã bỏ viền — không có viền thì
+   trạng thái "chưa chọn" (nền trắng) sẽ vô hình trên thẻ trắng. */
 .btn-3d-select {
   background: var(--surface);
   color: var(--text-main);
+  border: 1px solid #d0d5db;
+}
+
+.btn-3d-select:hover {
+  background: #f1f3f5;
 }
 
 .btn-3d-select.is-selected {
-  background: var(--bamboo-green);
+  background: var(--bc-green);
   color: var(--green-ink);
+  border-color: var(--bc-green);
+}
+
+.btn-3d-select.is-selected:hover {
+  background: var(--bc-green-hover);
 }
 
 /* Dấu tích xanh lá 3D — dùng trong khối "Tính năng cốt lõi" trang chi tiết mô-đun */
