@@ -1,33 +1,31 @@
 <?php
 $pageTitle = 'Trang chủ';
-$pageDescription = 'HTSOFT — bộ phần mềm quản trị doanh nghiệp: kho, kế toán, bán hàng, báo cáo.';
+$pageDescription = 'Dradnet — phần mềm thiết kế cống tự động: cống tròn, cống hộp, cầu bản, hố ga.';
 
-// TODO(Admin): danh sách mô-đun dưới đây là nội dung nháp copy từ Gioithieu.html gốc.
-// Chốt lại tên/mô tả/thứ tự 4 thẻ thật (có tính Dradnet vào đây không, vì domain là dradnet.vn?)
 $modules = [
     [
+        'icon' => '🔵',
+        'title' => 'Mô-đun 1: Cống Tròn & Cống Hộp Đúc Sẵn 2026',
+        'desc' => 'Thiết kế nhanh cống tròn, cống hộp đúc sẵn, tự động tính bẻ góc và tích hợp giải pháp cống đô thị.',
+        'href' => '/mo-dun/cong-tron-cong-hop-duc-san.php',
+    ],
+    [
         'icon' => '📦',
-        'title' => 'Mô-đun Quản Lý Kho',
-        'desc' => 'Kiểm soát xuất nhập tồn vật tư theo thời gian thực, tự động cảnh báo giới hạn an toàn.',
-        'href' => '/mo-dun/quan-ly-kho.php',
+        'title' => 'Mô-đun 2: Cống Hộp Đổ Tại Chỗ 2026',
+        'desc' => 'Thiết kế kết cấu cống hộp đổ tại chỗ, tường cánh BTCT, tự động dựng và xuất bản vẽ phối cảnh 3D.',
+        'href' => '/mo-dun/cong-hop-do-tai-cho.php',
     ],
     [
-        'icon' => '💰',
-        'title' => 'Mô-đun Kế Toán',
-        'desc' => 'Tự động định khoản thu chi, kết xuất báo cáo tài chính nội bộ nhanh chóng và chính xác.',
-        'href' => '/mo-dun/ke-toan.php',
+        'icon' => '🌉',
+        'title' => 'Mô-đun 3: Cầu Bản – Cống Bản – Tràn Liên Hợp 2026',
+        'desc' => 'Tự động hoá thiết kế cầu bản nhiều nhịp, cống bản lắp ghép và hệ thống tràn liên hợp thoát lũ.',
+        'href' => '/mo-dun/cau-ban-cong-ban-tran-lien-hop.php',
     ],
     [
-        'icon' => '🛒',
-        'title' => 'Mô-đun Bán Hàng',
-        'desc' => 'Lên đơn hàng siêu tốc, quản lý công nợ khách hàng và lịch sử chăm sóc khách hàng.',
-        'href' => '/mo-dun/ban-hang.php',
-    ],
-    [
-        'icon' => '📊',
-        'title' => 'Mô-đun Báo Cáo',
-        'desc' => 'Hệ thống biểu đồ trực quan, phân tích dữ liệu chuyên sâu giúp tối ưu dòng tiền.',
-        'href' => '/mo-dun/bao-cao.php',
+        'icon' => '🕳️',
+        'title' => 'Mô-đun 4: Thiết Kế Hố Ga 2026',
+        'desc' => 'Thư viện mẫu hố ga đa dạng, thiết kế mạng lưới thoát nước và xuất khối lượng tự động.',
+        'href' => '/mo-dun/thiet-ke-ho-ga.php',
     ],
 ];
 

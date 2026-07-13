@@ -82,8 +82,12 @@ trong `style.css`. Giữ đúng công thức này cho mọi thẻ/nút mới, kh
 
 | Trang | Nội dung | Ghi chú |
 |---|---|---|
-| `public/index.php` | Lưới 4 thẻ mô-đun | ⚠️ Nội dung 4 thẻ hiện là NHÁP (copy từ mockup gốc: Kho/Kế toán/Bán hàng/Báo cáo) — Admin cần chốt danh sách thật, và quyết định Dradnet có nằm trong 4 thẻ này không (vì domain là dradnet.vn) |
-| `public/mo-dun/dradnet.php` | 3 khu vực: Tính năng / Gallery / Video | Dùng làm mẫu chuẩn cho các trang mô-đun khác — copy cấu trúc, đổi nội dung |
+| `public/index.php` | Lưới 4 thẻ mô-đun Dradnet — **đã chốt nội dung thật** (Admin cung cấp) | Cống Tròn & Đúc Sẵn / Cống Hộp Đổ Tại Chỗ / Cầu Bản–Tràn Liên Hợp / Thiết Kế Hố Ga |
+| `public/mo-dun/cong-tron-cong-hop-duc-san.php` | 3 khu vực: Tính năng / Gallery / Video | Mô-đun 1, đủ 5 tính năng cốt lõi |
+| `public/mo-dun/cong-hop-do-tai-cho.php` | 3 khu vực: Tính năng / Gallery / Video | Mô-đun 2, đủ 5 tính năng cốt lõi |
+| `public/mo-dun/cau-ban-cong-ban-tran-lien-hop.php` | 3 khu vực: Tính năng / Gallery / Video | Mô-đun 3, đủ 4 tính năng cốt lõi |
+| `public/mo-dun/thiet-ke-ho-ga.php` | 3 khu vực: Tính năng / Gallery / Video | Mô-đun 4, đủ 5 tính năng cốt lõi |
+| `public/mo-dun/dradnet.php` | Trang tổng quan Dradnet (bản cũ, 4 mục trên từng là 1 dòng feature ở đây) | ⚠️ Trùng nội dung với 4 trang mô-đun mới — Admin cần quyết định: giữ làm trang "Giới thiệu chung" (nav "Sản phẩm" đang trỏ vào đây), hay xoá và trỏ "Sản phẩm" thẳng về trang chủ |
 | `public/bao-gia.php` | Checkbox mô-đun + slider số lượng/thời hạn | Logic tính tiền + API là việc của SV2 |
 | `public/huong-dan.php` | Timeline các bước, click hiện nội dung không chuyển trang | Việc của SV1 |
 | `public/dang-nhap.php` → `public/api/check-phone.php` | Luồng SĐT → có TK thì nhập mật khẩu, chưa có thì tạo mới + gửi Zalo/SMS | Việc của SV2, business logic ở `src/lib/Auth.php` |
