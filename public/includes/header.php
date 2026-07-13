@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= isset($pageTitle) ? htmlspecialchars($pageTitle) . ' | HTSOFT' : 'HTSOFT — Phần mềm quản trị doanh nghiệp' ?></title>
-    <meta name="description" content="<?= isset($pageDescription) ? htmlspecialchars($pageDescription) : 'HTSOFT cung cấp bộ phần mềm quản trị doanh nghiệp: Dradnet, kho, kế toán, bán hàng.' ?>">
+    <title><?= isset($pageTitle) ? htmlspecialchars($pageTitle) . ' | HTSOFT' : 'HTSOFT — Phần mềm thiết kế hạ tầng giao thông' ?></title>
+    <meta name="description" content="<?= isset($pageDescription) ? htmlspecialchars($pageDescription) : 'HTSOFT cung cấp bộ phần mềm thiết kế hạ tầng giao thông: Dradnet — cống, cầu bản, hố ga.' ?>">
     <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>

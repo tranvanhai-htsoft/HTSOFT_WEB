@@ -1,6 +1,6 @@
 # Dự án: Website HTSOFT (dradnet.vn)
 
-Website bán/giới thiệu bộ phần mềm quản trị doanh nghiệp của HTSOFT, phong cách tối giản,
+Website bán/giới thiệu bộ phần mềm thiết kế hạ tầng giao thông của HTSOFT, phong cách tối giản,
 tổ chức nội dung theo dạng thẻ (card) kiểu bibliocad.com, nút bấm 3D sắc nét (viền đen +
 đổ bóng cứng, không gradient/blur). Đặc tả nghiệp vụ đầy đủ nằm ở `CAUTAOWEB.docx` — coi
 đây là nguồn sự thật khi có mâu thuẫn với file này. (Dự kiến chuyển vào `docs/CAUTAOWEB.docx`
