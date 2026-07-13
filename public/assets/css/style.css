@@ -37,7 +37,7 @@
   --border-width: 2px;
   --shadow-offset: 5px;
 
-  --sky-gradient: linear-gradient(120deg, #0072c9 0%, #0091ff 45%, #5bc8fa 100%);
+  --dark-gradient: linear-gradient(180deg, #4a4a4a 0%, #1a1a1a 100%);
 
   --font-primary: 'Roboto', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
   --font-heading: 'Segoe UI', 'Roboto', sans-serif;
@@ -49,7 +49,14 @@
   padding: 0;
 }
 
+html {
+  min-height: 100%;
+}
+
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   font-family: var(--font-primary);
   font-size: 14px;
   background-color: var(--bg-color);
@@ -96,7 +103,7 @@ img {
   top: 0;
   left: 0;
   width: 100%;
-  background: var(--sky-gradient);
+  background: var(--dark-gradient);
   border-bottom: var(--border-width) solid var(--ink);
   z-index: 1000;
   display: flex;
@@ -147,9 +154,11 @@ img {
 }
 
 main {
+  width: 100%;
   max-width: 1100px;
   margin: 90px auto 0 auto;
   padding: 0 20px 60px;
+  flex: 1 0 auto;
 }
 
 /* ---------------------------------------------------------------------- */
@@ -366,11 +375,12 @@ main {
 /* Footer — dùng chung mọi trang                                          */
 /* ---------------------------------------------------------------------- */
 footer {
-  background: var(--sky-gradient);
+  flex-shrink: 0;
+  background: var(--dark-gradient);
   border-top: var(--border-width) solid var(--ink);
   padding: 40px 6%;
   font-size: 0.85rem;
-  color: #eaf6ff;
+  color: #d8d8d8;
 }
 
 .footer-content {

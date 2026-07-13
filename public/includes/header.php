@@ -16,7 +16,6 @@
         <nav>
             <ul>
                 <li><a href="/">Trang chủ</a></li>
-                <li><a href="/mo-dun/dradnet.php">Sản phẩm</a></li>
                 <li><a href="/bao-gia.php">Báo giá</a></li>
                 <li><a href="/huong-dan.php">Hướng dẫn</a></li>
                 <li><a href="/dang-nhap.php" class="btn-3d btn-3d-yellow">Đăng nhập</a></li>
