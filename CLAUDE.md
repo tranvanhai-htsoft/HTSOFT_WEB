@@ -24,10 +24,15 @@ làm HTML tĩnh trước rồi thêm server sau.
 public/                        ← webroot, trỏ document root của server vào đây
   index.php                    ← Trang chủ, lưới 4 thẻ mô-đun
   bao-gia.php                  ← Bộ tính báo giá
-  huong-dan.php                ← Hướng dẫn sử dụng dạng roadmap
+  huong-dan.php                ← Hub hướng dẫn — liệt kê link tới 4 trang huong-dan/*.php
   dang-nhap.php                ← Form đăng nhập bằng SĐT
   mo-dun/
     dradnet.php                ← Mẫu chuẩn trang chi tiết 1 mô-đun (Features/Gallery/Video)
+  huong-dan/
+    cong-tron-cong-hop-duc-san.php   ← Hướng dẫn riêng mô-đun 1 (roadmap 3 bước, click mở)
+    cong-hop-do-tai-cho.php           ← Hướng dẫn riêng mô-đun 2
+    cau-ban-cong-ban-tran-lien-hop.php ← Hướng dẫn riêng mô-đun 3
+    thiet-ke-ho-ga.php                ← Hướng dẫn riêng mô-đun 4
   admin/                       ← Trang quản trị nội bộ (Admin dùng, sau này thêm auth riêng)
   api/
     check-phone.php            ← Endpoint kiểm tra SĐT / tạo tài khoản mới
@@ -100,7 +105,8 @@ CAUTAOWEB.docx                 ← đặc tả nghiệp vụ gốc, nguồn sự
 | `public/mo-dun/thiet-ke-ho-ga.php` | 3 khu vực: Tính năng / Gallery / Video | Mô-đun 4, đủ 5 tính năng cốt lõi |
 | `public/mo-dun/dradnet.php` | Trang tổng quan Dradnet (bản cũ, 4 mục trên từng là 1 dòng feature ở đây) | ⚠️ Đã bỏ mục nav "Sản phẩm" (trùng với lưới 4 thẻ trang chủ) — trang này giờ không còn link nào trỏ tới, chỉ truy cập được qua URL trực tiếp. Có thể xoá hẳn nếu không cần dùng lại. |
 | `public/bao-gia.php` | Checkbox mô-đun + slider số lượng/thời hạn | Logic tính tiền + API là việc của SV2 |
-| `public/huong-dan.php` | Timeline các bước, click hiện nội dung không chuyển trang | Việc của SV1 |
+| `public/huong-dan.php` | Hub liệt kê 4 thẻ, mỗi thẻ link tới hướng dẫn riêng | Mỗi mô-đun có hướng dẫn riêng — đặc tả gốc trong docx chỉ là phác thảo sơ bộ (roadmap chung), Admin đã chốt lại thành nội dung riêng từng mô-đun |
+| `public/huong-dan/*.php` (4 file) | Timeline 3 bước/mô-đun, click 1 bước mở nội dung không chuyển trang | Nội dung bước hiện là placeholder do Claude soạn dựa trên tính năng đã mô tả — Admin/SV1 cần thay video/GIF thật (đánh dấu `TODO(SV1)` trong từng file) |
 | `public/dang-nhap.php` → `public/api/check-phone.php` | Luồng SĐT → có TK thì nhập mật khẩu, chưa có thì tạo mới + gửi Zalo/SMS | Việc của SV2, business logic ở `src/lib/Auth.php` |
 
 ---
@@ -115,7 +121,8 @@ CAUTAOWEB.docx                 ← đặc tả nghiệp vụ gốc, nguồn sự
 
 ### Sinh viên 1 — Frontend/UI
 - `public/index.php`, `public/mo-dun/*.php` (trang chi tiết mô-đun khác dựa theo mẫu `dradnet.php`)
-- `public/huong-dan.php` (roadmap tương tác)
+- `public/huong-dan.php` + `public/huong-dan/*.php` (roadmap tương tác riêng từng mô-đun —
+  thay nội dung bước/video placeholder bằng nội dung thật)
 - Mọi thay đổi/thêm class mới trong `public/assets/css/style.css` — vì dùng chung toàn site,
   đổi ở đây ảnh hưởng mọi trang, nên tạo Pull Request riêng để Admin review, không tự ý sửa
   thẳng trên `main`

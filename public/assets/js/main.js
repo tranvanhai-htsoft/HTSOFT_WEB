@@ -29,6 +29,23 @@
     });
 })();
 
+// Roadmap hướng dẫn sử dụng: click 1 bước để mở nội dung, đóng các bước khác
+// (kiểu accordion) — không chuyển trang, đúng theo docs/CAUTAOWEB.docx
+(function () {
+    document.querySelectorAll('.guide-roadmap').forEach(function (roadmap) {
+        roadmap.querySelectorAll('.guide-step__marker').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var step = btn.closest('.guide-step');
+                var wasOpen = step.classList.contains('is-open');
+                roadmap.querySelectorAll('.guide-step').forEach(function (s) {
+                    s.classList.remove('is-open');
+                });
+                if (!wasOpen) step.classList.add('is-open');
+            });
+        });
+    });
+})();
+
 // Nút "Chọn mua": chuyển trạng thái đã chọn/chưa chọn cho bộ tính báo giá
 // TODO(SV2): nối vào giỏ chọn mô-đun thật khi làm public/bao-gia.php
 (function () {
