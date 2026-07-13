@@ -272,8 +272,8 @@ main {
 
 /* Khu vực nút của thẻ sản phẩm — 1 nút chính (Xem chi tiết, chiếm hết
    chiều rộng) phía trên + hàng 2 nút phụ ngang hàng bên dưới (cùng cấp độ
-   quan trọng: Xem hướng dẫn / Tích chọn mua). Nút phụ dùng cỡ nhỏ gọn hơn
-   để 2 nút vừa cạnh nhau trong bề rộng hẹp của thẻ ở lưới 4 cột. */
+   quan trọng: Hướng dẫn / Chọn mua — rút gọn từ "Xem hướng dẫn"/"Tích chọn
+   mua" để vừa 1 dòng ở lưới 4 cột). Nút phụ dùng cỡ nhỏ gọn hơn. */
 .card-3d__actions {
   display: flex;
   flex-direction: column;
@@ -291,12 +291,12 @@ main {
 
 .card-3d__actions-secondary .btn-3d {
   flex: 1;
-  padding: 10px 10px;
+  padding: 10px 6px;
   font-size: 12px;
-  letter-spacing: 0.2px;
+  letter-spacing: 0.1px;
 }
 
-/* Nút "Tích chọn mua" — toggle chọn mô-đun cho bộ tính báo giá.
+/* Nút "Chọn mua" — toggle chọn mô-đun cho bộ tính báo giá.
    Cần viền mảnh riêng vì .btn-3d gốc đã bỏ viền — không có viền thì
    trạng thái "chưa chọn" (nền trắng) sẽ vô hình trên thẻ trắng. */
 .btn-3d-select {
