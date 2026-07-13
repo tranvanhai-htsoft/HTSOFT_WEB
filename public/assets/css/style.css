@@ -270,6 +270,10 @@ main {
   flex: 1;
 }
 
+/* Khu vực nút của thẻ sản phẩm — 1 nút chính (Xem chi tiết, chiếm hết
+   chiều rộng) phía trên + hàng 2 nút phụ ngang hàng bên dưới (cùng cấp độ
+   quan trọng: Xem hướng dẫn / Tích chọn mua). Nút phụ dùng cỡ nhỏ gọn hơn
+   để 2 nút vừa cạnh nhau trong bề rộng hẹp của thẻ ở lưới 4 cột. */
 .card-3d__actions {
   display: flex;
   flex-direction: column;
@@ -278,6 +282,18 @@ main {
 
 .card-3d__actions .btn-3d {
   justify-content: center;
+}
+
+.card-3d__actions-secondary {
+  display: flex;
+  gap: 8px;
+}
+
+.card-3d__actions-secondary .btn-3d {
+  flex: 1;
+  padding: 10px 10px;
+  font-size: 12px;
+  letter-spacing: 0.2px;
 }
 
 /* Nút "Tích chọn mua" — toggle chọn mô-đun cho bộ tính báo giá.

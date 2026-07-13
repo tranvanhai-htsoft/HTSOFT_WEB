@@ -45,7 +45,10 @@ require __DIR__ . '/includes/header.php';
             <p class="card-3d__desc"><?= htmlspecialchars($m['desc']) ?></p>
             <div class="card-3d__actions">
                 <a href="<?= htmlspecialchars($m['href']) ?>" class="btn-3d btn-3d-yellow">Xem chi tiết ➔</a>
-                <button type="button" class="btn-3d btn-3d-select" data-module="<?= htmlspecialchars($slug) ?>" aria-pressed="false">Tích chọn mua</button>
+                <div class="card-3d__actions-secondary">
+                    <a href="/huong-dan.php?mo-dun=<?= htmlspecialchars($slug) ?>" class="btn-3d btn-3d-blue">Xem hướng dẫn</a>
+                    <button type="button" class="btn-3d btn-3d-select" data-module="<?= htmlspecialchars($slug) ?>" aria-pressed="false">Tích chọn mua</button>
+                </div>
             </div>
         </div>
         <?php endforeach; ?>
