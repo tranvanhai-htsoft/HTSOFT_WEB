@@ -10,16 +10,16 @@
 <body>
 
     <header class="topbar" id="topbar">
-        <div class="logo-area">
-            <span>HTSOFT</span>
-        </div>
+        <a href="/" class="logo-area">
+            <img src="/assets/images/Logo.png" alt="HTSOFT">
+        </a>
         <nav>
             <ul>
                 <li><a href="/">Trang chủ</a></li>
                 <li><a href="/mo-dun/dradnet.php">Sản phẩm</a></li>
                 <li><a href="/bao-gia.php">Báo giá</a></li>
                 <li><a href="/huong-dan.php">Hướng dẫn</a></li>
-                <li><a href="/dang-nhap.php" class="btn-3d btn-3d-blue">Đăng nhập</a></li>
+                <li><a href="/dang-nhap.php" class="btn-3d btn-3d-yellow">Đăng nhập</a></li>
             </ul>
         </nav>
     </header>

@@ -26,6 +26,8 @@
   --radius: 10px;
   --border-width: 2px;
   --shadow-offset: 5px;
+
+  --sky-gradient: linear-gradient(120deg, #0072c9 0%, #0091ff 45%, #5bc8fa 100%);
 }
 
 * {
@@ -74,14 +76,13 @@ img {
   top: 0;
   left: 0;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(5px);
+  background: var(--sky-gradient);
   border-bottom: var(--border-width) solid var(--ink);
   z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 14px 6%;
+  padding: 10px 6%;
   transition: transform 0.3s ease;
 }
 
@@ -93,20 +94,36 @@ img {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-weight: 700;
-  font-size: 1.2rem;
-  color: var(--htsoft-blue);
+}
+
+.logo-area img {
+  height: 56px;
+  width: auto;
+  border-radius: 6px;
 }
 
 .topbar nav ul {
   display: flex;
+  align-items: center;
   list-style: none;
   gap: 26px;
-  font-weight: 500;
+  font-weight: 600;
+}
+
+.topbar nav ul a {
+  color: #ffffff;
 }
 
 .topbar nav ul a:hover {
-  color: var(--htsoft-blue);
+  color: var(--bamboo-gold);
+}
+
+.topbar nav ul a.btn-3d {
+  color: var(--gold-ink);
+}
+
+.topbar nav ul a.btn-3d:hover {
+  color: var(--gold-ink);
 }
 
 main {
@@ -199,6 +216,27 @@ main {
   flex: 1;
 }
 
+.card-3d__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card-3d__actions .btn-3d {
+  justify-content: center;
+}
+
+/* Nút "Tích chọn mua" — toggle chọn mô-đun cho bộ tính báo giá */
+.btn-3d-select {
+  background: var(--surface);
+  color: var(--text-main);
+}
+
+.btn-3d-select.is-selected {
+  background: var(--bamboo-green);
+  color: var(--green-ink);
+}
+
 /* Dấu tích xanh lá 3D — dùng trong khối "Tính năng cốt lõi" trang chi tiết mô-đun */
 .tick-3d {
   display: inline-flex;
@@ -244,10 +282,11 @@ main {
 /* Footer — dùng chung mọi trang                                          */
 /* ---------------------------------------------------------------------- */
 footer {
+  background: var(--sky-gradient);
   border-top: var(--border-width) solid var(--ink);
   padding: 40px 6%;
   font-size: 0.85rem;
-  color: var(--text-muted);
+  color: #eaf6ff;
 }
 
 .footer-content {
@@ -257,6 +296,10 @@ footer {
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 20px;
+}
+
+.footer-content strong {
+  color: #ffffff;
 }
 
 /* ---------------------------------------------------------------------- */

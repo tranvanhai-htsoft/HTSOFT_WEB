@@ -38,12 +38,16 @@ require __DIR__ . '/includes/header.php';
 
     <div class="card-grid">
         <?php foreach ($modules as $m): ?>
-        <a href="<?= htmlspecialchars($m['href']) ?>" class="card-3d">
+        <?php $slug = basename($m['href'], '.php'); ?>
+        <div class="card-3d" data-href="<?= htmlspecialchars($m['href']) ?>">
             <div class="card-3d__icon"><?= $m['icon'] ?></div>
             <div class="card-3d__title"><?= htmlspecialchars($m['title']) ?></div>
             <p class="card-3d__desc"><?= htmlspecialchars($m['desc']) ?></p>
-            <span class="btn-3d btn-3d-yellow">Xem chi tiết ➔</span>
-        </a>
+            <div class="card-3d__actions">
+                <a href="<?= htmlspecialchars($m['href']) ?>" class="btn-3d btn-3d-yellow">Xem chi tiết ➔</a>
+                <button type="button" class="btn-3d btn-3d-select" data-module="<?= htmlspecialchars($slug) ?>" aria-pressed="false">Tích chọn mua</button>
+            </div>
+        </div>
         <?php endforeach; ?>
     </div>
 </section>
