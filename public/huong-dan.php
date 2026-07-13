@@ -4,10 +4,10 @@ $pageDescription = 'Chọn mô-đun để xem hướng dẫn sử dụng chi ti�
 
 // Danh sách phải khớp với $modules trong index.php — mỗi mô-đun có 1 trang hướng dẫn riêng.
 $guides = [
-    ['icon' => '🔵', 'title' => 'Cống Tròn & Cống Hộp Đúc Sẵn', 'href' => '/huong-dan/cong-tron-cong-hop-duc-san.php'],
-    ['icon' => '📦', 'title' => 'Cống Hộp Đổ Tại Chỗ', 'href' => '/huong-dan/cong-hop-do-tai-cho.php'],
-    ['icon' => '🌉', 'title' => 'Cầu Bản – Cống Bản – Tràn Liên Hợp', 'href' => '/huong-dan/cau-ban-cong-ban-tran-lien-hop.php'],
-    ['icon' => '🕳️', 'title' => 'Thiết Kế Hố Ga', 'href' => '/huong-dan/thiet-ke-ho-ga.php'],
+    ['icon' => '🔵', 'slug' => 'cong-tron-cong-hop-duc-san', 'title' => 'Cống Tròn & Cống Hộp Đúc Sẵn', 'href' => '/huong-dan/cong-tron-cong-hop-duc-san.php'],
+    ['icon' => '📦', 'slug' => 'cong-hop-do-tai-cho', 'title' => 'Cống Hộp Đổ Tại Chỗ', 'href' => '/huong-dan/cong-hop-do-tai-cho.php'],
+    ['icon' => '🌉', 'slug' => 'cau-ban-cong-ban-tran-lien-hop', 'title' => 'Cầu Bản – Cống Bản – Tràn Liên Hợp', 'href' => '/huong-dan/cau-ban-cong-ban-tran-lien-hop.php'],
+    ['icon' => '🕳️', 'slug' => 'thiet-ke-ho-ga', 'title' => 'Thiết Kế Hố Ga', 'href' => '/huong-dan/thiet-ke-ho-ga.php'],
 ];
 
 require __DIR__ . '/includes/header.php';
@@ -22,11 +22,17 @@ require __DIR__ . '/includes/header.php';
 
     <div class="card-grid">
         <?php foreach ($guides as $g): ?>
-        <a href="<?= htmlspecialchars($g['href']) ?>" class="card-3d">
+        <div class="card-3d" data-href="<?= htmlspecialchars($g['href']) ?>">
             <div class="card-3d__icon"><?= $g['icon'] ?></div>
             <div class="card-3d__title"><?= htmlspecialchars($g['title']) ?></div>
-            <span class="btn-3d btn-3d-blue">Xem hướng dẫn</span>
-        </a>
+            <div class="card-3d__actions">
+                <div class="card-3d__actions-secondary">
+                    <a href="<?= htmlspecialchars($g['href']) ?>" class="btn-3d btn-3d-blue">Xem hướng dẫn</a>
+                    <a href="/ho-tro-truc-tuyen.php?mo-dun=<?= htmlspecialchars($g['slug']) ?>" class="btn-3d btn-3d-green">Trực tuyến</a>
+                </div>
+                <p class="card-3d__hint">Bấm "Trực tuyến" để gửi ID/Pass UltraView cho kỹ thuật viên hỗ trợ.</p>
+            </div>
+        </div>
         <?php endforeach; ?>
     </div>
 </section>
