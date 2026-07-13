@@ -6,6 +6,8 @@
                 Đỏ = CTA khẩn cấp/giá, Xanh dương = thương hiệu HTSOFT.
    ========================================================================== */
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
 :root {
   --bg-color: #f4f6f8;
   --surface: #ffffff;
@@ -28,6 +30,9 @@
   --shadow-offset: 5px;
 
   --sky-gradient: linear-gradient(120deg, #0072c9 0%, #0091ff 45%, #5bc8fa 100%);
+
+  --font-primary: 'Roboto', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+  --font-heading: 'Segoe UI', 'Roboto', sans-serif;
 }
 
 * {
@@ -37,10 +42,17 @@
 }
 
 body {
-  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-family: var(--font-primary);
+  font-size: 14px;
   background-color: var(--bg-color);
   color: var(--text-main);
-  line-height: 1.6;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
 }
 
 a {
