@@ -67,24 +67,25 @@ CAUTAOWEB.docx                 ← đặc tả nghiệp vụ gốc, nguồn sự
 
 | Màu | Biến CSS | Dùng cho |
 |---|---|---|
-| Vàng `#FCC419` (nút) / `#FFD700` (thẻ) | `--bc-yellow` / `--bamboo-gold` | CTA chính — `.btn-3d-yellow` (vd: "Xem chi tiết") |
-| Xanh lá `#2E7D32` | `--bc-green` / `--bamboo-green` | Xác nhận/tin cậy — dấu tick `.tick-3d`, nút "Đã chọn" |
-| Đỏ cam `#E2542A` (nút) / `#E5484D` (thẻ) | `--bc-red` / `--danger-red` | CTA khẩn cấp/giá — `.btn-3d-red` (vd: "Tính báo giá ngay") |
-| Xanh ngọc/teal `#159895` (nút) / Xanh dương `#0091FF` (thương hiệu) | `--bc-blue` / `--htsoft-blue` | `.btn-3d-blue`; xanh dương riêng cho logo/link thương hiệu |
+| Vàng `#FFCA36` (nút) / `#FFD700` (thẻ) | `--btn-yellow-bg` / `--bamboo-gold` | CTA chính — `.btn-3d-yellow` (vd: "Xem chi tiết") |
+| Xanh lá `#2E7D32` | `--btn-green-bg` / `--bamboo-green` | Xác nhận/tin cậy — dấu tick `.tick-3d`, nút "Đã chọn" |
+| Đỏ cam `#F05431` (nút) / `#E5484D` (thẻ) | `--btn-red-bg` / `--danger-red` | CTA khẩn cấp/giá — `.btn-3d-red` (vd: "Tính báo giá ngay") |
+| Xanh ngọc/teal `#00A0B0` (nút) / Xanh dương `#0091FF` (thương hiệu) | `--btn-blue-bg` / `--htsoft-blue` | `.btn-3d-blue`; xanh dương riêng cho logo/link thương hiệu |
 
 **Card (`.card-3d`) và nút (`.btn-3d`) dùng 2 công thức khác nhau — đừng nhầm:**
 - **Thẻ**: viền đen 2px + `box-shadow` offset cứng (không blur), hover dịch chuyển
   `translate(-3px,-3px)` và tăng bóng. Giữ nguyên phong cách neo-brutalist này cho mọi thẻ mới.
-- **Nút**: hình chữ nhật bo nhẹ 4 góc (`border-radius: 8px`), nền `linear-gradient` sáng→đậm
-  tự sinh từ biến `--btn-color` của mỗi variant (`--btn-shine`/`--btn-deep` dùng `color-mix()`,
-  không cần khai riêng gradient cho từng màu), viền sáng phía trên + đổ bóng mềm bên dưới
-  (`box-shadow` 3 lớp: 2 lớp inset tạo bevel + 1 lớp outer tạo cảm giác nổi). Hover thì
-  `filter: brightness(1.05)`, bấm xuống thì `translateY(2px)` + `brightness(0.97)`. Muốn thêm
-  màu mới: chỉ cần set `--btn-color` trên class variant, không phải viết lại gradient. Class
-  tên vẫn là `.btn-3d` (giữ nguyên để không phải sửa markup ở mọi trang) — xem comment đầu
-  `style.css`. Đây là lần đổi kiểu nút thứ 4 (3D cứng → phẳng Monday → pill bóng kính → chữ
-  nhật bo nhẹ hiện tại); nếu đổi tiếp, chỉ cần sửa trong khối "Nút bấm" của `style.css`,
-  không phải sửa markup.
+- **Nút**: khối 3D bóng cứng — nền màu phẳng (`background-color`, không gradient) + bóng đặc
+  4px cùng tông nhưng đậm hơn ngay dưới nút (`box-shadow: 0 4px 0 var(--btn-*-shadow), 0 4px
+  8px rgba(0,0,0,.15)`), bo góc nhẹ `border-radius: 6px`. Bấm xuống (`:active`) thì nút dịch
+  xuống `top: 3px` (cần `position: relative` trên base) và bóng co lại còn 1px — mô phỏng cảm
+  giác nút bị ấn lún vào bề mặt. Không có hiệu ứng hover riêng (chỉ có trạng thái nghỉ và
+  bấm). Mỗi variant màu cần khai 2 biến `--btn-*-bg`/`--btn-*-shadow` (không tự sinh qua
+  `color-mix()` nữa như bản trước — mã người dùng đưa chỉ định màu bóng thủ công cho từng
+  màu). Class tên vẫn là `.btn-3d` (giữ nguyên để không phải sửa markup ở mọi trang) — xem
+  comment đầu `style.css`. Đây là lần đổi kiểu nút thứ 5 (3D cứng ban đầu → phẳng Monday →
+  pill bóng kính → chữ nhật bo nhẹ gradient → khối 3D bóng cứng hiện tại); nếu đổi tiếp, chỉ
+  cần sửa trong khối "Nút bấm" của `style.css`, không phải sửa markup.
 
 ---
 

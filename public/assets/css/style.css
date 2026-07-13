@@ -1,8 +1,9 @@
 /* ==========================================================================
    HTSOFT WEB — style dùng chung cho toàn bộ site (dradnet.vn)
    Phong cách: tối giản, thẻ (card) kiểu bibliocad.com (viền đen + đổ bóng
-   cứng, không gradient/blur trên card). Nút bấm hình chữ nhật bo nhẹ 4 góc,
-   nền gradient sáng→đậm, đổ bóng mềm bên dưới — xem khối "Nút bấm" bên dưới.
+   cứng, không gradient/blur trên card). Nút bấm khối 3D bóng cứng (nền màu
+   phẳng + bóng đặc 4px bên dưới, bấm xuống thì lún vào) — xem khối
+   "Nút bấm" bên dưới.
    Quy ước màu: Vàng = CTA chính, Xanh lá = xác nhận/tin cậy,
                 Đỏ = CTA khẩn cấp/giá, Xanh dương = thương hiệu HTSOFT.
    ========================================================================== */
@@ -21,16 +22,16 @@
   --bamboo-green: #2e7d32;
   --danger-red: #e5484d;
 
-  --gold-ink: #212529;         /* chữ đặt trên nền vàng */
+  --gold-ink: #222222;         /* chữ đặt trên nền vàng */
   --green-ink: #ffffff;        /* chữ đặt trên nền xanh lá */
   --red-ink: #ffffff;          /* chữ đặt trên nền đỏ */
   --blue-ink: #ffffff;         /* chữ đặt trên nền xanh dương */
 
-  /* Màu nền nút — gradient sáng/đậm tự sinh từ các giá trị này (xem .btn-3d) */
-  --bc-blue: #159895;     /* xanh ngọc/teal — khớp mẫu ảnh */
-  --bc-red: #e2542a;      /* đỏ cam — khớp mẫu ảnh */
-  --bc-yellow: #fcc419;
-  --bc-green: #2e7d32;   --bc-green-hover: #266a2a;   /* dùng riêng cho .btn-3d-select.is-selected:hover */
+  /* Nút bấm — mỗi màu có nền + màu bóng khối bên dưới (xem .btn-3d) */
+  --btn-yellow-bg: #ffca36;  --btn-yellow-shadow: #dca315;
+  --btn-blue-bg: #00a0b0;    --btn-blue-shadow: #007c8a;
+  --btn-red-bg: #f05431;     --btn-red-shadow: #c63919;
+  --btn-green-bg: #2e7d32;   --btn-green-shadow: #1f5722;
 
   --radius: 10px;
   --border-width: 2px;
@@ -152,15 +153,13 @@ main {
 }
 
 /* ---------------------------------------------------------------------- */
-/* Nút bấm — hình chữ nhật bo nhẹ 4 góc, nền gradient sáng→đậm theo màu     */
-/* vai trò, viền sáng phía trên (bevel) + đổ bóng mềm bên dưới tạo cảm      */
-/* giác nổi. Tên class .btn-3d giữ nguyên để không phải sửa lại mọi trang  */
-/* PHP đang dùng — chỉ đổi phần định nghĩa CSS.                            */
+/* Nút bấm — khối 3D kiểu "đổ bóng cứng": bóng đặc màu đậm hơn dày 4px      */
+/* ngay dưới nút (không phải blur) tạo cảm giác một khối dày, bấm xuống    */
+/* thì nút dịch xuống + bóng co lại còn 1px như bị ấn lún vào bề mặt.      */
+/* Tên class .btn-3d giữ nguyên để không phải sửa lại mọi trang PHP đang   */
+/* dùng — chỉ đổi phần định nghĩa CSS.                                     */
 /* ---------------------------------------------------------------------- */
 .btn-3d {
-  --btn-color: var(--bc-yellow);
-  --btn-shine: color-mix(in srgb, white 40%, var(--btn-color));
-  --btn-deep: color-mix(in srgb, black 12%, var(--btn-color));
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -169,42 +168,57 @@ main {
   font-size: 14px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  padding: 12px 26px;
+  letter-spacing: 0.5px;
+  padding: 12px 36px;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
   text-decoration: none;
-  background: linear-gradient(180deg, var(--btn-shine) 0%, var(--btn-color) 55%, var(--btn-deep) 100%);
-  color: var(--text-main);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.6),
-    inset 0 -2px 3px rgba(0, 0, 0, 0.12),
-    0 6px 14px rgba(0, 0, 0, 0.22);
-  transition: filter 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
-}
-
-.btn-3d:hover {
-  filter: brightness(1.05);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.6),
-    inset 0 -2px 3px rgba(0, 0, 0, 0.12),
-    0 8px 18px rgba(0, 0, 0, 0.26);
+  transition: all 0.1s ease;
+  position: relative;
+  top: 0;
+  outline: none;
 }
 
 .btn-3d:active {
-  transform: translateY(2px);
-  filter: brightness(0.97);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.4),
-    inset 0 -1px 2px rgba(0, 0, 0, 0.12),
-    0 3px 6px rgba(0, 0, 0, 0.2);
+  top: 3px;
 }
 
-.btn-3d-yellow { --btn-color: var(--bc-yellow); color: var(--gold-ink); }
-.btn-3d-blue   { --btn-color: var(--bc-blue);   color: var(--blue-ink); }
-.btn-3d-green  { --btn-color: var(--bc-green);  color: var(--green-ink); }
-.btn-3d-red    { --btn-color: var(--bc-red);    color: var(--red-ink); }
+.btn-3d-yellow {
+  background-color: var(--btn-yellow-bg);
+  color: var(--gold-ink);
+  box-shadow: 0 4px 0 var(--btn-yellow-shadow), 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+.btn-3d-yellow:active {
+  box-shadow: 0 1px 0 var(--btn-yellow-shadow), 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.btn-3d-blue {
+  background-color: var(--btn-blue-bg);
+  color: var(--blue-ink);
+  box-shadow: 0 4px 0 var(--btn-blue-shadow), 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+.btn-3d-blue:active {
+  box-shadow: 0 1px 0 var(--btn-blue-shadow), 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.btn-3d-green {
+  background-color: var(--btn-green-bg);
+  color: var(--green-ink);
+  box-shadow: 0 4px 0 var(--btn-green-shadow), 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+.btn-3d-green:active {
+  box-shadow: 0 1px 0 var(--btn-green-shadow), 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.btn-3d-red {
+  background-color: var(--btn-red-bg);
+  color: var(--red-ink);
+  box-shadow: 0 4px 0 var(--btn-red-shadow), 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+.btn-3d-red:active {
+  box-shadow: 0 1px 0 var(--btn-red-shadow), 0 1px 4px rgba(0, 0, 0, 0.15);
+}
 
 /* ---------------------------------------------------------------------- */
 /* Thẻ (card) 3D — dùng cho lưới mô-đun trang chủ kiểu bibliocad.com       */
@@ -273,20 +287,22 @@ main {
   background: var(--surface);
   color: var(--text-main);
   border: 1px solid #d0d5db;
+  box-shadow: 0 4px 0 #d0d5db, 0 4px 8px rgba(0, 0, 0, 0.08);
 }
 
-.btn-3d-select:hover {
-  background: #f1f3f5;
+.btn-3d-select:active {
+  box-shadow: 0 1px 0 #d0d5db, 0 1px 4px rgba(0, 0, 0, 0.08);
 }
 
 .btn-3d-select.is-selected {
-  background: var(--bc-green);
+  background: var(--btn-green-bg);
   color: var(--green-ink);
-  border-color: var(--bc-green);
+  border-color: var(--btn-green-bg);
+  box-shadow: 0 4px 0 var(--btn-green-shadow), 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-.btn-3d-select.is-selected:hover {
-  background: var(--bc-green-hover);
+.btn-3d-select.is-selected:active {
+  box-shadow: 0 1px 0 var(--btn-green-shadow), 0 1px 4px rgba(0, 0, 0, 0.15);
 }
 
 /* Dấu tích xanh lá 3D — dùng trong khối "Tính năng cốt lõi" trang chi tiết mô-đun */
