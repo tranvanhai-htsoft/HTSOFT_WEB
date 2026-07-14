@@ -129,6 +129,24 @@ img {
   border-radius: 6px;
 }
 
+.topbar__hotline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--bamboo-gold);
+  font-weight: 700;
+  font-size: 1.05rem;
+  white-space: nowrap;
+}
+
+.topbar__hotline span:first-child {
+  font-size: 1.2rem;
+}
+
+.topbar__hotline:hover {
+  color: #ffffff;
+}
+
 .topbar nav ul {
   display: flex;
   align-items: center;
@@ -534,4 +552,6 @@ footer {
 @media (max-width: 600px) {
   .card-grid { grid-template-columns: 1fr; }
   .topbar nav ul { display: none; }
+  .topbar__hotline { font-size: 0.85rem; }
+  .logo-area img { height: 40px; }
 }

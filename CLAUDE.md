@@ -25,7 +25,7 @@ public/                        ← webroot, trỏ document root của server và
   index.php                    ← Trang chủ, lưới 8 thẻ sản phẩm (2 dòng x 4 cột)
   bao-gia.php                  ← Bộ tính báo giá
   huong-dan.php                ← Hub hướng dẫn — mỗi thẻ có 2 nút: Xem hướng dẫn / Trực tuyến
-  ho-tro-truc-tuyen.php        ← Hướng dẫn gửi ID/Pass UltraView cho KTV — TODO(Admin) hotline/Zalo thật
+  ho-tro-truc-tuyen.php        ← Hướng dẫn gửi ID/Pass UltraView cho KTV — hotline đã có, TODO(Admin) Zalo/link UltraView
   dang-nhap.php                ← Form đăng nhập bằng SĐT
   mo-dun/                      ← 8 trang chi tiết sản phẩm, cùng mẫu Features/Gallery/Video
     dradnet.php                ← Trang mồ côi cũ, không còn link nào trỏ tới (xem ghi chú bên dưới)
@@ -113,7 +113,7 @@ CAUTAOWEB.docx                 ← đặc tả nghiệp vụ gốc, nguồn sự
 | `public/bao-gia.php` | Checkbox mô-đun + slider số lượng/thời hạn | Logic tính tiền + API là việc của SV2 |
 | `public/huong-dan.php` | Hub liệt kê **8 thẻ**, mỗi thẻ 2 nút "Xem hướng dẫn" (tự xem) + "Trực tuyến" (gặp KTV qua UltraView) + dòng chú thích nhỏ | Mỗi sản phẩm có hướng dẫn riêng — đặc tả gốc trong docx chỉ là phác thảo sơ bộ (roadmap chung), Admin đã chốt lại thành nội dung riêng từng sản phẩm |
 | `public/huong-dan/*.php` (8 file) | Timeline 3 bước/sản phẩm, click 1 bước mở nội dung không chuyển trang | Nội dung bước hiện là placeholder do Claude soạn dựa trên tính năng đã mô tả — Admin/SV1 cần thay video/GIF thật (đánh dấu `TODO(SV1)` trong từng file) |
-| `public/ho-tro-truc-tuyen.php` | Hướng dẫn gửi ID/Pass UltraView cho kỹ thuật viên | Đích của nút "Trực tuyến" — ⚠️ chưa có hotline/Zalo thật, đánh dấu `TODO(Admin)` |
+| `public/ho-tro-truc-tuyen.php` | Hướng dẫn gửi ID/Pass UltraView cho kỹ thuật viên | Đích của nút "Trực tuyến" — hotline `0905.88.78.68` đã điền, ⚠️ còn thiếu Zalo/link UltraView, đánh dấu `TODO(Admin)` |
 | `public/dang-nhap.php` → `public/api/check-phone.php` | Luồng SĐT → có TK thì nhập mật khẩu, chưa có thì tạo mới + gửi Zalo/SMS | Việc của SV2, business logic ở `src/lib/Auth.php` |
 
 ---

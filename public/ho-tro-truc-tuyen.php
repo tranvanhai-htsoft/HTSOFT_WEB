@@ -15,12 +15,13 @@ require __DIR__ . '/includes/header.php';
 
     <div class="card-3d" style="max-width: 480px; gap: 16px;">
         <ol style="padding-left: 20px; color: var(--text-muted); font-size: 0.9rem; display: flex; flex-direction: column; gap: 10px;">
-            <li>Mở phần mềm UltraView đã cài trên máy tính (nếu chưa có, liên hệ để được gửi link tải).</li>
+            <li>Mở phần mềm UltraView đã cài trên máy tính (nếu chưa có, liên hệ hotline để được gửi link tải).</li>
             <li>Đọc ID và Mật khẩu hiển thị trên màn hình UltraView.</li>
-            <li>Gửi ID/Mật khẩu cho kỹ thuật viên qua Zalo hoặc hotline hỗ trợ.</li>
+            <li>Gọi hotline bên dưới và đọc ID/Mật khẩu cho kỹ thuật viên.</li>
         </ol>
+        <a href="tel:0905887868" class="btn-3d btn-3d-yellow">📞 Gọi hotline: 0905.88.78.68</a>
         <p style="font-size: 0.85rem; color: var(--text-muted); font-style: italic;">
-            TODO(Admin): điền số hotline/Zalo hỗ trợ thật và link tải UltraView chính thức vào trang này.
+            TODO(Admin): điền thêm số Zalo hỗ trợ và link tải UltraView chính thức vào trang này.
         </p>
     </div>
 </section>

@@ -13,6 +13,10 @@
         <a href="/" class="logo-area">
             <img src="/assets/images/Logo.png" alt="HTSOFT">
         </a>
+        <a href="tel:0905887868" class="topbar__hotline">
+            <span aria-hidden="true">📞</span>
+            <span>0905.88.78.68</span>
+        </a>
         <nav>
             <ul>
                 <li><a href="/">Trang chủ</a></li>

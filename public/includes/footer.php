@@ -9,6 +9,7 @@
             <div>
                 <strong>HTSOFT</strong>
                 <p>Bộ phần mềm thiết kế hạ tầng giao thông — dradnet.vn</p>
+                <p>Hotline: <a href="tel:0905887868" style="color: #fff; font-weight: 700;">0905.88.78.68</a></p>
             </div>
             <div>
                 <p>&copy; <?= date('Y') ?> HTSOFT. Bảo lưu mọi quyền.</p>
