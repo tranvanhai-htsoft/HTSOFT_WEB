@@ -56,10 +56,14 @@ src/                           ← code PHP nằm NGOÀI webroot (không truy c�
     Database.php                ← PDO singleton
     Auth.php                    ← luồng đăng nhập SĐT (đúng theo docs/CAUTAOWEB.docx)
     ZaloClient.php               ← gửi OTP qua Zalo ZCA — CHƯA cài đặt thật, có TODO rõ ràng
+    CreditService.php            ← nạp/trừ tín dụng, tính số dư, lịch sử — MỌI thay đổi
+                                    credit_balance phải đi qua đây (xem "Hệ thống tín dụng")
+    InsufficientCreditException.php ← ném ra khi số dư không đủ để dùng sản phẩm
   models/                       ← (chưa có file — thêm khi cần, đừng tạo class rỗng trước)
 
 database/
-  schema.sql                   ← 4 bảng: users, products, subscriptions, desktop_sync_logs
+  schema.sql                   ← 5 bảng: users, products, credit_packages, credit_transactions,
+                                  desktop_sync_logs (⚠️ đã thay subscriptions bằng hệ tín dụng)
 
 CAUTAOWEB.docx                 ← đặc tả nghiệp vụ gốc, nguồn sự thật (chuyển vào docs/ sau)
 ```
@@ -135,7 +139,35 @@ CAUTAOWEB.docx                 ← đặc tả nghiệp vụ gốc, nguồn sự
 - `database/schema.sql` khi cần thêm bảng/cột — luôn cập nhật file này cùng lúc, không sửa
   CSDL production tay rồi quên đồng bộ lại schema
 - `public/bao-gia.php` phần logic tính tiền + endpoint API tương ứng
-- Giai đoạn 2: `subscriptions`, `desktop_sync_logs`, đồng bộ desktop ↔ web
+- Hệ thống tín dụng (`src/lib/CreditService.php`) — xây API nạp tín dụng (chọn gói trong
+  `credit_packages`), API trừ tín dụng khi khách dùng sản phẩm, trang tài khoản xem số dư +
+  tải lịch sử (`credit_transactions`). **Cần làm session/đăng nhập giữ trạng thái trước** —
+  hiện `dang-nhap.php` mới xác thực xong chứ chưa lưu `$_SESSION`, nên chưa có khái niệm
+  "khách đã đăng nhập" ở các trang khác.
+- `desktop_sync_logs`, đồng bộ desktop ↔ web
+
+---
+
+## Hệ thống tín dụng (Giai đoạn 2)
+
+Thay cho mô hình thuê bao theo tháng (`duration_months`) mô tả ban đầu trong `CAUTAOWEB.docx`,
+Admin đã chốt mô hình **tín dụng trả trước dùng chung mọi sản phẩm**:
+
+- Khách mua 1 gói trong `credit_packages` (vd "Gói 100 tín dụng") → cộng vào
+  `users.credit_balance` — **1 số dư duy nhất**, không có ví riêng theo từng sản phẩm.
+- Mỗi sản phẩm có `products.credit_cost` riêng — số tín dụng bị trừ mỗi lần dùng sản phẩm đó
+  (mức trừ khác nhau tuỳ sản phẩm, đúng theo yêu cầu).
+- Mọi lần cộng/trừ đều ghi 1 dòng vào `credit_transactions` (sổ cái) — dùng để: (1) tính lại
+  số dư nếu cần đối chiếu, (2) hiển thị/tải lịch sử sử dụng cho khách.
+- `users.credit_balance` là **cache**, phải luôn khớp `SUM(credit_transactions.amount)` —
+  **không bao giờ** `UPDATE users SET credit_balance = ...` trực tiếp ở nơi khác, luôn gọi
+  `CreditService::topUp()` / `::consume()` (tự chạy trong 1 DB transaction, khoá dòng bằng
+  `FOR UPDATE` để 2 request cùng lúc không làm sai số dư).
+- Cảnh báo sắp hết tín dụng: `CreditService::isLowBalance()` so số dư với
+  `users.low_credit_threshold` (NULL thì dùng ngưỡng mặc định 20, khai trong
+  `CreditService::DEFAULT_LOW_THRESHOLD`). Hiển thị cảnh báo ở UI là việc của SV1.
+- ⚠️ **Chưa xây**: trang tài khoản khách hàng (xem số dư, tải lịch sử) và cơ chế session giữ
+  đăng nhập — cả 2 đều cần làm trước khi tính năng này dùng được thật.
 
 ---
 
