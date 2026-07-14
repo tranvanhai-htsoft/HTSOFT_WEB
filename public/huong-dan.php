@@ -8,6 +8,10 @@ $guides = [
     ['icon' => '📦', 'slug' => 'cong-hop-do-tai-cho', 'title' => 'Cống Hộp Đổ Tại Chỗ', 'href' => '/huong-dan/cong-hop-do-tai-cho.php'],
     ['icon' => '🌉', 'slug' => 'cau-ban-cong-ban-tran-lien-hop', 'title' => 'Cầu Bản – Cống Bản – Tràn Liên Hợp', 'href' => '/huong-dan/cau-ban-cong-ban-tran-lien-hop.php'],
     ['icon' => '🕳️', 'slug' => 'thiet-ke-ho-ga', 'title' => 'Thiết Kế Hố Ga', 'href' => '/huong-dan/thiet-ke-ho-ga.php'],
+    ['icon' => '🏗️', 'slug' => 'thiet-ke-cau-gian-don', 'title' => 'Thiết Kế Cầu Giản Đơn', 'href' => '/huong-dan/thiet-ke-cau-gian-don.php'],
+    ['icon' => '📐', 'slug' => 'kiem-toan-cau-gian-don', 'title' => 'Kiểm Toán Cầu Giản Đơn', 'href' => '/huong-dan/kiem-toan-cau-gian-don.php'],
+    ['icon' => '🧮', 'slug' => 'kiem-toan-cau-ban', 'title' => 'Kiểm Toán Cầu Bản', 'href' => '/huong-dan/kiem-toan-cau-ban.php'],
+    ['icon' => '🔲', 'slug' => 'kiem-toan-cong-hop', 'title' => 'Kiểm Toán Cống Hộp', 'href' => '/huong-dan/kiem-toan-cong-hop.php'],
 ];
 
 require __DIR__ . '/includes/header.php';

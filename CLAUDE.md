@@ -22,18 +22,22 @@ làm HTML tĩnh trước rồi thêm server sau.
 
 ```
 public/                        ← webroot, trỏ document root của server vào đây
-  index.php                    ← Trang chủ, lưới 4 thẻ mô-đun
+  index.php                    ← Trang chủ, lưới 8 thẻ sản phẩm (2 dòng x 4 cột)
   bao-gia.php                  ← Bộ tính báo giá
   huong-dan.php                ← Hub hướng dẫn — mỗi thẻ có 2 nút: Xem hướng dẫn / Trực tuyến
   ho-tro-truc-tuyen.php        ← Hướng dẫn gửi ID/Pass UltraView cho KTV — TODO(Admin) hotline/Zalo thật
   dang-nhap.php                ← Form đăng nhập bằng SĐT
-  mo-dun/
-    dradnet.php                ← Mẫu chuẩn trang chi tiết 1 mô-đun (Features/Gallery/Video)
-  huong-dan/
-    cong-tron-cong-hop-duc-san.php   ← Hướng dẫn riêng mô-đun 1 (roadmap 3 bước, click mở)
-    cong-hop-do-tai-cho.php           ← Hướng dẫn riêng mô-đun 2
-    cau-ban-cong-ban-tran-lien-hop.php ← Hướng dẫn riêng mô-đun 3
-    thiet-ke-ho-ga.php                ← Hướng dẫn riêng mô-đun 4
+  mo-dun/                      ← 8 trang chi tiết sản phẩm, cùng mẫu Features/Gallery/Video
+    dradnet.php                ← Trang mồ côi cũ, không còn link nào trỏ tới (xem ghi chú bên dưới)
+    cong-tron-cong-hop-duc-san.php
+    cong-hop-do-tai-cho.php
+    cau-ban-cong-ban-tran-lien-hop.php
+    thiet-ke-ho-ga.php
+    thiet-ke-cau-gian-don.php
+    kiem-toan-cau-gian-don.php
+    kiem-toan-cau-ban.php
+    kiem-toan-cong-hop.php
+  huong-dan/                   ← 8 trang hướng dẫn riêng (roadmap 3 bước, click mở), 1-1 với mo-dun/
   admin/                       ← Trang quản trị nội bộ (Admin dùng, sau này thêm auth riêng)
   api/
     check-phone.php            ← Endpoint kiểm tra SĐT / tạo tài khoản mới
@@ -99,15 +103,12 @@ CAUTAOWEB.docx                 ← đặc tả nghiệp vụ gốc, nguồn sự
 
 | Trang | Nội dung | Ghi chú |
 |---|---|---|
-| `public/index.php` | Lưới 4 thẻ mô-đun Dradnet — **đã chốt nội dung thật** (Admin cung cấp) | Cống Tròn & Đúc Sẵn / Cống Hộp Đổ Tại Chỗ / Cầu Bản–Tràn Liên Hợp / Thiết Kế Hố Ga |
-| `public/mo-dun/cong-tron-cong-hop-duc-san.php` | 3 khu vực: Tính năng / Gallery / Video | Mô-đun 1, đủ 5 tính năng cốt lõi |
-| `public/mo-dun/cong-hop-do-tai-cho.php` | 3 khu vực: Tính năng / Gallery / Video | Mô-đun 2, đủ 5 tính năng cốt lõi |
-| `public/mo-dun/cau-ban-cong-ban-tran-lien-hop.php` | 3 khu vực: Tính năng / Gallery / Video | Mô-đun 3, đủ 4 tính năng cốt lõi |
-| `public/mo-dun/thiet-ke-ho-ga.php` | 3 khu vực: Tính năng / Gallery / Video | Mô-đun 4, đủ 5 tính năng cốt lõi |
-| `public/mo-dun/dradnet.php` | Trang tổng quan Dradnet (bản cũ, 4 mục trên từng là 1 dòng feature ở đây) | ⚠️ Đã bỏ mục nav "Sản phẩm" (trùng với lưới 4 thẻ trang chủ) — trang này giờ không còn link nào trỏ tới, chỉ truy cập được qua URL trực tiếp. Có thể xoá hẳn nếu không cần dùng lại. |
+| `public/index.php` | Lưới **8 thẻ** sản phẩm — **đã chốt nội dung thật** (Admin cung cấp) | 4 mô-đun Dradnet gốc (Cống Tròn & Đúc Sẵn / Cống Hộp Đổ Tại Chỗ / Cầu Bản–Tràn Liên Hợp / Thiết Kế Hố Ga) + 4 sản phẩm mới (Thiết Kế Cầu Giản Đơn / Kiểm Toán Cầu Giản Đơn / Kiểm Toán Cầu Bản / Kiểm Toán Cống Hộp) |
+| `public/mo-dun/*.php` (8 file, xem cây thư mục ở trên) | 3 khu vực: Tính năng / Gallery / Video | Đủ tính năng cốt lõi theo đúng nội dung Admin cung cấp cho từng sản phẩm |
+| `public/mo-dun/dradnet.php` | Trang tổng quan Dradnet (bản cũ, 4 mục Cống/Hố ga từng là 1 dòng feature ở đây) | ⚠️ Đã bỏ mục nav "Sản phẩm" (trùng với lưới thẻ trang chủ) — trang này giờ không còn link nào trỏ tới, chỉ truy cập được qua URL trực tiếp. Có thể xoá hẳn nếu không cần dùng lại. |
 | `public/bao-gia.php` | Checkbox mô-đun + slider số lượng/thời hạn | Logic tính tiền + API là việc của SV2 |
-| `public/huong-dan.php` | Hub liệt kê 4 thẻ, mỗi thẻ 2 nút "Xem hướng dẫn" (tự xem) + "Trực tuyến" (gặp KTV qua UltraView) + dòng chú thích nhỏ | Mỗi mô-đun có hướng dẫn riêng — đặc tả gốc trong docx chỉ là phác thảo sơ bộ (roadmap chung), Admin đã chốt lại thành nội dung riêng từng mô-đun |
-| `public/huong-dan/*.php` (4 file) | Timeline 3 bước/mô-đun, click 1 bước mở nội dung không chuyển trang | Nội dung bước hiện là placeholder do Claude soạn dựa trên tính năng đã mô tả — Admin/SV1 cần thay video/GIF thật (đánh dấu `TODO(SV1)` trong từng file) |
+| `public/huong-dan.php` | Hub liệt kê **8 thẻ**, mỗi thẻ 2 nút "Xem hướng dẫn" (tự xem) + "Trực tuyến" (gặp KTV qua UltraView) + dòng chú thích nhỏ | Mỗi sản phẩm có hướng dẫn riêng — đặc tả gốc trong docx chỉ là phác thảo sơ bộ (roadmap chung), Admin đã chốt lại thành nội dung riêng từng sản phẩm |
+| `public/huong-dan/*.php` (8 file) | Timeline 3 bước/sản phẩm, click 1 bước mở nội dung không chuyển trang | Nội dung bước hiện là placeholder do Claude soạn dựa trên tính năng đã mô tả — Admin/SV1 cần thay video/GIF thật (đánh dấu `TODO(SV1)` trong từng file) |
 | `public/ho-tro-truc-tuyen.php` | Hướng dẫn gửi ID/Pass UltraView cho kỹ thuật viên | Đích của nút "Trực tuyến" — ⚠️ chưa có hotline/Zalo thật, đánh dấu `TODO(Admin)` |
 | `public/dang-nhap.php` → `public/api/check-phone.php` | Luồng SĐT → có TK thì nhập mật khẩu, chưa có thì tạo mới + gửi Zalo/SMS | Việc của SV2, business logic ở `src/lib/Auth.php` |
 

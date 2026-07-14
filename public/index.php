@@ -1,6 +1,6 @@
 <?php
 $pageTitle = 'Trang chủ';
-$pageDescription = 'Dradnet — phần mềm thiết kế cống tự động: cống tròn, cống hộp, cầu bản, hố ga.';
+$pageDescription = 'Dradnet — phần mềm thiết kế và kiểm toán hạ tầng giao thông: cống, cầu bản, hố ga, cầu giản đơn, cống hộp.';
 
 $modules = [
     [
@@ -26,6 +26,30 @@ $modules = [
         'title' => 'Mô-đun 4: Thiết Kế Hố Ga 2026',
         'desc' => 'Thư viện mẫu hố ga đa dạng, thiết kế mạng lưới thoát nước và xuất khối lượng tự động.',
         'href' => '/mo-dun/thiet-ke-ho-ga.php',
+    ],
+    [
+        'icon' => '🏗️',
+        'title' => 'Phần Mềm Thiết Kế Cầu Giản Đơn',
+        'desc' => 'Tự động thiết kế bản vẽ bố trí chung, bố trí cốt thép mố trụ, cọc móng và bóc tách khối lượng chính xác 100%.',
+        'href' => '/mo-dun/thiet-ke-cau-gian-don.php',
+    ],
+    [
+        'icon' => '📐',
+        'title' => 'Phần Mềm Kiểm Toán Cầu Giản Đơn',
+        'desc' => 'Tự động tổ hợp tải trọng, xếp xe HL-93 và kiểm toán toàn diện dầm cầu theo TCVN 11823.',
+        'href' => '/mo-dun/kiem-toan-cau-gian-don.php',
+    ],
+    [
+        'icon' => '🧮',
+        'title' => 'Phần Mềm Kiểm Toán Cầu Bản',
+        'desc' => 'Tự động tính nội lực và kiểm toán kết cấu dầm bản theo TCVN 11823, AASHTO LRFD.',
+        'href' => '/mo-dun/kiem-toan-cau-ban.php',
+    ],
+    [
+        'icon' => '🔲',
+        'title' => 'Phần Mềm Kiểm Toán Cống Hộp',
+        'desc' => 'Tự động tính nội lực khung kín và kiểm toán kết cấu cống hộp, tối ưu khối lượng vật liệu.',
+        'href' => '/mo-dun/kiem-toan-cong-hop.php',
     ],
 ];
 
