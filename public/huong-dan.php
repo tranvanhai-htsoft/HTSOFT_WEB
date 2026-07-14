@@ -26,12 +26,12 @@ require __DIR__ . '/includes/header.php';
 
     <div class="card-grid">
         <?php foreach ($guides as $g): ?>
-        <div class="card-3d" data-href="<?= htmlspecialchars($g['href']) ?>">
-            <div class="card-3d__icon"><?= $g['icon'] ?></div>
+        <div class="card-3d card-3d--guide" data-href="<?= htmlspecialchars($g['href']) ?>">
+            <div class="card-3d__thumb"><?= $g['icon'] ?></div>
             <div class="card-3d__title"><?= htmlspecialchars($g['title']) ?></div>
             <div class="card-3d__actions">
                 <div class="card-3d__actions-secondary">
-                    <a href="<?= htmlspecialchars($g['href']) ?>" class="btn-3d btn-3d-blue">Xem hướng dẫn</a>
+                    <a href="<?= htmlspecialchars($g['href']) ?>" class="btn-3d btn-3d-blue">Hướng dẫn</a>
                     <a href="/ho-tro-truc-tuyen.php?mo-dun=<?= htmlspecialchars($g['slug']) ?>" class="btn-3d btn-3d-green">Trực tuyến</a>
                 </div>
                 <p class="card-3d__hint">Bấm "Trực tuyến" để gửi ID/Pass UltraView cho kỹ thuật viên hỗ trợ.</p>
