@@ -110,15 +110,19 @@ CAUTAOWEB.docx                 ← đặc tả nghiệp vụ gốc, nguồn sự
 | `public/index.php` | Lưới **8 thẻ** sản phẩm — **đã chốt nội dung thật** (Admin cung cấp) | 4 mô-đun Dradnet gốc (Cống Tròn & Đúc Sẵn / Cống Hộp Đổ Tại Chỗ / Cầu Bản–Tràn Liên Hợp / Thiết Kế Hố Ga) + 4 sản phẩm mới (Thiết Kế Cầu Giản Đơn / Kiểm Toán Cầu Giản Đơn / Kiểm Toán Cầu Bản / Kiểm Toán Cống Hộp) |
 | `public/mo-dun/*.php` (8 file, xem cây thư mục ở trên) | 3 khu vực: Tính năng / Gallery / Video | Đủ tính năng cốt lõi theo đúng nội dung Admin cung cấp cho từng sản phẩm |
 | `public/mo-dun/dradnet.php` | Trang tổng quan Dradnet (bản cũ, 4 mục Cống/Hố ga từng là 1 dòng feature ở đây) | ⚠️ Đã bỏ mục nav "Sản phẩm" (trùng với lưới thẻ trang chủ) — trang này giờ không còn link nào trỏ tới, chỉ truy cập được qua URL trực tiếp. Có thể xoá hẳn nếu không cần dùng lại. |
-| `public/bao-gia.php` | Checkbox mô-đun + slider số lượng/thời hạn | Logic tính tiền + API là việc của SV2 |
+| `public/bao-gia.php` | Checkbox mô-đun + slider số lượng/thời hạn | Logic tính tiền + API là việc của **Bạn B** (SV2) |
 | `public/huong-dan.php` | Hub liệt kê **8 thẻ**, mỗi thẻ 2 nút "Xem hướng dẫn" (tự xem) + "Trực tuyến" (gặp KTV qua UltraView) + dòng chú thích nhỏ | Mỗi sản phẩm có hướng dẫn riêng — đặc tả gốc trong docx chỉ là phác thảo sơ bộ (roadmap chung), Admin đã chốt lại thành nội dung riêng từng sản phẩm |
-| `public/huong-dan/*.php` (8 file) | Timeline 3 bước/sản phẩm, click 1 bước mở nội dung không chuyển trang | Nội dung bước hiện là placeholder do Claude soạn dựa trên tính năng đã mô tả — Admin/SV1 cần thay video/GIF thật (đánh dấu `TODO(SV1)` trong từng file) |
+| `public/huong-dan/*.php` (8 file) | Timeline 3 bước/sản phẩm, click 1 bước mở nội dung không chuyển trang | Nội dung bước hiện là placeholder do Claude soạn dựa trên tính năng đã mô tả — Admin/**Bạn C** (SV1) cần thay video/GIF thật (đánh dấu `TODO(SV1)` trong từng file) |
 | `public/ho-tro-truc-tuyen.php` | Hướng dẫn gửi ID/Pass UltraView cho kỹ thuật viên | Đích của nút "Trực tuyến" — hotline `0905.88.78.68` đã điền, ⚠️ còn thiếu Zalo/link UltraView, đánh dấu `TODO(Admin)` |
-| `public/dang-nhap.php` → `public/api/check-phone.php` | Luồng SĐT → có TK thì nhập mật khẩu, chưa có thì tạo mới + gửi Zalo/SMS | Việc của SV2, business logic ở `src/lib/Auth.php` |
+| `public/dang-nhap.php` → `public/api/check-phone.php` | Luồng SĐT → có TK thì nhập mật khẩu, chưa có thì tạo mới + gửi Zalo/SMS | Việc của **Bạn B** (SV2), business logic ở `src/lib/Auth.php` |
 
 ---
 
 ## Phân công 3 người
+
+**Tên thật ↔ vai trò:** Bạn B = Backend/Data, Bạn C = Frontend/UI. Trong code, các comment
+`TODO(SV1)`/`TODO(SV2)` là nhãn vai trò cũ (SV1 = Frontend = Bạn C, SV2 = Backend = Bạn B),
+chưa đổi tên lại trong từng file cho đỡ mất công sửa hàng loạt — cứ hiểu SV1→C, SV2→B.
 
 ### Admin (bạn)
 - Sở hữu repo GitHub, review & merge Pull Request
@@ -126,7 +130,7 @@ CAUTAOWEB.docx                 ← đặc tả nghiệp vụ gốc, nguồn sự
 - Chọn/đăng ký tài khoản Zalo dùng cho ZCA, theo dõi rủi ro khoá tài khoản khi vận hành thật
 - Quản lý domain `dradnet.vn` và hosting production
 
-### Sinh viên 1 — Frontend/UI
+### Bạn C — Frontend/UI (nhãn `SV1` trong code/comment TODO)
 - `public/index.php`, `public/mo-dun/*.php` (trang chi tiết mô-đun khác dựa theo mẫu `dradnet.php`)
 - `public/huong-dan.php` + `public/huong-dan/*.php` (roadmap tương tác riêng từng mô-đun —
   thay nội dung bước/video placeholder bằng nội dung thật)
@@ -134,7 +138,7 @@ CAUTAOWEB.docx                 ← đặc tả nghiệp vụ gốc, nguồn sự
   đổi ở đây ảnh hưởng mọi trang, nên tạo Pull Request riêng để Admin review, không tự ý sửa
   thẳng trên `main`
 
-### Sinh viên 2 — Backend/Data
+### Bạn B — Backend/Data (nhãn `SV2` trong code/comment TODO)
 - `src/lib/Auth.php`, `src/lib/ZaloClient.php` (nối API ZCA thật), `public/api/*.php`
 - `database/schema.sql` khi cần thêm bảng/cột — luôn cập nhật file này cùng lúc, không sửa
   CSDL production tay rồi quên đồng bộ lại schema
@@ -165,7 +169,7 @@ Admin đã chốt mô hình **tín dụng trả trước dùng chung mọi sản
   `FOR UPDATE` để 2 request cùng lúc không làm sai số dư).
 - Cảnh báo sắp hết tín dụng: `CreditService::isLowBalance()` so số dư với
   `users.low_credit_threshold` (NULL thì dùng ngưỡng mặc định 20, khai trong
-  `CreditService::DEFAULT_LOW_THRESHOLD`). Hiển thị cảnh báo ở UI là việc của SV1.
+  `CreditService::DEFAULT_LOW_THRESHOLD`). Hiển thị cảnh báo ở UI là việc của **Bạn C** (SV1).
 - ⚠️ **Chưa xây**: trang tài khoản khách hàng (xem số dư, tải lịch sử) và cơ chế session giữ
   đăng nhập — cả 2 đều cần làm trước khi tính năng này dùng được thật.
 
@@ -174,8 +178,8 @@ Admin đã chốt mô hình **tín dụng trả trước dùng chung mọi sản
 ## Quy trình Git
 
 Nhánh làm việc:
-- `feature/frontend-ui` — Sinh viên 1
-- `feature/backend-auth` — Sinh viên 2
+- `feature/frontend-ui` — Bạn C
+- `feature/backend-auth` — Bạn B
 
 ```bash
 git checkout main
