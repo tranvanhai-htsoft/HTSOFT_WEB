@@ -27,30 +27,6 @@ $modules = [
         'desc' => 'Thư viện mẫu hố ga đa dạng, thiết kế mạng lưới thoát nước và xuất khối lượng tự động.',
         'href' => '/mo-dun/thiet-ke-ho-ga.php',
     ],
-    [
-        'icon' => '🏗️',
-        'title' => 'Phần Mềm Thiết Kế Cầu Giản Đơn',
-        'desc' => 'Tự động thiết kế bản vẽ bố trí chung, bố trí cốt thép mố trụ, cọc móng và bóc tách khối lượng chính xác 100%.',
-        'href' => '/mo-dun/thiet-ke-cau-gian-don.php',
-    ],
-    [
-        'icon' => '📐',
-        'title' => 'Phần Mềm Kiểm Toán Cầu Giản Đơn',
-        'desc' => 'Tự động tổ hợp tải trọng, xếp xe HL-93 và kiểm toán toàn diện dầm cầu theo TCVN 11823.',
-        'href' => '/mo-dun/kiem-toan-cau-gian-don.php',
-    ],
-    [
-        'icon' => '🧮',
-        'title' => 'Phần Mềm Kiểm Toán Cầu Bản',
-        'desc' => 'Tự động tính nội lực và kiểm toán kết cấu dầm bản theo TCVN 11823, AASHTO LRFD.',
-        'href' => '/mo-dun/kiem-toan-cau-ban.php',
-    ],
-    [
-        'icon' => '🔲',
-        'title' => 'Phần Mềm Kiểm Toán Cống Hộp',
-        'desc' => 'Tự động tính nội lực khung kín và kiểm toán kết cấu cống hộp, tối ưu khối lượng vật liệu.',
-        'href' => '/mo-dun/kiem-toan-cong-hop.php',
-    ],
 ];
 
 require __DIR__ . '/includes/header.php';
@@ -78,5 +54,42 @@ require __DIR__ . '/includes/header.php';
         <?php endforeach; ?>
     </div>
 </section>
+
+<script>
+(function () {
+    var STORAGE_KEY = 'druong_selected_modules';
+
+    function getSelected() {
+        try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+        catch (e) { return []; }
+    }
+    function setSelected(arr) {
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(arr)); } catch (e) {}
+    }
+
+    function refreshButtons() {
+        var selected = getSelected();
+        document.querySelectorAll('.btn-3d-select[data-module]').forEach(function (btn) {
+            var slug = btn.dataset.module;
+            var isSelected = selected.indexOf(slug) !== -1;
+            btn.setAttribute('aria-pressed', isSelected ? 'true' : 'false');
+            btn.textContent = isSelected ? 'Đã chọn ✓' : 'Chọn mua';
+        });
+    }
+
+    document.querySelectorAll('.btn-3d-select[data-module]').forEach(function (btn) {
+        var slug = btn.dataset.module;
+        btn.addEventListener('click', function () {
+            var list = getSelected();
+            var idx = list.indexOf(slug);
+            if (idx === -1) list.push(slug); else list.splice(idx, 1);
+            setSelected(list);
+            refreshButtons();
+        });
+    });
+
+    refreshButtons();
+})();
+</script>
 
 <?php require __DIR__ . '/includes/footer.php'; ?>

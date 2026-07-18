@@ -1,20 +1,396 @@
 <?php
 $pageTitle = 'Bộ tính báo giá';
-$pageDescription = 'Chọn mô-đun và số lượng người dùng để nhận báo giá ngay.';
+$pageDescription = 'Chọn mô-đun, phiên bản và khóa tích hợp để nhận báo giá ngay.';
+
+/**
+ * Cấu hình giá – nguồn duy nhất cho cả PHP (render lần đầu) và JS (tính realtime).
+ * Chỉ 4 mô-đun thiết kế cống có bảng giá chính thức theo tài liệu báo giá.
+ * Các phần mềm kiểm toán / cầu giản đơn khác trên trang chủ chưa có giá niêm yết
+ * nên chưa đưa vào bộ tính này — có thể bổ sung sau khi có giá.
+ */
+$LOCK_FEE = 500000;
+
+$modules = [
+    'cong-tron-cong-hop-duc-san' => [
+        'name' => 'Mô-đun 1: Cống Tròn & Cống Hộp Đúc Sẵn 2026',
+        'icon' => '🔵',
+        'versions' => [
+            ['id' => 'standard', 'label' => 'Tiêu chuẩn', 'price' => 3600000, 'available' => true],
+            ['id' => 'full', 'label' => 'Full nâng cao', 'price' => 4900000, 'available' => true],
+        ],
+    ],
+    'cong-hop-do-tai-cho' => [
+        'name' => 'Mô-đun 2: Cống Hộp Đổ Tại Chỗ 2026',
+        'icon' => '📦',
+        'versions' => [
+            ['id' => 'standard', 'label' => 'Tiêu chuẩn', 'price' => 3600000, 'available' => true],
+            ['id' => 'full', 'label' => 'Full nâng cao', 'price' => 4900000, 'available' => true],
+        ],
+    ],
+    'cau-ban-cong-ban-tran-lien-hop' => [
+        'name' => 'Mô-đun 3: Cầu Bản – Cống Bản – Tràn Liên Hợp 2026',
+        'icon' => '🌉',
+        'versions' => [
+            ['id' => 'standard', 'label' => 'Tiêu chuẩn', 'price' => 3600000, 'available' => true],
+            ['id' => 'full', 'label' => 'Full nâng cao', 'price' => 0, 'available' => false],
+        ],
+    ],
+    'thiet-ke-ho-ga' => [
+        'name' => 'Mô-đun 4: Thiết Kế Hố Ga 2026',
+        'icon' => '🕳️',
+        'versions' => [
+            ['id' => 'standard', 'label' => 'Một phiên bản', 'price' => 2600000, 'available' => true],
+        ],
+    ],
+];
+
+$modulesJson = json_encode($modules, JSON_UNESCAPED_UNICODE);
+$lockFeeJson = json_encode($LOCK_FEE);
+
 require __DIR__ . '/includes/header.php';
 ?>
 
 <section>
     <span class="eyebrow">Pricing calculator</span>
-    <h1 style="margin: 8px 0 20px; font-size: 1.9rem;">Bộ Tính Báo Giá</h1>
-    <div class="card-3d" style="max-width: 520px;">
-        <p class="card-3d__desc">
-            TODO(SV2): tích chọn mô-đun (checkbox) + thanh trượt số lượng người dùng/thời hạn,
-            tính tổng tiền realtime, sau đó hiện nút "Đăng ký dùng thử / Xem chi tiết" kích hoạt
-            luồng đăng nhập bằng SĐT trong <code>src/lib/Auth.php</code>.
-        </p>
-        <button type="button" class="btn-3d btn-3d-yellow">Nhận báo giá</button>
+    <h1 style="margin: 8px 0 8px; font-size: 1.9rem;">Bộ Tính Báo Giá</h1>
+    <p class="card-3d__desc" style="max-width: 640px; margin-bottom: 28px;">
+        Tích chọn các mô-đun cần dùng, chọn phiên bản và gán khóa tích hợp — hệ thống sẽ tự
+        động cập nhật tổng tiền theo thời gian thực.
+    </p>
+
+    <div class="quote-layout">
+        <!-- ===================== DANH SÁCH MÔ-ĐUN ===================== -->
+        <div class="quote-modules" id="quoteModules">
+            <?php foreach ($modules as $slug => $m): ?>
+            <div class="quote-card" data-slug="<?= htmlspecialchars($slug) ?>" hidden>
+                <div class="quote-card__head">
+                    <span class="quote-card__icon"><?= $m['icon'] ?></span>
+                    <span class="quote-card__title"><?= htmlspecialchars($m['name']) ?></span>
+                    <button type="button" class="quote-card__remove" data-slug="<?= htmlspecialchars($slug) ?>" title="Bỏ chọn mô-đun này">✕ Bỏ chọn</button>
+                </div>
+
+                <div class="quote-card__body">
+                    <?php if (count($m['versions']) > 1): ?>
+                    <div class="quote-field">
+                        <span class="quote-field__label">Phiên bản</span>
+                        <div class="quote-versions">
+                            <?php foreach ($m['versions'] as $i => $v): ?>
+                            <label class="quote-version <?= !$v['available'] ? 'is-disabled' : '' ?>">
+                                <input type="radio" name="version-<?= htmlspecialchars($slug) ?>"
+                                       value="<?= htmlspecialchars($v['id']) ?>"
+                                       class="qm-version" data-slug="<?= htmlspecialchars($slug) ?>"
+                                       <?= $i === 0 ? 'checked' : '' ?> <?= !$v['available'] ? 'disabled' : '' ?>>
+                                <span>
+                                    <?= htmlspecialchars($v['label']) ?><br>
+                                    <b><?= $v['available'] ? number_format($v['price'], 0, ',', '.') . 'đ' : 'Chưa phát hành' ?></b>
+                                </span>
+                            </label>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                    <?php else: ?>
+                    <input type="hidden" class="qm-version" data-slug="<?= htmlspecialchars($slug) ?>" value="<?= htmlspecialchars($m['versions'][0]['id']) ?>">
+                    <div class="quote-field">
+                        <span class="quote-field__label">Giá</span>
+                        <b><?= number_format($m['versions'][0]['price'], 0, ',', '.') ?>đ</b>
+                    </div>
+                    <?php endif; ?>
+
+                    <div class="quote-field">
+                        <span class="quote-field__label">Khóa tích hợp</span>
+                        <select class="qm-lock" data-slug="<?= htmlspecialchars($slug) ?>"></select>
+                    </div>
+
+                    <div class="quote-card__price">
+                        Đơn giá sau khấu trừ: <b class="qm-unit-price">—</b>
+                    </div>
+                </div>
+            </div>
+            <?php endforeach; ?>
+
+            <p class="quote-empty" id="quoteEmpty">
+                Bạn chưa chọn mô-đun nào. Vui lòng quay lại
+                <a href="/index.php">trang danh mục</a> và bấm “Chọn mua” trên các mô-đun mong muốn.
+            </p>
+        </div>
+
+        <!-- ===================== TỔNG THANH TOÁN ===================== -->
+        <aside class="quote-summary" id="quoteSummary" hidden>
+            <div class="card-3d">
+                <div class="card-3d__title">Tổng thanh toán</div>
+                <div class="quote-row"><span>Tạm tính</span><b id="sumSubtotal">0đ</b></div>
+                <div class="quote-row quote-row--discount"><span>Khấu trừ phí khóa trùng</span><b id="sumLockDiscount">0đ</b></div>
+                <div class="quote-row quote-row--discount"><span>Chiết khấu theo số lượng</span><b id="sumQtyDiscount">0đ</b></div>
+                <div class="quote-row quote-row--total"><span>Thành tiền</span><b id="sumTotal">0đ</b></div>
+                <div class="quote-summary__hint" id="sumHint"></div>
+                <button type="button" class="btn-3d btn-3d-yellow" id="btnCheckout" style="width:100%; margin-top:14px;">Tính tiền</button>
+            </div>
+        </aside>
+    </div>
+
+    <!-- ===================== FORM THANH TOÁN ===================== -->
+    <div class="quote-checkout" id="quoteCheckout" hidden>
+        <div class="card-3d" style="max-width: 640px;">
+            <div class="card-3d__title">Thông tin đặt hàng</div>
+            <form id="checkoutForm" class="quote-form">
+                <label>Họ và tên *<input type="text" name="fullname" required></label>
+                <label>Số điện thoại *<input type="tel" name="phone" required pattern="[0-9+ ]{8,15}"></label>
+                <label>Địa chỉ *<input type="text" name="address" required></label>
+                <label>Email<input type="email" name="email"></label>
+                <label>Tên đơn vị / Công ty<input type="text" name="company"></label>
+                <label>Mã số thuế<input type="text" name="tax_code"></label>
+                <label class="quote-form__full">Ghi chú<textarea name="note" rows="3"></textarea></label>
+
+                <div class="quote-form__full">
+                    <span class="quote-field__label">Phương thức thanh toán</span>
+                    <div class="quote-versions">
+                        <label class="quote-version"><input type="radio" name="payment_method" value="qr" checked><span>Quét mã QR</span></label>
+                        <label class="quote-version"><input type="radio" name="payment_method" value="bank"><span>Chuyển khoản ngân hàng</span></label>
+                    </div>
+                </div>
+
+                <div class="quote-form__full quote-form__total">
+                    Tổng thanh toán: <b id="checkoutTotal">0đ</b>
+                </div>
+
+                <div class="quote-form__full" style="display:flex; gap:12px;">
+                    <button type="submit" class="btn-3d btn-3d-yellow">Xác nhận đặt hàng</button>
+                    <button type="button" class="btn-3d btn-3d-blue" id="btnBackToQuote">Quay lại</button>
+                </div>
+            </form>
+            <div id="checkoutResult" hidden></div>
+        </div>
     </div>
 </section>
+
+<style>
+.quote-layout { display: grid; grid-template-columns: 1fr 320px; gap: 24px; align-items: start; }
+@media (max-width: 860px) { .quote-layout { grid-template-columns: 1fr; } }
+
+.quote-modules { display: flex; flex-direction: column; gap: 14px; }
+.quote-card { border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 16px 18px; background: rgba(255,255,255,0.03); }
+.quote-card__head { display: flex; align-items: center; gap: 10px; font-weight: 600; }
+.quote-card__icon { font-size: 1.2rem; }
+.quote-card__title { flex: 1; }
+.quote-card__remove { background: none; border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; padding: 4px 10px; font-size: 0.78rem; opacity: 0.7; cursor: pointer; color: inherit; white-space: nowrap; }
+.quote-card__remove:hover { opacity: 1; border-color: #e05555; color: #e05555; }
+.quote-card__body { margin-top: 14px; padding-top: 14px; border-top: 1px dashed rgba(255,255,255,0.15); display: flex; flex-direction: column; gap: 12px; }
+.quote-field { display: flex; flex-direction: column; gap: 6px; }
+.quote-field__label { font-size: 0.82rem; opacity: 0.7; }
+.quote-versions { display: flex; flex-wrap: wrap; gap: 10px; }
+.quote-version { display: flex; align-items: center; gap: 8px; border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; padding: 8px 12px; cursor: pointer; font-size: 0.88rem; }
+.quote-version.is-disabled { opacity: 0.45; cursor: not-allowed; }
+.qm-lock { padding: 8px 10px; border-radius: 8px; background: #ffffff; color: #1b1b22; border: 1px solid rgba(0,0,0,0.2); }
+.quote-card__price { font-size: 0.9rem; opacity: 0.85; }
+.quote-empty { opacity: 0.65; font-size: 0.9rem; }
+
+.quote-summary { position: sticky; top: 20px; }
+.quote-row { display: flex; justify-content: space-between; padding: 6px 0; font-size: 0.92rem; }
+.quote-row--discount b { color: #7cd992; }
+.quote-row--total { border-top: 1px solid rgba(255,255,255,0.15); margin-top: 8px; padding-top: 10px; font-size: 1.15rem; }
+.quote-summary__hint { font-size: 0.78rem; opacity: 0.6; margin-top: 4px; }
+
+.quote-checkout { margin-top: 26px; }
+.quote-form { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 16px; margin-top: 12px; }
+.quote-form label { display: flex; flex-direction: column; gap: 6px; font-size: 0.88rem; }
+.quote-form input, .quote-form textarea { padding: 9px 10px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.2); background: #ffffff; color: #1b1b22; }
+.quote-form__full { grid-column: 1 / -1; }
+.quote-form__total { font-size: 1.05rem; text-align: right; }
+</style>
+
+<script>
+(function () {
+    var MODULES = <?= $modulesJson ?>;
+    var LOCK_FEE = <?= $lockFeeJson ?>;
+    var STORAGE_KEY = 'druong_selected_modules'; // written by index.php "Chọn mua" buttons
+
+    var state = {}; // slug -> { checked, version, lock }
+    var lockCounter = 1;
+
+    function fmt(n) {
+        return Math.round(n).toLocaleString('vi-VN') + 'đ';
+    }
+
+    function getInitialSlugs() {
+        var slugs = [];
+        try {
+            var params = new URLSearchParams(window.location.search);
+            if (params.get('modules')) slugs = params.get('modules').split(',');
+        } catch (e) {}
+        if (!slugs.length) {
+            try {
+                var raw = localStorage.getItem(STORAGE_KEY);
+                if (raw) slugs = JSON.parse(raw);
+            } catch (e) {}
+        }
+        return slugs.filter(function (s) { return MODULES.hasOwnProperty(s); });
+    }
+
+    function persistSelection() {
+        var slugs = Object.keys(state).filter(function (s) { return state[s].checked; });
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(slugs)); } catch (e) {}
+    }
+
+    function initState() {
+        var preselected = getInitialSlugs();
+        Object.keys(MODULES).forEach(function (slug) {
+            state[slug] = { checked: preselected.indexOf(slug) !== -1, version: MODULES[slug].versions[0].id, lock: 'Khóa 1' };
+        });
+    }
+
+    function versionPrice(slug, versionId) {
+        var v = MODULES[slug].versions.find(function (x) { return x.id === versionId; });
+        return v && v.available ? v.price : 0;
+    }
+
+    function activeSlugs() {
+        return Object.keys(state).filter(function (s) { return state[s].checked; });
+    }
+
+    function rebuildLockOptions() {
+        var locksInUse = {};
+        activeSlugs().forEach(function (s) { locksInUse[state[s].lock] = true; });
+        var maxLockNum = 0;
+        Object.keys(locksInUse).forEach(function (l) {
+            var m = /Khóa (\d+)/.exec(l);
+            if (m) maxLockNum = Math.max(maxLockNum, parseInt(m[1], 10));
+        });
+        var options = [];
+        for (var i = 1; i <= Math.max(maxLockNum, 1); i++) options.push('Khóa ' + i);
+        var nextLock = 'Khóa ' + (Math.max(maxLockNum, 1) + 1);
+
+        document.querySelectorAll('.qm-lock').forEach(function (sel) {
+            var slug = sel.dataset.slug;
+            var current = state[slug].lock;
+            sel.innerHTML = '';
+            options.concat([nextLock]).forEach(function (label, idx) {
+                var opt = document.createElement('option');
+                opt.value = label;
+                opt.textContent = idx < options.length ? label : label + ' (mới)';
+                sel.appendChild(opt);
+            });
+            if (options.indexOf(current) === -1) current = options[0];
+            sel.value = current;
+            state[slug].lock = current;
+        });
+    }
+
+    function calc() {
+        var slugs = activeSlugs();
+        var n = slugs.length;
+        var subtotal = 0;
+        slugs.forEach(function (s) { subtotal += versionPrice(s, state[s].version); });
+
+        // Khấu trừ phí khóa trùng: mỗi mô-đun dư trong cùng 1 khóa trừ 500.000đ
+        var byLock = {};
+        slugs.forEach(function (s) { byLock[state[s].lock] = (byLock[state[s].lock] || 0) + 1; });
+        var lockDiscount = 0;
+        Object.keys(byLock).forEach(function (l) {
+            if (byLock[l] > 1) lockDiscount += (byLock[l] - 1) * LOCK_FEE;
+        });
+
+        // Chiết khấu theo số lượng module
+        var perModuleQtyDiscount = 0;
+        if (n === 1) perModuleQtyDiscount = 0;
+        else if (n === 2) perModuleQtyDiscount = 100000;
+        else if (n >= 3 && n <= 9) perModuleQtyDiscount = 300000;
+        else if (n > 9) perModuleQtyDiscount = 800000;
+        var qtyDiscount = perModuleQtyDiscount * n;
+
+        var totalDiscount = lockDiscount + qtyDiscount;
+        var total = Math.max(subtotal - totalDiscount, 0);
+        var discountPerModule = n > 0 ? totalDiscount / n : 0;
+
+        return { n: n, subtotal: subtotal, lockDiscount: lockDiscount, qtyDiscount: qtyDiscount, total: total, discountPerModule: discountPerModule, slugs: slugs };
+    }
+
+    function render() {
+        var result = calc();
+
+        Object.keys(MODULES).forEach(function (slug) {
+            var card = document.querySelector('.quote-card[data-slug="' + slug + '"]');
+            card.hidden = !state[slug].checked;
+
+            if (state[slug].checked) {
+                var listPrice = versionPrice(slug, state[slug].version);
+                var unit = Math.max(listPrice - result.discountPerModule, 0);
+                card.querySelector('.qm-unit-price').textContent = fmt(unit);
+            }
+        });
+
+        document.getElementById('quoteEmpty').hidden = result.n > 0;
+        document.getElementById('quoteSummary').hidden = result.n === 0;
+        document.getElementById('quoteCheckout').hidden = true;
+
+        document.getElementById('sumSubtotal').textContent = fmt(result.subtotal);
+        document.getElementById('sumLockDiscount').textContent = result.lockDiscount ? '-' + fmt(result.lockDiscount) : fmt(0);
+        document.getElementById('sumQtyDiscount').textContent = result.qtyDiscount ? '-' + fmt(result.qtyDiscount) : fmt(0);
+        document.getElementById('sumTotal').textContent = fmt(result.total);
+        document.getElementById('checkoutTotal').textContent = fmt(result.total);
+        document.getElementById('sumHint').textContent = result.n + ' mô-đun đã chọn';
+
+        rebuildLockOptions();
+        persistSelection();
+    }
+
+    function bindEvents() {
+        document.querySelectorAll('.quote-card__remove').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                state[btn.dataset.slug].checked = false;
+                render();
+            });
+        });
+
+        document.querySelectorAll('.qm-version').forEach(function (input) {
+            input.addEventListener('change', function () {
+                if (input.type === 'radio' && !input.checked) return;
+                state[input.dataset.slug].version = input.value;
+                render();
+            });
+        });
+
+        document.addEventListener('change', function (e) {
+            if (e.target.classList.contains('qm-lock')) {
+                state[e.target.dataset.slug].lock = e.target.value;
+                render();
+            }
+        });
+
+        document.getElementById('btnCheckout').addEventListener('click', function () {
+            document.getElementById('quoteCheckout').hidden = false;
+            document.getElementById('quoteCheckout').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+
+        document.getElementById('btnBackToQuote').addEventListener('click', function () {
+            document.getElementById('quoteCheckout').hidden = true;
+        });
+
+        document.getElementById('checkoutForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            var result = calc();
+            var data = Object.fromEntries(new FormData(e.target).entries());
+            data.items = result.slugs.map(function (s) {
+                return { slug: s, name: MODULES[s].name, version: state[s].version, lock: state[s].lock };
+            });
+            data.total = result.total;
+
+            // TODO: gửi `data` tới endpoint xử lý đơn hàng thật (vd. /api/orders.php),
+            // đồng thời đây là điểm phù hợp để tích hợp đăng nhập SĐT (src/lib/Auth.php)
+            // trước khi cho khách xác nhận thanh toán.
+            console.log('Đơn hàng báo giá:', data);
+
+            e.target.hidden = true;
+            var result_el = document.getElementById('checkoutResult');
+            result_el.hidden = false;
+            result_el.innerHTML = '<p style="margin-top:14px;">Cảm ơn bạn! Chúng tôi đã ghi nhận yêu cầu báo giá và sẽ liên hệ qua số điện thoại đã cung cấp để xác nhận thanh toán ' +
+                (data.payment_method === 'qr' ? 'bằng mã QR' : 'chuyển khoản ngân hàng') + '.</p>';
+        });
+    }
+
+    initState();
+    bindEvents();
+    render();
+})();
+</script>
 
 <?php require __DIR__ . '/includes/footer.php'; ?>
