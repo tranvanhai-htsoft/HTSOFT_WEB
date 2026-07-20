@@ -27,6 +27,30 @@ $modules = [
         'desc' => 'Thư viện mẫu hố ga đa dạng, thiết kế mạng lưới thoát nước và xuất khối lượng tự động.',
         'href' => '/mo-dun/thiet-ke-ho-ga.php',
     ],
+    [
+        'icon' => '🌁',
+        'title' => 'Mô-đun 5: Thiết Kế Cầu Giản Đơn BTCT DƯL 2026',
+        'desc' => 'Tự động thiết kế bản vẽ bố trí chung, bố trí cốt thép mố trụ, cọc móng và bóc tách khối lượng chính xác 100%.',
+        'href' => '/mo-dun/thiet-ke-cau-gian-don.php',
+    ],
+    [
+        'icon' => '📐',
+        'title' => 'Mô-đun 6: Kiểm Toán Cầu Giản Đơn 2026',
+        'desc' => 'Tự động tổ hợp tải trọng, xếp xe HL-93 và kiểm toán toàn diện dầm cầu theo TCVN 11823.',
+        'href' => '/mo-dun/kiem-toan-cau-gian-don.php',
+    ],
+    [
+        'icon' => '📊',
+        'title' => 'Mô-đun 7: Kiểm Toán Cầu Bản 2026',
+        'desc' => 'Tự động tính nội lực và kiểm toán kết cấu dầm bản theo TCVN 11823, AASHTO LRFD.',
+        'href' => '/mo-dun/kiem-toan-cau-ban.php',
+    ],
+    [
+        'icon' => '🧮',
+        'title' => 'Mô-đun 8: Kiểm Toán Cống Hộp 2026',
+        'desc' => 'Tự động tính nội lực khung kín và kiểm toán kết cấu cống hộp, tối ưu khối lượng vật liệu.',
+        'href' => '/mo-dun/kiem-toan-cong-hop.php',
+    ],
 ];
 
 require __DIR__ . '/includes/header.php';
@@ -72,6 +96,7 @@ require __DIR__ . '/includes/header.php';
         document.querySelectorAll('.btn-3d-select[data-module]').forEach(function (btn) {
             var slug = btn.dataset.module;
             var isSelected = selected.indexOf(slug) !== -1;
+            btn.classList.toggle('is-selected', isSelected);
             btn.setAttribute('aria-pressed', isSelected ? 'true' : 'false');
             btn.textContent = isSelected ? 'Đã chọn ✓' : 'Chọn mua';
         });
@@ -86,6 +111,18 @@ require __DIR__ . '/includes/header.php';
             setSelected(list);
             refreshButtons();
         });
+    });
+
+    // Trang bao-gia.php ghi lại localStorage mỗi khi bỏ chọn mô-đun; nếu quay lại
+    // trang này qua nút Back của trình duyệt (bfcache), script không chạy lại nên
+    // phải refresh thủ công khi trang được khôi phục từ cache.
+    window.addEventListener('pageshow', function (e) {
+        if (e.persisted) refreshButtons();
+    });
+
+    // Đồng bộ khi 2 trang mở ở 2 tab khác nhau cùng lúc.
+    window.addEventListener('storage', function (e) {
+        if (e.key === STORAGE_KEY) refreshButtons();
     });
 
     refreshButtons();

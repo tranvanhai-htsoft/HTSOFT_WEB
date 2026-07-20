@@ -45,15 +45,3 @@
         });
     });
 })();
-
-// Nút "Chọn mua": chuyển trạng thái đã chọn/chưa chọn cho bộ tính báo giá
-// TODO(SV2): nối vào giỏ chọn mô-đun thật khi làm public/bao-gia.php
-(function () {
-    document.querySelectorAll('.btn-3d-select').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-            var selected = btn.classList.toggle('is-selected');
-            btn.textContent = selected ? 'Đã chọn ✓' : 'Chọn mua';
-            btn.setAttribute('aria-pressed', selected ? 'true' : 'false');
-        });
-    });
-})();
