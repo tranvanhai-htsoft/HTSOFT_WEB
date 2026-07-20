@@ -4,9 +4,6 @@ $pageDescription = 'Chọn mô-đun, phiên bản và khóa tích hợp để nh
 
 /**
  * Cấu hình giá – nguồn duy nhất cho cả PHP (render lần đầu) và JS (tính realtime).
- * Chỉ 4 mô-đun thiết kế cống có bảng giá chính thức theo tài liệu báo giá.
- * Các phần mềm kiểm toán / cầu giản đơn khác trên trang chủ chưa có giá niêm yết
- * nên chưa đưa vào bộ tính này — có thể bổ sung sau khi có giá.
  */
 $LOCK_FEE = 500000;
 
@@ -40,6 +37,34 @@ $modules = [
         'icon' => '🕳️',
         'versions' => [
             ['id' => 'standard', 'label' => 'Một phiên bản', 'price' => 2600000, 'available' => true],
+        ],
+    ],
+    'thiet-ke-cau-gian-don' => [
+        'name' => 'Mô-đun 5: Thiết Kế Cầu Giản Đơn BTCT DƯL 2026',
+        'icon' => '🌁',
+        'versions' => [
+            ['id' => 'standard', 'label' => 'Một phiên bản', 'price' => 5900000, 'available' => true],
+        ],
+    ],
+    'kiem-toan-cau-gian-don' => [
+        'name' => 'Mô-đun 6: Kiểm Toán Cầu Giản Đơn 2026',
+        'icon' => '📐',
+        'versions' => [
+            ['id' => 'standard', 'label' => 'Một phiên bản', 'price' => 2900000, 'available' => true],
+        ],
+    ],
+    'kiem-toan-cau-ban' => [
+        'name' => 'Mô-đun 7: Kiểm Toán Cầu Bản 2026',
+        'icon' => '📊',
+        'versions' => [
+            ['id' => 'standard', 'label' => 'Một phiên bản', 'price' => 2900000, 'available' => true],
+        ],
+    ],
+    'kiem-toan-cong-hop' => [
+        'name' => 'Mô-đun 8: Kiểm Toán Cống Hộp 2026',
+        'icon' => '🧮',
+        'versions' => [
+            ['id' => 'standard', 'label' => 'Một phiên bản', 'price' => 2900000, 'available' => true],
         ],
     ],
 ];
@@ -127,7 +152,7 @@ require __DIR__ . '/includes/header.php';
                 <div class="quote-row quote-row--discount"><span>Chiết khấu theo số lượng</span><b id="sumQtyDiscount">0đ</b></div>
                 <div class="quote-row quote-row--total"><span>Thành tiền</span><b id="sumTotal">0đ</b></div>
                 <div class="quote-summary__hint" id="sumHint"></div>
-                <button type="button" class="btn-3d btn-3d-yellow" id="btnCheckout" style="width:100%; margin-top:14px;">Tính tiền</button>
+                <button type="button" class="btn-3d btn-3d-yellow" id="btnCheckout" style="width:100%; margin-top:14px;">Thanh toán</button>
             </div>
         </aside>
     </div>
@@ -137,12 +162,9 @@ require __DIR__ . '/includes/header.php';
         <div class="card-3d" style="max-width: 640px;">
             <div class="card-3d__title">Thông tin đặt hàng</div>
             <form id="checkoutForm" class="quote-form">
-                <label>Họ và tên *<input type="text" name="fullname" required></label>
                 <label>Số điện thoại *<input type="tel" name="phone" required pattern="[0-9+ ]{8,15}"></label>
-                <label>Địa chỉ *<input type="text" name="address" required></label>
-                <label>Email<input type="email" name="email"></label>
-                <label>Tên đơn vị / Công ty<input type="text" name="company"></label>
-                <label>Mã số thuế<input type="text" name="tax_code"></label>
+                <label>Mã số thuế<input type="text" name="tax_code" id="taxCodeInput" inputmode="numeric" autocomplete="off" placeholder="VD: 0106026495"></label>
+                <div class="quote-form__full tax-lookup" id="taxLookupResult" hidden></div>
                 <label class="quote-form__full">Ghi chú<textarea name="note" rows="3"></textarea></label>
 
                 <div class="quote-form__full">
@@ -204,6 +226,11 @@ require __DIR__ . '/includes/header.php';
 .quote-form input, .quote-form textarea { padding: 9px 10px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.2); background: #ffffff; color: #1b1b22; }
 .quote-form__full { grid-column: 1 / -1; }
 .quote-form__total { font-size: 1.05rem; text-align: right; }
+
+.tax-lookup { font-size: 0.85rem; padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.12); background: rgba(0,0,0,0.03); margin-top: -4px; }
+.tax-lookup.is-loading { opacity: 0.7; }
+.tax-lookup.is-found { border-color: #2e7d32; background: rgba(46,125,50,0.08); }
+.tax-lookup.is-error { border-color: #f05431; background: rgba(240,84,49,0.08); }
 </style>
 
 <script>
@@ -214,6 +241,8 @@ require __DIR__ . '/includes/header.php';
 
     var state = {}; // slug -> { checked, version, lock }
     var lockCounter = 1;
+    var businessInfo = null; // kết quả tra cứu công ty theo mã số thuế, gửi kèm khi đặt hàng
+    var taxLookupTimer = null;
 
     function fmt(n) {
         return Math.round(n).toLocaleString('vi-VN') + 'đ';
@@ -375,6 +404,41 @@ require __DIR__ . '/includes/header.php';
         persistSelection();
     }
 
+    // Tự động tra cứu tên/địa chỉ công ty theo mã số thuế (dữ liệu công khai từ
+    // Tổng cục Thuế qua api.vietqr.io) để khách không phải tự gõ thông tin công ty.
+    function setTaxResult(html, cls) {
+        var el = document.getElementById('taxLookupResult');
+        el.hidden = !html;
+        el.className = 'quote-form__full tax-lookup' + (cls ? ' ' + cls : '');
+        el.innerHTML = html || '';
+    }
+
+    function lookupTaxCode(code) {
+        businessInfo = null;
+        if (!/^\d{10}(\d{3})?$/.test(code)) {
+            setTaxResult('');
+            return;
+        }
+        setTaxResult('Đang tra cứu thông tin công ty…', 'is-loading');
+        fetch('https://api.vietqr.io/v2/business/' + encodeURIComponent(code))
+            .then(function (r) { return r.json(); })
+            .then(function (json) {
+                if (json && json.code === '00' && json.data) {
+                    businessInfo = json.data;
+                    setTaxResult(
+                        '<b>' + json.data.name + '</b><br>' + (json.data.address || '') +
+                        (json.data.status ? '<br><span style="opacity:.7">' + json.data.status + '</span>' : ''),
+                        'is-found'
+                    );
+                } else {
+                    setTaxResult('Không tìm thấy công ty ứng với mã số thuế này. Bạn vẫn có thể tiếp tục đặt hàng.', 'is-error');
+                }
+            })
+            .catch(function () {
+                setTaxResult('Không tra cứu được lúc này (lỗi mạng). Bạn vẫn có thể tiếp tục đặt hàng.', 'is-error');
+            });
+    }
+
     function bindEvents() {
         document.querySelectorAll('.quote-card__remove').forEach(function (btn) {
             btn.addEventListener('click', function () {
@@ -420,6 +484,13 @@ require __DIR__ . '/includes/header.php';
             document.getElementById('quoteCheckout').hidden = true;
         });
 
+        document.getElementById('taxCodeInput').addEventListener('input', function (e) {
+            clearTimeout(taxLookupTimer);
+            var code = e.target.value.trim();
+            if (!code) { setTaxResult(''); businessInfo = null; return; }
+            taxLookupTimer = setTimeout(function () { lookupTaxCode(code); }, 500);
+        });
+
         document.getElementById('checkoutForm').addEventListener('submit', function (e) {
             e.preventDefault();
             var result = calc();
@@ -428,6 +499,7 @@ require __DIR__ . '/includes/header.php';
                 return { slug: s, name: MODULES[s].name, version: state[s].version, lock: state[s].lock };
             });
             data.total = result.total;
+            data.business = businessInfo;
 
             // TODO: gửi `data` tới endpoint xử lý đơn hàng thật (vd. /api/orders.php),
             // đồng thời đây là điểm phù hợp để tích hợp đăng nhập SĐT (src/lib/Auth.php)
