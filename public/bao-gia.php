@@ -98,7 +98,11 @@ require __DIR__ . '/includes/header.php';
 
                     <div class="quote-field">
                         <span class="quote-field__label">Khóa tích hợp</span>
-                        <select class="qm-lock" data-slug="<?= htmlspecialchars($slug) ?>"></select>
+                        <div class="qm-lock-row">
+                            <span class="qm-lock-static" data-slug="<?= htmlspecialchars($slug) ?>">Khóa 1</span>
+                            <select class="qm-lock" data-slug="<?= htmlspecialchars($slug) ?>" hidden></select>
+                            <button type="button" class="qm-lock-split" data-slug="<?= htmlspecialchars($slug) ?>">Tách khóa riêng</button>
+                        </div>
                     </div>
 
                     <div class="quote-card__price">
@@ -181,6 +185,10 @@ require __DIR__ . '/includes/header.php';
 .quote-version { display: flex; align-items: center; gap: 8px; border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; padding: 8px 12px; cursor: pointer; font-size: 0.88rem; }
 .quote-version.is-disabled { opacity: 0.45; cursor: not-allowed; }
 .qm-lock { padding: 8px 10px; border-radius: 8px; background: #ffffff; color: #1b1b22; border: 1px solid rgba(0,0,0,0.2); }
+.qm-lock-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.qm-lock-static { font-weight: 600; }
+.qm-lock-split { background: none; border: none; padding: 0; font-size: 0.8rem; color: #4d9dff; text-decoration: underline; cursor: pointer; }
+.qm-lock-split:hover { color: #7fbaff; }
 .quote-card__price { font-size: 0.9rem; opacity: 0.85; }
 .quote-empty { opacity: 0.65; font-size: 0.9rem; }
 
@@ -247,31 +255,64 @@ require __DIR__ . '/includes/header.php';
         return Object.keys(state).filter(function (s) { return state[s].checked; });
     }
 
-    function rebuildLockOptions() {
-        var locksInUse = {};
-        activeSlugs().forEach(function (s) { locksInUse[state[s].lock] = true; });
+    // Yêu cầu 2: sau mỗi thay đổi, đánh lại số thứ tự khóa cho liên tục
+    // (dựa trên thứ tự xuất hiện đầu tiên trong danh sách mô-đun đang chọn).
+    function renumberLocks() {
+        var slugs = activeSlugs();
+        var order = [];
+        slugs.forEach(function (s) {
+            if (order.indexOf(state[s].lock) === -1) order.push(state[s].lock);
+        });
+        var mapping = {};
+        order.forEach(function (oldLabel, idx) { mapping[oldLabel] = 'Khóa ' + (idx + 1); });
+        slugs.forEach(function (s) { state[s].lock = mapping[state[s].lock]; });
+    }
+
+    function distinctLockCount() {
+        var set = {};
+        activeSlugs().forEach(function (s) { set[state[s].lock] = true; });
+        return Object.keys(set).length;
+    }
+
+    // Yêu cầu 1: mặc định Khóa 1, chỉ hiện dropdown khi có từ 2 khóa trở lên.
+    function updateLockUI() {
+        var slugs = activeSlugs();
+        var multi = distinctLockCount() > 1;
+
         var maxLockNum = 0;
-        Object.keys(locksInUse).forEach(function (l) {
-            var m = /Khóa (\d+)/.exec(l);
+        slugs.forEach(function (s) {
+            var m = /Khóa (\d+)/.exec(state[s].lock);
             if (m) maxLockNum = Math.max(maxLockNum, parseInt(m[1], 10));
         });
         var options = [];
         for (var i = 1; i <= Math.max(maxLockNum, 1); i++) options.push('Khóa ' + i);
         var nextLock = 'Khóa ' + (Math.max(maxLockNum, 1) + 1);
 
-        document.querySelectorAll('.qm-lock').forEach(function (sel) {
-            var slug = sel.dataset.slug;
-            var current = state[slug].lock;
-            sel.innerHTML = '';
-            options.concat([nextLock]).forEach(function (label, idx) {
-                var opt = document.createElement('option');
-                opt.value = label;
-                opt.textContent = idx < options.length ? label : label + ' (mới)';
-                sel.appendChild(opt);
-            });
-            if (options.indexOf(current) === -1) current = options[0];
-            sel.value = current;
-            state[slug].lock = current;
+        slugs.forEach(function (slug) {
+            var card = document.querySelector('.quote-card[data-slug="' + slug + '"]');
+            var staticEl = card.querySelector('.qm-lock-static');
+            var selectEl = card.querySelector('.qm-lock');
+            var splitBtn = card.querySelector('.qm-lock-split');
+
+            if (multi) {
+                staticEl.hidden = true;
+                splitBtn.hidden = true;
+                selectEl.hidden = false;
+                selectEl.innerHTML = '';
+                options.concat([nextLock]).forEach(function (label, idx) {
+                    var opt = document.createElement('option');
+                    opt.value = label;
+                    opt.textContent = idx < options.length ? label : label + ' (mới)';
+                    selectEl.appendChild(opt);
+                });
+                selectEl.value = state[slug].lock;
+            } else {
+                selectEl.hidden = true;
+                staticEl.hidden = false;
+                staticEl.textContent = state[slug].lock;
+                // Chỉ cho tách khóa khi có từ 2 mô-đun trở lên đang chọn.
+                splitBtn.hidden = slugs.length < 2;
+            }
         });
     }
 
@@ -305,6 +346,7 @@ require __DIR__ . '/includes/header.php';
     }
 
     function render() {
+        renumberLocks();
         var result = calc();
 
         Object.keys(MODULES).forEach(function (slug) {
@@ -329,7 +371,7 @@ require __DIR__ . '/includes/header.php';
         document.getElementById('checkoutTotal').textContent = fmt(result.total);
         document.getElementById('sumHint').textContent = result.n + ' mô-đun đã chọn';
 
-        rebuildLockOptions();
+        updateLockUI();
         persistSelection();
     }
 
@@ -337,6 +379,19 @@ require __DIR__ . '/includes/header.php';
         document.querySelectorAll('.quote-card__remove').forEach(function (btn) {
             btn.addEventListener('click', function () {
                 state[btn.dataset.slug].checked = false;
+                render();
+            });
+        });
+
+        document.querySelectorAll('.qm-lock-split').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var slug = btn.dataset.slug;
+                var maxLockNum = 0;
+                activeSlugs().forEach(function (s) {
+                    var m = /Khóa (\d+)/.exec(state[s].lock);
+                    if (m) maxLockNum = Math.max(maxLockNum, parseInt(m[1], 10));
+                });
+                state[slug].lock = 'Khóa ' + (maxLockNum + 1);
                 render();
             });
         });
