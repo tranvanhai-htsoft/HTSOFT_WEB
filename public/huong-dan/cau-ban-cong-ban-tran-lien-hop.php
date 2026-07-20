@@ -5,16 +5,40 @@ $pageDescription = 'Các bước sử dụng mô-đun Cầu Bản – Cống B�
 // TODO(SV1): thay nội dung placeholder bằng video/GIF hướng dẫn thật cho từng bước.
 $steps = [
     [
-        'title' => 'Bước 1: Khai báo kết cấu nhịp và loại công trình',
-        'desc' => 'Nhập số nhịp, chọn cầu bản nhiều nhịp liên tục hoặc hệ thống cầu bản kết hợp đường tràn thoát lũ.',
+        'title' => 'Bước 1: Thiết lập các tham số phần mềm',
+        'desc' => 'Khởi tạo dự án: Vào File > New (hoặc Open) để mở file. Thiết lập tỷ lệ, vật liệu, font chữ, xuất bản vẽ và gia cố taluy.',
     ],
     [
-        'title' => 'Bước 2: Tính toán lắp ghép hoặc đổ tại chỗ',
-        'desc' => 'Phần mềm tự động tính cống bản dầm lắp ghép định hình hoặc hệ dầm đổ tại chỗ theo lựa chọn kết cấu.',
+        'title' => 'Bước 2: Quét chọn trắc ngang',
+        'desc' => 'Nhận dữ liệu trắc ngang: Quét chọn trắc ngang từ nguồn (Nova, VnRoad, Civil 3D,...). Nhận từ tab trắc ngang và xuất sang tab bản vẽ cống làm cơ sở thiết kế.',
     ],
     [
-        'title' => 'Bước 3: Xuất hồ sơ cho công trình cải tạo hoặc mới',
-        'desc' => 'Xuất bản vẽ hoàn chỉnh, áp dụng được cho cả dự án nâng cấp, cải tạo cống bản nối dài.',
+        'title' => 'Bước 3: Gán thông số thân cống, thiết kế thân cống',
+        'desc' => 'Thiết kế thân cống: Chọn loại cống, số dãy. Khai báo thông số hình học tại menu Thân cống. Xem trước, chỉnh số đốt/độ dốc xuất bản vẽ và Lưu khối lượng.',
+    ],
+    [
+        'title' => 'Bước 4: Thiết kế thượng lưu',
+        'desc' => 'Thiết kế thượng lưu: Chọn kết cấu phù hợp phía thượng lưu, hiệu chỉnh kích thước hoặc load file mẫu. Xuất bản vẽ, nhấn Lưu khối lượng sau khi hoàn thành.',
+    ],
+    [
+        'title' => 'Bước 5: Thiết kế hạ lưu',
+        'desc' => 'Thiết kế hạ lưu: Chọn kết cấu phù hợp phía hạ lưu, hiệu chỉnh kích thước hoặc load file mẫu. Xuất bản vẽ, nhấn Lưu khối lượng sau khi hoàn thành.',
+    ],
+    [
+        'title' => 'Bước 6: Thiết kế móng thân cống',
+        'desc' => 'hiết kế móng cống: Thiết lập thông số, vẽ kết cấu móng thân cống phù hợp địa chất. Nhấn Lưu khối lượng.',
+    ],
+    [
+        'title' => 'Bước 7: Xuất khối lượng và thuyết minh cống',
+        'desc' => 'Xuất hồ sơ & Thuyết minh: Xuất bảng khối lượng chi tiết và thuyết minh thiết kế phục vụ lập hồ sơ, dự toán.',
+    ],
+    [
+        'title' => 'Bước 8: Vẽ bản quá độ, lan can',
+        'desc' => 'Cấu kiện bổ sung (Cống hộp/Cầu bản): Thiết kế và vẽ bản quá độ, lan can, cọc BTCT (chỉ áp dụng cho cống hộp đúc tại chỗ và cầu bản).',
+    ],
+    [
+        'title' => 'Bước 9: Bảng tổng hợp khối lượng cống qua excel',
+        'desc' => 'Tổng hợp khối lượng sang Excel: Tự động gom dữ liệu toàn bộ hệ thống cống trong dự án và xuất file Excel để thống kê.',
     ],
 ];
 
