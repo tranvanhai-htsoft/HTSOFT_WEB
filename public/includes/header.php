@@ -1,3 +1,16 @@
+<?php
+require __DIR__ . '/session.php';
+
+$topbarBalance = null;
+if ($currentUserId !== null) {
+    require_once dirname(__DIR__, 2) . '/src/bootstrap.php';
+    try {
+        $topbarBalance = (new \Htsoft\Lib\CreditService(\Htsoft\Lib\Database::connection()))->getBalance($currentUserId);
+    } catch (\Throwable $e) {
+        $topbarBalance = null; // CSDL chưa sẵn sàng — vẫn hiện trang, chỉ ẩn số dư
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -22,7 +35,11 @@
                 <li><a href="/">Trang chủ</a></li>
                 <li><a href="/bao-gia.php">Báo giá</a></li>
                 <li><a href="/huong-dan.php">Hướng dẫn</a></li>
+                <?php if ($currentUserId !== null): ?>
+                <li><a href="/tai-khoan.php" class="btn-3d btn-3d-yellow">Tài khoản<?= $topbarBalance !== null ? ' · ' . $topbarBalance . ' TD' : '' ?></a></li>
+                <?php else: ?>
                 <li><a href="/dang-nhap.php" class="btn-3d btn-3d-yellow">Đăng nhập</a></li>
+                <?php endif; ?>
             </ul>
         </nav>
     </header>
