@@ -28,7 +28,8 @@ require __DIR__ . '/includes/header.php';
     <p style="font-size: 2rem; font-weight: 700; margin: 0 0 8px;"><span id="balanceValue"><?= $balance ?></span> tín dụng</p>
     <div style="display: flex; gap: 12px; margin-bottom: 32px;">
         <a href="/mua-tin-dung.php" class="btn-3d btn-3d-yellow">Mua thêm tín dụng</a>
-        <a href="/api/logout.php" class="btn-3d btn-3d-blue">Đăng xuất</a>
+        <a href="/tai-xuong.php" class="btn-3d btn-3d-blue">Tải phần mềm</a>
+        <a href="/api/logout.php" class="btn-3d btn-3d-red">Đăng xuất</a>
     </div>
 </section>
 

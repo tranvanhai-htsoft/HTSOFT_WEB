@@ -6,6 +6,11 @@ composer.phar
 .env
 .env.local
 
+# File cài đặt phần mềm thật (dung lượng lớn) — chỉ để trên máy chủ,
+# không commit vào git. Giữ lại README.md mô tả quy ước tên file.
+/storage/downloads/*
+!/storage/downloads/README.md
+
 # Word lock file tạm
 ~$*.docx
 ~$*.doc
