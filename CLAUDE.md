@@ -214,5 +214,17 @@ claude
 ```
 rồi gõ `/init` để đối chiếu project hiện có với file này. Trước khi chạy thử:
 1. `cp .env.example .env` rồi điền `DB_*` thật
-2. Tạo database, chạy `database/schema.sql`
-3. Chạy thử bằng PHP built-in server: `php -S localhost:8000 -t public`
+2. Tạo database, chạy `database/schema.sql` — **luôn thêm cờ
+   `--default-character-set=utf8mb4`** khi import trên Windows, nếu không chữ tiếng Việt
+   sẽ bị lỗi mojibake dù cột đã khai `utf8mb4`:
+   ```bash
+   mysql --default-character-set=utf8mb4 -u root -e "CREATE DATABASE htsoft_web CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+   mysql --default-character-set=utf8mb4 -u root htsoft_web < database/schema.sql
+   ```
+3. (Tuỳ chọn) Chạy `database/seed-demo.sql` để có tài khoản test đăng nhập ngay, không cần
+   qua luồng Zalo/SMS thật:
+   ```bash
+   mysql --default-character-set=utf8mb4 -u root htsoft_web < database/seed-demo.sql
+   ```
+   Đăng nhập tại `/dang-nhap.php` bằng SĐT `0900000000` / mật khẩu `123456`.
+4. Chạy thử bằng PHP built-in server: `php -S localhost:8000 -t public`
