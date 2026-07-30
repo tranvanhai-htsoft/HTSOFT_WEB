@@ -286,6 +286,18 @@ main {
   box-shadow: 2px 2px 0 var(--ink);
 }
 
+.card-3d__icon-img {
+  width: 34%;
+  min-width: 90px;
+  max-width: 150px;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  border: var(--border-width) solid var(--ink);
+  border-radius: 8px;
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
 .card-3d__title {
   font-size: 1.1rem;
   font-weight: 700;

@@ -5,30 +5,35 @@ $pageDescription = 'Dradnet — phần mềm thiết kế và kiểm toán hạ 
 $modules = [
     [
         'icon' => '🔵',
+        'image' => 'images/ongcong.png',
         'title' => 'Mô-đun 1: Cống Tròn & Cống Hộp Đúc Sẵn 2026',
         'desc' => 'Thiết kế nhanh cống tròn, cống hộp đúc sẵn, tự động tính bẻ góc và tích hợp giải pháp cống đô thị.',
         'href' => '/mo-dun/cong-tron-cong-hop-duc-san.php',
     ],
     [
         'icon' => '📦',
+        'image' => 'images/Ongcong2.jpg',
         'title' => 'Mô-đun 2: Cống Hộp Đổ Tại Chỗ 2026',
         'desc' => 'Thiết kế kết cấu cống hộp đổ tại chỗ, tường cánh BTCT, tự động dựng và xuất bản vẽ phối cảnh 3D.',
         'href' => '/mo-dun/cong-hop-do-tai-cho.php',
     ],
     [
         'icon' => '🌉',
+        'image' => 'images/Cauban.png',
         'title' => 'Mô-đun 3: Cầu Bản – Cống Bản – Tràn Liên Hợp 2026',
         'desc' => 'Tự động hoá thiết kế cầu bản nhiều nhịp, cống bản lắp ghép và hệ thống tràn liên hợp thoát lũ.',
         'href' => '/mo-dun/cau-ban-cong-ban-tran-lien-hop.php',
     ],
     [
         'icon' => '🕳️',
+        'image' => 'images/Hothu.png',
         'title' => 'Mô-đun 4: Thiết Kế Hố Ga 2026',
         'desc' => 'Thư viện mẫu hố ga đa dạng, thiết kế mạng lưới thoát nước và xuất khối lượng tự động.',
         'href' => '/mo-dun/thiet-ke-ho-ga.php',
     ],
     [
         'icon' => '🌁',
+        'image' => 'images/caudamT.png',
         'title' => 'Mô-đun 5: Thiết Kế Cầu Giản Đơn BTCT DƯL 2026',
         'desc' => 'Tự động thiết kế bản vẽ bố trí chung, bố trí cốt thép mố trụ, cọc móng và bóc tách khối lượng chính xác 100%.',
         'href' => '/mo-dun/thiet-ke-cau-gian-don.php',
@@ -64,7 +69,11 @@ require __DIR__ . '/includes/header.php';
         <?php foreach ($modules as $m): ?>
         <?php $slug = basename($m['href'], '.php'); ?>
         <div class="card-3d" data-href="<?= htmlspecialchars($m['href']) ?>">
-            <div class="card-3d__icon"><?= $m['icon'] ?></div>
+            <?php if (!empty($m['image'])): ?>
+                <img src="<?= htmlspecialchars($m['image']) ?>" alt="<?= htmlspecialchars($m['title']) ?>" class="card-3d__icon-img">
+            <?php else: ?>
+                <div class="card-3d__icon"><?= $m['icon'] ?></div>
+            <?php endif; ?>
             <div class="card-3d__title"><?= htmlspecialchars($m['title']) ?></div>
             <p class="card-3d__desc"><?= htmlspecialchars($m['desc']) ?></p>
             <div class="card-3d__actions">
