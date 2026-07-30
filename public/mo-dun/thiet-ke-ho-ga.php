@@ -1,5 +1,7 @@
 <?php
-$pageTitle = 'Mô-đun 4: Thiết Kế Hố Ga 2026';
+require __DIR__ . '/../includes/config.php';
+
+$pageTitle = 'Mô-đun 4: Thiết Kế Hố Ga ' . MODULE_YEAR;
 $pageDescription = 'Thư viện mẫu hố ga đa dạng, thiết kế mạng lưới thoát nước và xuất khối lượng tự động.';
 
 $features = [

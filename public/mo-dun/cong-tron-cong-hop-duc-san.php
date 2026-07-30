@@ -1,5 +1,7 @@
 <?php
-$pageTitle = 'Mô-đun 1: Cống Tròn & Cống Hộp Đúc Sẵn 2026';
+require __DIR__ . '/../includes/config.php';
+
+$pageTitle = 'Mô-đun 1: Cống Tròn & Cống Hộp Đúc Sẵn ' . MODULE_YEAR;
 $pageDescription = 'Thiết kế nhanh cống tròn, cống hộp đúc sẵn, tự động tính bẻ góc và tích hợp giải pháp cống đô thị.';
 
 $features = [

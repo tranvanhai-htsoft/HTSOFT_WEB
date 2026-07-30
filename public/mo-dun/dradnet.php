@@ -1,13 +1,15 @@
 <?php
+require __DIR__ . '/../includes/config.php';
+
 $pageTitle = 'Dradnet — Phần mềm thiết kế cống tự động';
 $pageDescription = 'Dradnet tự động hoá thiết kế cống tròn, cống hộp, cầu bản và hố ga theo tiêu chuẩn mới nhất.';
 
 // Khu vực 1: Tính năng cốt lõi — lấy từ features-grid gốc trong index.html cũ.
 $features = [
-    'Cống Tròn & Cống Hộp Đúc Sẵn 2026',
-    'Cống Hộp Đổ Tại Chỗ 2026',
-    'Cầu Bản – Cống Bản – Tràn Liên Hợp 2026',
-    'Thiết Kế Hố Ga 2026',
+    'Cống Tròn & Cống Hộp Đúc Sẵn ' . MODULE_YEAR,
+    'Cống Hộp Đổ Tại Chỗ ' . MODULE_YEAR,
+    'Cầu Bản – Cống Bản – Tràn Liên Hợp ' . MODULE_YEAR,
+    'Thiết Kế Hố Ga ' . MODULE_YEAR,
 ];
 
 // Khu vực 2: Gallery — TODO(SV1): thay bằng ảnh chụp màn hình thật trong assets/images/dradnet/

@@ -1,6 +1,8 @@
 <?php
+require __DIR__ . '/../includes/config.php';
+
 $pageTitle = 'Hướng dẫn — Cống Tròn & Cống Hộp Đúc Sẵn';
-$pageDescription = 'Các bước sử dụng mô-đun Cống Tròn & Cống Hộp Đúc Sẵn 2026.';
+$pageDescription = 'Các bước sử dụng mô-đun Cống Tròn & Cống Hộp Đúc Sẵn ' . MODULE_YEAR . '.';
 
 // TODO(SV1): thay nội dung placeholder bằng video/GIF hướng dẫn thật cho từng bước, từng tình huống.
 

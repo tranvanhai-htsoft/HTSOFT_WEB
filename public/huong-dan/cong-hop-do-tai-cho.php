@@ -1,6 +1,8 @@
 <?php
+require __DIR__ . '/../includes/config.php';
+
 $pageTitle = 'Hướng dẫn — Cống Hộp Đổ Tại Chỗ';
-$pageDescription = 'Các bước sử dụng mô-đun Cống Hộp Đổ Tại Chỗ 2026.';
+$pageDescription = 'Các bước sử dụng mô-đun Cống Hộp Đổ Tại Chỗ ' . MODULE_YEAR . '.';
 
 // TODO(SV1): thay nội dung placeholder bằng video/GIF hướng dẫn thật cho từng bước, từng tình huống.
 // Bạn chỉ cần điền 'video_url' cho từng bước (ví dụ: '/assets/videos/buoc-2.mp4') là video thật sẽ chạy ngay.

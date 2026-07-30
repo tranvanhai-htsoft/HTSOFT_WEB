@@ -1,5 +1,7 @@
 <?php
-$pageTitle = 'Mô-đun 2: Cống Hộp Đổ Tại Chỗ 2026';
+require __DIR__ . '/../includes/config.php';
+
+$pageTitle = 'Mô-đun 2: Cống Hộp Đổ Tại Chỗ ' . MODULE_YEAR;
 $pageDescription = 'Thiết kế kết cấu cống hộp đổ tại chỗ, tường cánh BTCT, tự động dựng và xuất bản vẽ phối cảnh 3D.';
 
 $features = [

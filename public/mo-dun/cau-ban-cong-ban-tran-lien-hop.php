@@ -1,5 +1,7 @@
 <?php
-$pageTitle = 'Mô-đun 3: Cầu Bản – Cống Bản – Tràn Liên Hợp 2026';
+require __DIR__ . '/../includes/config.php';
+
+$pageTitle = 'Mô-đun 3: Cầu Bản – Cống Bản – Tràn Liên Hợp ' . MODULE_YEAR;
 $pageDescription = 'Tự động hoá thiết kế cầu bản nhiều nhịp, cống bản lắp ghép và hệ thống tràn liên hợp thoát lũ.';
 
 $features = [

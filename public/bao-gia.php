@@ -1,4 +1,6 @@
 <?php
+require __DIR__ . '/includes/config.php';
+
 $pageTitle = 'Bộ tính báo giá';
 $pageDescription = 'Chọn mô-đun, phiên bản và khóa tích hợp để nhận báo giá ngay.';
 
@@ -9,7 +11,7 @@ $LOCK_FEE = 500000;
 
 $modules = [
     'cong-tron-cong-hop-duc-san' => [
-        'name' => 'Mô-đun 1: Cống Tròn & Cống Hộp Đúc Sẵn 2026',
+        'name' => 'Mô-đun 1: Cống Tròn & Cống Hộp Đúc Sẵn ' . MODULE_YEAR,
         'icon' => '🔵',
         'versions' => [
             ['id' => 'standard', 'label' => 'Tiêu chuẩn', 'price' => 3600000, 'available' => true],
@@ -17,7 +19,7 @@ $modules = [
         ],
     ],
     'cong-hop-do-tai-cho' => [
-        'name' => 'Mô-đun 2: Cống Hộp Đổ Tại Chỗ 2026',
+        'name' => 'Mô-đun 2: Cống Hộp Đổ Tại Chỗ ' . MODULE_YEAR,
         'icon' => '📦',
         'versions' => [
             ['id' => 'standard', 'label' => 'Tiêu chuẩn', 'price' => 3600000, 'available' => true],
@@ -25,7 +27,7 @@ $modules = [
         ],
     ],
     'cau-ban-cong-ban-tran-lien-hop' => [
-        'name' => 'Mô-đun 3: Cầu Bản – Cống Bản – Tràn Liên Hợp 2026',
+        'name' => 'Mô-đun 3: Cầu Bản – Cống Bản – Tràn Liên Hợp ' . MODULE_YEAR,
         'icon' => '🌉',
         'versions' => [
             ['id' => 'standard', 'label' => 'Tiêu chuẩn', 'price' => 3600000, 'available' => true],
@@ -33,35 +35,35 @@ $modules = [
         ],
     ],
     'thiet-ke-ho-ga' => [
-        'name' => 'Mô-đun 4: Thiết Kế Hố Ga 2026',
+        'name' => 'Mô-đun 4: Thiết Kế Hố Ga ' . MODULE_YEAR,
         'icon' => '🕳️',
         'versions' => [
             ['id' => 'standard', 'label' => 'Một phiên bản', 'price' => 2600000, 'available' => true],
         ],
     ],
     'thiet-ke-cau-gian-don' => [
-        'name' => 'Mô-đun 5: Thiết Kế Cầu Giản Đơn BTCT DƯL 2026',
+        'name' => 'Mô-đun 5: Thiết Kế Cầu Giản Đơn BTCT DƯL ' . MODULE_YEAR,
         'icon' => '🌁',
         'versions' => [
             ['id' => 'standard', 'label' => 'Một phiên bản', 'price' => 5900000, 'available' => true],
         ],
     ],
     'kiem-toan-cau-gian-don' => [
-        'name' => 'Mô-đun 6: Kiểm Toán Cầu Giản Đơn 2026',
+        'name' => 'Mô-đun 6: Kiểm Toán Cầu Giản Đơn ' . MODULE_YEAR,
         'icon' => '📐',
         'versions' => [
             ['id' => 'standard', 'label' => 'Một phiên bản', 'price' => 2900000, 'available' => true],
         ],
     ],
     'kiem-toan-cau-ban' => [
-        'name' => 'Mô-đun 7: Kiểm Toán Cầu Bản 2026',
+        'name' => 'Mô-đun 7: Kiểm Toán Cầu Bản ' . MODULE_YEAR,
         'icon' => '📊',
         'versions' => [
             ['id' => 'standard', 'label' => 'Một phiên bản', 'price' => 2900000, 'available' => true],
         ],
     ],
     'kiem-toan-cong-hop' => [
-        'name' => 'Mô-đun 8: Kiểm Toán Cống Hộp 2026',
+        'name' => 'Mô-đun 8: Kiểm Toán Cống Hộp ' . MODULE_YEAR,
         'icon' => '🧮',
         'versions' => [
             ['id' => 'standard', 'label' => 'Một phiên bản', 'price' => 2900000, 'available' => true],
