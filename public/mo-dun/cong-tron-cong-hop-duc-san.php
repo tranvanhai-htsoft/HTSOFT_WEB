@@ -1,15 +1,14 @@
 <?php
-require __DIR__ . '/../includes/config.php';
-
-$pageTitle = 'Mô-đun 1: Cống Tròn & Cống Hộp Đúc Sẵn ' . MODULE_YEAR;
+$pageTitle = 'Mô-đun 01: Cống Tròn & Cống Hộp Đúc Sẵn';
 $pageDescription = 'Thiết kế nhanh cống tròn, cống hộp đúc sẵn, tự động tính bẻ góc và tích hợp giải pháp cống đô thị.';
 
 $features = [
-    'Hỗ trợ đầy đủ chủng loại' => 'Thiết kế nhanh các loại cống tròn, cống hộp đúc sẵn thông dụng trên thị trường.',
-    'Thiết kế chuyên dụng' => 'Tối ưu riêng cho các công trình miền núi (độ dốc lớn, gia cố hạ lưu phức tạp).',
-    'Giải pháp cống đô thị' => 'Tích hợp đồng bộ giải pháp hệ thống cống đi kèm hố ga thu nước.',
-    'Tự động tính toán' => 'Tự động tính toán bẻ góc bản vẽ hệ thống cống xiên chính xác theo tim tuyến.',
-    'Đồng bộ nâng cấp' => 'Mô hình thông minh xử lý cống nối dài, nâng cấp cải tạo theo cao độ đứt cũ.',
+    'Đầy đủ chủng loại' => 'Tích hợp toàn diện các loại cống tròn, cống hộp, ly tâm, rung ép, rung lõi và rung bàn.',
+    'Cống địa hình miền núi' => 'Tối ưu cho công trình có độ dốc lớn, hai dốc, tường chắn, hạ lưu giật cấp hoặc thượng lưu rãnh cơ kết hợp hố thu.',
+    'Giải pháp đô thị' => 'Quy hoạch và thiết kế đồng bộ hệ thống thoát nước đi kèm hố ga thu nước tiêu chuẩn.',
+    'Cống nối nâng cấp' => 'Hỗ trợ kết nối linh hoạt 1 phía hoặc 2 phía, bao gồm đầy đủ hệ thống cống, hố thu và cửa xả.',
+    'Cấu trúc cống xiên' => 'Giải quyết tối ưu và chính xác các phương án cống đặt xiên góc theo địa hình thực tế.',
+    'Tổng hợp khối lượng linh hoạt' => 'Xuất THKL chi tiết kèm diễn giải và khối lượng toàn tuyến. Cho phép phân chia khối lượng theo gói thầu.',
 ];
 
 $gallery = [
@@ -21,26 +20,33 @@ $gallery = [
 require __DIR__ . '/../includes/header.php';
 ?>
 
-<section>
-    <span class="eyebrow">Mô-đun phần mềm</span>
-    <h1 style="margin: 8px 0 10px; font-size: 1.9rem;"><?= htmlspecialchars($pageTitle) ?></h1>
-    <p style="color: var(--text-muted); max-width: 60ch; margin-bottom: 40px;">
-        <?= htmlspecialchars($pageDescription) ?>
-    </p>
+<section style="text-align: left;">
+    <h1 style="margin: 0 0 28px; font-size: 1.9rem; text-align: left;"><?= htmlspecialchars($pageTitle) ?></h1>
 </section>
 
 <section>
-    <span class="eyebrow">Khu vực 1</span>
     <h2 style="margin: 8px 0 20px; font-size: 1.4rem;">Tính năng cốt lõi</h2>
-    <ul class="feature-list">
+    <ul class="feature-list feature-list--minimal">
         <?php foreach ($features as $label => $desc): ?>
-        <li><span class="tick-3d">&#10003;</span> <strong><?= htmlspecialchars($label) ?>:</strong>&nbsp;<?= htmlspecialchars($desc) ?></li>
+        <li><span class="feature-dot" aria-hidden="true"></span> <strong><?= htmlspecialchars($label) ?></strong> &mdash; <?= htmlspecialchars($desc) ?></li>
         <?php endforeach; ?>
     </ul>
 </section>
 
+<style>
+    .feature-list--minimal li { align-items: flex-start; }
+    .feature-dot {
+        flex-shrink: 0;
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        margin-top: 0.55em;
+        border-radius: 50%;
+        background: var(--text-muted, #888);
+    }
+</style>
+
 <section>
-    <span class="eyebrow">Khu vực 2</span>
     <h2 style="margin: 8px 0 20px; font-size: 1.4rem;">Hình ảnh sản phẩm</h2>
     <div class="card-grid" style="grid-template-columns: repeat(3, 1fr);">
         <?php foreach ($gallery as $caption): ?>
@@ -55,7 +61,6 @@ require __DIR__ . '/../includes/header.php';
 </section>
 
 <section>
-    <span class="eyebrow">Khu vực 3</span>
     <h2 style="margin: 8px 0 20px; font-size: 1.4rem;">Video giới thiệu ngắn</h2>
     <div class="card-3d" style="align-items: center; text-align: center; max-width: 560px; margin: 0 auto;">
         <div style="width: 100%; aspect-ratio: 16 / 9; background: var(--ink); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.9rem;">

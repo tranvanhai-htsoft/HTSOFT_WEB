@@ -15,7 +15,6 @@ require __DIR__ . '/includes/header.php';
 ?>
 
 <section>
-    <span class="eyebrow">Tài khoản</span>
     <h1 style="margin: 8px 0 8px; font-size: 1.9rem;">Tải Phần Mềm</h1>
     <p class="card-3d__desc" style="max-width: 640px; margin-bottom: 28px;">
         Mô-đun 1–5 có 2 bản cài đặt riêng theo phiên bản AutoCAD. Mô-đun 6–8 chỉ có 1 bản cài đặt chung.

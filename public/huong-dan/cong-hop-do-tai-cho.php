@@ -147,7 +147,6 @@ require __DIR__ . '/../includes/header.php';
 ?>
 
 <section>
-    <span class="eyebrow">Hướng dẫn sử dụng</span>
     <h1 style="margin: 8px 0 10px; font-size: 1.9rem;"><?= htmlspecialchars($pageTitle) ?></h1>
     <p style="color: var(--text-muted); max-width: 60ch; margin-bottom: 24px;">
         Chọn tình huống sử dụng phù hợp với công trình của bạn, sau đó làm theo các bước. Bấm vào từng bước để xem chi tiết, không cần chuyển trang.

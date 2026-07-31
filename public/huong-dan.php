@@ -9,16 +9,15 @@ $guides = [
     ['image' => 'images/Cauban.png', 'slug' => 'cau-ban-cong-ban-tran-lien-hop', 'title' => 'Cầu Bản – Cống Bản – Tràn Liên Hợp', 'href' => '/huong-dan/cau-ban-cong-ban-tran-lien-hop.php'],
     ['image' => 'images/Hothu.png', 'slug' => 'thiet-ke-ho-ga', 'title' => 'Thiết Kế Hố Ga', 'href' => '/huong-dan/thiet-ke-ho-ga.php'],
     ['image' => 'images/caudamT.png', 'slug' => 'thiet-ke-cau-gian-don', 'title' => 'Thiết Kế Cầu Giản Đơn BTCT DƯL', 'href' => '/huong-dan/thiet-ke-cau-gian-don.php'],
-    ['image' => 'images/Ongcong1.png', 'slug' => 'kiem-toan-cau-gian-don', 'title' => 'Kiểm Toán Cầu Giản Đơn', 'href' => '/huong-dan/kiem-toan-cau-gian-don.php'],
-    ['image' => 'images/Ongcong1.png', 'slug' => 'kiem-toan-cau-ban', 'title' => 'Kiểm Toán Cầu Bản', 'href' => '/huong-dan/kiem-toan-cau-ban.php'],
-    ['image' => 'images/Ongcong1.png', 'slug' => 'kiem-toan-cong-hop', 'title' => 'Kiểm Toán Cống Hộp', 'href' => '/huong-dan/kiem-toan-cong-hop.php'],
+    ['image' => 'images/Index/index_Modun6_Kiemtoan_caugiandon.jpg', 'slug' => 'kiem-toan-cau-gian-don', 'title' => 'Kiểm Toán Cầu Giản Đơn', 'href' => '/huong-dan/kiem-toan-cau-gian-don.php'],
+    ['image' => 'images/Index/index_Modun7_Kiemtoan_cauban.jpg', 'slug' => 'kiem-toan-cau-ban', 'title' => 'Kiểm Toán Cầu Bản', 'href' => '/huong-dan/kiem-toan-cau-ban.php'],
+    ['image' => 'images/Index/index_Modun8_Kiemtoan_conghop.jpg', 'slug' => 'kiem-toan-cong-hop', 'title' => 'Kiểm Toán Cống Hộp', 'href' => '/huong-dan/kiem-toan-cong-hop.php'],
 ];
 
 require __DIR__ . '/includes/header.php';
 ?>
 
 <section>
-    <span class="eyebrow">Interactive user guide</span>
     <h1 style="margin: 8px 0 10px; font-size: 1.9rem;">Hướng Dẫn Sử Dụng</h1>
     <p style="color: var(--text-muted); max-width: 60ch; margin-bottom: 32px;">
         Mỗi mô-đun có hướng dẫn sử dụng riêng, theo từng bước. Chọn mô-đun bên dưới để bắt đầu.

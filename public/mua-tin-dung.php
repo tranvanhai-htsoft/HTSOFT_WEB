@@ -23,7 +23,6 @@ require __DIR__ . '/includes/header.php';
 ?>
 
 <section>
-    <span class="eyebrow">Tín dụng trả trước</span>
     <h1 style="margin: 8px 0 8px; font-size: 1.9rem;">Mua Gói Tín Dụng</h1>
     <p class="card-3d__desc" style="max-width: 640px; margin-bottom: 8px;">
         Tín dụng dùng chung cho tất cả mô-đun — mỗi lần chạy phần mềm sẽ trừ một số tín dụng cố định

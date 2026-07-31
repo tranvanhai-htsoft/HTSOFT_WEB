@@ -23,7 +23,6 @@ require __DIR__ . '/includes/header.php';
 ?>
 
 <section>
-    <span class="eyebrow">Tài khoản</span>
     <h1 style="margin: 8px 0 8px; font-size: 1.9rem;">Số Dư Tín Dụng</h1>
     <p style="font-size: 2rem; font-weight: 700; margin: 0 0 8px;"><span id="balanceValue"><?= $balance ?></span> tín dụng</p>
     <div style="display: flex; gap: 12px; margin-bottom: 32px;">
@@ -34,7 +33,6 @@ require __DIR__ . '/includes/header.php';
 </section>
 
 <section>
-    <span class="eyebrow">Mô-đun phần mềm</span>
     <h2 style="margin: 8px 0 20px; font-size: 1.4rem;">Mức Trừ Tín Dụng Mỗi Lần Chạy</h2>
     <p class="card-3d__desc" style="max-width: 640px; margin-bottom: 20px;">
         Nút "Chạy thử" bên dưới mô phỏng thao tác phần mềm desktop trừ tín dụng khi khách sử dụng —
@@ -53,7 +51,6 @@ require __DIR__ . '/includes/header.php';
 </section>
 
 <section>
-    <span class="eyebrow">Lịch sử</span>
     <h2 style="margin: 8px 0 20px; font-size: 1.4rem;">Lịch Sử Giao Dịch</h2>
     <?php if (!$history): ?>
     <p class="card-3d__desc">Chưa có giao dịch nào.</p>

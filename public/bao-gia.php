@@ -20,7 +20,7 @@ $modules = [
     ],
     'cong-hop-do-tai-cho' => [
         'name' => 'Mô-đun 2: Cống Hộp Đổ Tại Chỗ ' . MODULE_YEAR,
-        'icon' => '📦',
+        'icon' => '🔵',
         'versions' => [
             ['id' => 'standard', 'label' => 'Tiêu chuẩn', 'price' => 3600000, 'available' => true],
             ['id' => 'full', 'label' => 'Full nâng cao', 'price' => 4900000, 'available' => true],
@@ -28,7 +28,7 @@ $modules = [
     ],
     'cau-ban-cong-ban-tran-lien-hop' => [
         'name' => 'Mô-đun 3: Cầu Bản – Cống Bản – Tràn Liên Hợp ' . MODULE_YEAR,
-        'icon' => '🌉',
+        'icon' => '🔵',
         'versions' => [
             ['id' => 'standard', 'label' => 'Tiêu chuẩn', 'price' => 3600000, 'available' => true],
             ['id' => 'full', 'label' => 'Full nâng cao', 'price' => 0, 'available' => false],
@@ -36,37 +36,37 @@ $modules = [
     ],
     'thiet-ke-ho-ga' => [
         'name' => 'Mô-đun 4: Thiết Kế Hố Ga ' . MODULE_YEAR,
-        'icon' => '🕳️',
+        'icon' => '🔵',
         'versions' => [
-            ['id' => 'standard', 'label' => 'Một phiên bản', 'price' => 2600000, 'available' => true],
+            ['id' => 'standard', 'label' => 'Cơ sở', 'price' => 2600000, 'available' => true],
         ],
     ],
     'thiet-ke-cau-gian-don' => [
         'name' => 'Mô-đun 5: Thiết Kế Cầu Giản Đơn BTCT DƯL ' . MODULE_YEAR,
-        'icon' => '🌁',
+        'icon' => '🔵',
         'versions' => [
-            ['id' => 'standard', 'label' => 'Một phiên bản', 'price' => 5900000, 'available' => true],
+            ['id' => 'standard', 'label' => 'Cơ sở', 'price' => 5900000, 'available' => true],
         ],
     ],
     'kiem-toan-cau-gian-don' => [
         'name' => 'Mô-đun 6: Kiểm Toán Cầu Giản Đơn ' . MODULE_YEAR,
-        'icon' => '📐',
+        'icon' => '🔵',
         'versions' => [
-            ['id' => 'standard', 'label' => 'Một phiên bản', 'price' => 2900000, 'available' => true],
+            ['id' => 'standard', 'label' => 'Cơ sở', 'price' => 2900000, 'available' => true],
         ],
     ],
     'kiem-toan-cau-ban' => [
         'name' => 'Mô-đun 7: Kiểm Toán Cầu Bản ' . MODULE_YEAR,
-        'icon' => '📊',
+        'icon' => '🔵',
         'versions' => [
-            ['id' => 'standard', 'label' => 'Một phiên bản', 'price' => 2900000, 'available' => true],
+            ['id' => 'standard', 'label' => 'Cơ sở', 'price' => 2900000, 'available' => true],
         ],
     ],
     'kiem-toan-cong-hop' => [
         'name' => 'Mô-đun 8: Kiểm Toán Cống Hộp ' . MODULE_YEAR,
-        'icon' => '🧮',
+        'icon' => '🔵',
         'versions' => [
-            ['id' => 'standard', 'label' => 'Một phiên bản', 'price' => 2900000, 'available' => true],
+            ['id' => 'standard', 'label' => 'Cơ sở', 'price' => 2900000, 'available' => true],
         ],
     ],
 ];
@@ -78,7 +78,6 @@ require __DIR__ . '/includes/header.php';
 ?>
 
 <section>
-    <span class="eyebrow">Pricing calculator</span>
     <h1 style="margin: 8px 0 8px; font-size: 1.9rem;">Bộ Tính Báo Giá</h1>
     <p class="card-3d__desc" style="max-width: 640px; margin-bottom: 28px;">
         Tích chọn các mô-đun cần dùng, chọn phiên bản và gán khóa tích hợp — hệ thống sẽ tự
@@ -86,75 +85,54 @@ require __DIR__ . '/includes/header.php';
     </p>
 
     <div class="quote-layout">
-        <!-- ===================== DANH SÁCH MÔ-ĐUN ===================== -->
-        <div class="quote-modules" id="quoteModules">
-            <?php foreach ($modules as $slug => $m): ?>
-            <div class="quote-card" data-slug="<?= htmlspecialchars($slug) ?>" hidden>
-                <div class="quote-card__head">
-                    <span class="quote-card__icon"><?= $m['icon'] ?></span>
-                    <span class="quote-card__title"><?= htmlspecialchars($m['name']) ?></span>
-                    <button type="button" class="quote-card__remove" data-slug="<?= htmlspecialchars($slug) ?>" title="Bỏ chọn mô-đun này">✕ Bỏ chọn</button>
-                </div>
-
-                <div class="quote-card__body">
-                    <?php if (count($m['versions']) > 1): ?>
-                    <div class="quote-field">
-                        <span class="quote-field__label">Phiên bản</span>
-                        <div class="quote-versions">
+        <!-- ===================== MAIN PANEL: CHỌN MÔ-ĐUN + TRỰC QUAN HOÁ KHÓA ===================== -->
+        <div class="main-panel">
+            <h2 class="panel-heading">1. Chọn Cấu Hình Mô-đun Phần Mềm</h2>
+            <div id="moduleList">
+                <?php foreach ($modules as $slug => $m): ?>
+                <div class="module-item" data-slug="<?= htmlspecialchars($slug) ?>">
+                    <div class="module-row-top">
+                        <span class="module-icon"><?= $m['icon'] ?></span>
+                        <span class="module-name"><?= htmlspecialchars($m['name']) ?></span>
+                        <div class="options">
+                            <button type="button" class="btn-opt active" id="btn-<?= htmlspecialchars($slug) ?>-0" data-slug="<?= htmlspecialchars($slug) ?>" data-opt="0">Không mua</button>
                             <?php foreach ($m['versions'] as $i => $v): ?>
-                            <label class="quote-version <?= !$v['available'] ? 'is-disabled' : '' ?>">
-                                <input type="radio" name="version-<?= htmlspecialchars($slug) ?>"
-                                       value="<?= htmlspecialchars($v['id']) ?>"
-                                       class="qm-version" data-slug="<?= htmlspecialchars($slug) ?>"
-                                       <?= $i === 0 ? 'checked' : '' ?> <?= !$v['available'] ? 'disabled' : '' ?>>
-                                <span>
-                                    <?= htmlspecialchars($v['label']) ?><br>
-                                    <b><?= $v['available'] ? number_format($v['price'], 0, ',', '.') . 'đ' : 'Chưa phát hành' ?></b>
-                                </span>
-                            </label>
+                            <button type="button" class="btn-opt<?= !$v['available'] ? ' is-disabled' : '' ?>"
+                                    id="btn-<?= htmlspecialchars($slug) ?>-<?= $i + 1 ?>"
+                                    data-slug="<?= htmlspecialchars($slug) ?>" data-opt="<?= $i + 1 ?>"
+                                    <?= !$v['available'] ? 'disabled' : '' ?>>
+                                <?= htmlspecialchars($v['label']) ?>
+                                (<?= $v['available'] ? number_format($v['price'], 0, ',', '.') . 'đ' : 'chưa phát hành' ?>)
+                            </button>
                             <?php endforeach; ?>
                         </div>
                     </div>
-                    <?php else: ?>
-                    <input type="hidden" class="qm-version" data-slug="<?= htmlspecialchars($slug) ?>" value="<?= htmlspecialchars($m['versions'][0]['id']) ?>">
-                    <div class="quote-field">
-                        <span class="quote-field__label">Giá</span>
-                        <b><?= number_format($m['versions'][0]['price'], 0, ',', '.') ?>đ</b>
-                    </div>
-                    <?php endif; ?>
-
-                    <div class="quote-field">
-                        <span class="quote-field__label">Khóa tích hợp</span>
-                        <div class="qm-lock-row">
-                            <span class="qm-lock-static" data-slug="<?= htmlspecialchars($slug) ?>">Khóa 1</span>
-                            <select class="qm-lock" data-slug="<?= htmlspecialchars($slug) ?>" hidden></select>
-                            <button type="button" class="qm-lock-split" data-slug="<?= htmlspecialchars($slug) ?>">Tách khóa riêng</button>
-                        </div>
-                    </div>
-
-                    <div class="quote-card__price">
-                        Đơn giá sau khấu trừ: <b class="qm-unit-price">—</b>
+                    <div class="key-assign-zone" id="key-zone-<?= htmlspecialchars($slug) ?>" style="display:none;">
+                        <span>Cài đặt bản quyền: Tích hợp mô-đun này vào </span>
+                        <select class="key-select" id="select-key-<?= htmlspecialchars($slug) ?>" data-slug="<?= htmlspecialchars($slug) ?>"></select>
                     </div>
                 </div>
+                <?php endforeach; ?>
             </div>
-            <?php endforeach; ?>
 
-            <p class="quote-empty" id="quoteEmpty">
-                Bạn chưa chọn mô-đun nào. Vui lòng quay lại
-                <a href="/index.php">trang danh mục</a> và bấm “Chọn mua” trên các mô-đun mong muốn.
-            </p>
+            <h2 class="panel-heading">2. Danh Sách Thiết Bị Khóa Bàn Giao</h2>
+            <div class="key-summary-box">
+                <div id="keyVisualList">Chưa có mô-đun nào được chọn.</div>
+            </div>
         </div>
 
-        <!-- ===================== TỔNG THANH TOÁN ===================== -->
-        <aside class="quote-summary" id="quoteSummary" hidden>
-            <div class="card-3d">
-                <div class="card-3d__title">Tổng thanh toán</div>
-                <div class="quote-row"><span>Tạm tính</span><b id="sumSubtotal">0đ</b></div>
-                <div class="quote-row quote-row--discount"><span>Khấu trừ phí khóa trùng</span><b id="sumLockDiscount">0đ</b></div>
-                <div class="quote-row quote-row--discount"><span>Chiết khấu theo số lượng</span><b id="sumQtyDiscount">0đ</b></div>
-                <div class="quote-row quote-row--total"><span>Thành tiền</span><b id="sumTotal">0đ</b></div>
-                <div class="quote-summary__hint" id="sumHint"></div>
-                <button type="button" class="btn-3d btn-3d-yellow" id="btnCheckout" style="width:100%; margin-top:14px;">Thanh toán</button>
+        <!-- ===================== SIDE PANEL: BÁO GIÁ CHI TIẾT ===================== -->
+        <aside class="side-panel">
+            <h2 class="panel-heading">Báo Giá Chi Tiết</h2>
+            <div class="summary-line"><span>Mô-đun đã chọn:</span> <span id="res-count">0</span></div>
+            <div class="summary-line"><span>Tổng giá cơ sở:</span> <span id="res-base">0đ</span></div>
+            <div class="summary-line"><span>Giảm giá số lượng:</span> <span id="res-discount-qty" class="discount">-0đ</span></div>
+            <div class="summary-line"><span>Tiết kiệm gộp khóa:</span> <span id="res-discount-key" class="discount">-0đ</span></div>
+            <div class="summary-line summary-line--split"><span>Số khóa thực tế cần giao:</span> <span id="res-key-count">0 khóa</span></div>
+            <div class="total-line"><span>TỔNG CỘNG:</span> <span id="res-total">0đ</span></div>
+            <div style="display:flex; gap:10px; margin-top:16px;">
+                <button type="button" class="btn-3d btn-3d-yellow" id="btnCheckout" style="flex:1; padding-left:12px; padding-right:12px; white-space:nowrap;">Thanh toán</button>
+                <button type="button" class="btn-3d btn-3d-blue" id="btnDownloadQuote" style="flex:1; padding-left:12px; padding-right:12px; white-space:nowrap;">Tải báo giá</button>
             </div>
         </aside>
     </div>
@@ -192,42 +170,48 @@ require __DIR__ . '/includes/header.php';
 </section>
 
 <style>
-.quote-layout { display: grid; grid-template-columns: 1fr 320px; gap: 24px; align-items: start; }
+.quote-layout { display: grid; grid-template-columns: 1fr 400px; gap: 24px; align-items: start; }
 @media (max-width: 860px) { .quote-layout { grid-template-columns: 1fr; } }
 
-.quote-modules { display: flex; flex-direction: column; gap: 14px; }
-.quote-card { border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 16px 18px; background: rgba(255,255,255,0.03); }
-.quote-card__head { display: flex; align-items: center; gap: 10px; font-weight: 600; }
-.quote-card__icon { font-size: 1.2rem; }
-.quote-card__title { flex: 1; }
-.quote-card__remove { background: none; border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; padding: 4px 10px; font-size: 0.78rem; opacity: 0.7; cursor: pointer; color: inherit; white-space: nowrap; }
-.quote-card__remove:hover { opacity: 1; border-color: #e05555; color: #e05555; }
-.quote-card__body { margin-top: 14px; padding-top: 14px; border-top: 1px dashed rgba(255,255,255,0.15); display: flex; flex-direction: column; gap: 12px; }
-.quote-field { display: flex; flex-direction: column; gap: 6px; }
-.quote-field__label { font-size: 0.82rem; opacity: 0.7; }
-.quote-versions { display: flex; flex-wrap: wrap; gap: 10px; }
-.quote-version { display: flex; align-items: center; gap: 8px; border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; padding: 8px 12px; cursor: pointer; font-size: 0.88rem; }
-.quote-version.is-disabled { opacity: 0.45; cursor: not-allowed; }
-.qm-lock { padding: 8px 10px; border-radius: 8px; background: #ffffff; color: #1b1b22; border: 1px solid rgba(0,0,0,0.2); }
-.qm-lock-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-.qm-lock-static { font-weight: 600; }
-.qm-lock-split { background: none; border: none; padding: 0; font-size: 0.8rem; color: #4d9dff; text-decoration: underline; cursor: pointer; }
-.qm-lock-split:hover { color: #7fbaff; }
-.quote-card__price { font-size: 0.9rem; opacity: 0.85; }
-.quote-empty { opacity: 0.65; font-size: 0.9rem; }
+.main-panel, .side-panel { background: var(--surface, #fff); border: var(--border-width, 2px) solid var(--ink, #111); border-radius: var(--radius, 12px); padding: 20px 22px; }
+.side-panel { position: sticky; top: 20px; }
+.panel-heading { margin: 0 0 16px; font-size: 1.1rem; border-bottom: 2px solid rgba(0,0,0,0.08); padding-bottom: 10px; }
+.main-panel .panel-heading:not(:first-child) { margin-top: 24px; }
 
-.quote-summary { position: sticky; top: 20px; }
-.quote-row { display: flex; justify-content: space-between; padding: 6px 0; font-size: 0.92rem; }
-.quote-row--discount b { color: #7cd992; }
-.quote-row--total { border-top: 1px solid rgba(255,255,255,0.15); margin-top: 8px; padding-top: 10px; font-size: 1.15rem; }
-.quote-summary__hint { font-size: 0.78rem; opacity: 0.6; margin-top: 4px; }
+.module-item { padding: 14px 0; border-bottom: 1px solid rgba(0,0,0,0.08); display: flex; flex-direction: column; gap: 10px; }
+.module-item:last-child { border-bottom: none; }
+.module-row-top { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.module-icon { font-size: 1.2rem; }
+.module-name { font-weight: 700; flex: 1; min-width: 160px; }
+.options { display: flex; gap: 8px; flex-wrap: wrap; }
+.btn-opt { padding: 8px 14px; border: 1px solid rgba(0,0,0,0.2); background: #fff; cursor: pointer; border-radius: 6px; font-size: 0.82rem; transition: all 0.15s ease; }
+.btn-opt.active { background: var(--htsoft-blue, #0091FF); color: #fff; border-color: var(--htsoft-blue, #0091FF); font-weight: 700; }
+.btn-opt.is-disabled { opacity: 0.45; cursor: not-allowed; }
 
-.quote-checkout { margin-top: 26px; }
+.key-assign-zone { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 10px; background: rgba(0,0,0,0.03); padding: 8px 12px; border-radius: 6px; font-size: 0.85rem; }
+.key-assign-zone span { flex: 1 1 220px; min-width: 0; }
+.key-select { flex-shrink: 0; padding: 4px 8px; border-radius: 4px; border: 1px solid rgba(0,0,0,0.2); font-weight: 700; background: #fff; cursor: pointer; }
+
+.key-summary-box { padding: 15px; background: rgba(0,0,0,0.03); border-radius: 8px; }
+.key-group { margin-bottom: 12px; }
+.key-group:last-child { margin-bottom: 0; }
+.key-group__label { font-size: 0.82rem; font-weight: 700; margin-bottom: 6px; }
+.key-badge { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; color: #fff; margin: 0 6px 6px 0; }
+
+.summary-line { display: flex; justify-content: space-between; margin-bottom: 14px; font-size: 0.92rem; }
+.summary-line--split { border-top: 1px dashed rgba(0,0,0,0.15); padding-top: 10px; }
+.summary-line .discount { color: #2e7d32; font-weight: 700; }
+.total-line { display: flex; justify-content: space-between; margin-top: 6px; padding-top: 14px; border-top: 2px solid var(--ink, #111); font-size: 1.3rem; font-weight: 700; color: var(--danger-red, #E5484D); }
+
 .quote-form { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 16px; margin-top: 12px; }
 .quote-form label { display: flex; flex-direction: column; gap: 6px; font-size: 0.88rem; }
 .quote-form input, .quote-form textarea { padding: 9px 10px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.2); background: #ffffff; color: #1b1b22; }
 .quote-form__full { grid-column: 1 / -1; }
 .quote-form__total { font-size: 1.05rem; text-align: right; }
+.quote-field__label { font-size: 0.82rem; opacity: 0.7; }
+.quote-versions { display: flex; flex-wrap: wrap; gap: 10px; }
+.quote-version { display: flex; align-items: center; gap: 8px; border: 1px solid rgba(0,0,0,0.15); border-radius: 10px; padding: 8px 12px; cursor: pointer; font-size: 0.88rem; }
+.quote-checkout { margin-top: 26px; }
 
 .tax-lookup { font-size: 0.85rem; padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.12); background: rgba(0,0,0,0.03); margin-top: -4px; }
 .tax-lookup.is-loading { opacity: 0.7; }
@@ -237,173 +221,201 @@ require __DIR__ . '/includes/header.php';
 
 <script>
 (function () {
-    var MODULES = <?= $modulesJson ?>;
+    var MODULES = <?= $modulesJson ?>; // slug -> { name, icon, versions: [{id,label,price,available}] }
     var LOCK_FEE = <?= $lockFeeJson ?>;
-    var STORAGE_KEY = 'druong_selected_modules'; // written by index.php "Chọn mua" buttons
+    var STORAGE_KEY = 'druong_selected_modules'; // đọc/ghi chung với nút "Chọn mua" ở index.php
 
-    var state = {}; // slug -> { checked, version, lock }
-    var lockCounter = 1;
+    // Bảng màu cố định cho tối đa 8 khóa cứng riêng biệt.
+    var KEY_COLORS = ['#E63946', '#457B9D', '#2A9D8F', '#F4A261', '#9B5DE5', '#F15BB5', '#00A0B0', '#3182CE'];
+
+    var slugs = Object.keys(MODULES);
+    var selections = {}; // slug -> 0 (không mua) | 1..N (chỉ số phiên bản đã chọn)
+    var assignedKeys = {}; // slug -> slug của mô-đun giữ khóa vật lý (mặc định là chính nó)
     var businessInfo = null; // kết quả tra cứu công ty theo mã số thuế, gửi kèm khi đặt hàng
     var taxLookupTimer = null;
+    var lastResult = { n: 0, total: 0 };
 
     function fmt(n) {
         return Math.round(n).toLocaleString('vi-VN') + 'đ';
     }
 
+    function setText(id, text) {
+        var el = document.getElementById(id);
+        if (el) el.textContent = text;
+    }
+
     function getInitialSlugs() {
-        var slugs = [];
+        var initial = [];
         try {
             var params = new URLSearchParams(window.location.search);
-            if (params.get('modules')) slugs = params.get('modules').split(',');
+            if (params.get('modules')) initial = params.get('modules').split(',');
         } catch (e) {}
-        if (!slugs.length) {
+        if (!initial.length) {
             try {
                 var raw = localStorage.getItem(STORAGE_KEY);
-                if (raw) slugs = JSON.parse(raw);
+                if (raw) initial = JSON.parse(raw);
             } catch (e) {}
         }
-        return slugs.filter(function (s) { return MODULES.hasOwnProperty(s); });
+        return initial.filter(function (s) { return MODULES.hasOwnProperty(s); });
     }
 
     function persistSelection() {
-        var slugs = Object.keys(state).filter(function (s) { return state[s].checked; });
-        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(slugs)); } catch (e) {}
+        var selected = slugs.filter(function (s) { return selections[s] > 0; });
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(selected)); } catch (e) {}
     }
 
-    function initState() {
-        var preselected = getInitialSlugs();
-        Object.keys(MODULES).forEach(function (slug) {
-            state[slug] = { checked: preselected.indexOf(slug) !== -1, version: MODULES[slug].versions[0].id, lock: 'Khóa 1' };
-        });
+    // Chọn mua từ trang chủ (mô-đun 1-2-3 có bản Full nâng cao đã phát hành) thì mặc định
+    // gán bản cao nhất đang bán; mô-đun chỉ có 1 bản (4-8) thì đó luôn là bản duy nhất.
+    function defaultOptIndexFor(slug) {
+        var versions = MODULES[slug].versions;
+        for (var i = versions.length; i >= 1; i--) {
+            if (versions[i - 1].available) return i;
+        }
+        return 1;
     }
 
-    function versionPrice(slug, versionId) {
-        var v = MODULES[slug].versions.find(function (x) { return x.id === versionId; });
-        return v && v.available ? v.price : 0;
+    function selectOpt(slug, optValue) {
+        selections[slug] = optValue;
+        var maxOpt = MODULES[slug].versions.length;
+
+        for (var i = 0; i <= maxOpt; i++) {
+            var btn = document.getElementById('btn-' + slug + '-' + i);
+            if (btn) btn.classList.remove('active');
+        }
+        var activeBtn = document.getElementById('btn-' + slug + '-' + optValue);
+        if (activeBtn) activeBtn.classList.add('active');
+
+        var zone = document.getElementById('key-zone-' + slug);
+        if (zone) {
+            if (optValue > 0) {
+                zone.style.display = 'flex';
+            } else {
+                zone.style.display = 'none';
+                assignedKeys[slug] = slug;
+            }
+        }
+
+        updateDropdownOptions();
+        calculatePrice();
     }
 
-    function activeSlugs() {
-        return Object.keys(state).filter(function (s) { return state[s].checked; });
-    }
-
-    // Yêu cầu 2: sau mỗi thay đổi, đánh lại số thứ tự khóa cho liên tục
-    // (dựa trên thứ tự xuất hiện đầu tiên trong danh sách mô-đun đang chọn).
-    function renumberLocks() {
-        var slugs = activeSlugs();
-        var order = [];
-        slugs.forEach(function (s) {
-            if (order.indexOf(state[s].lock) === -1) order.push(state[s].lock);
-        });
-        var mapping = {};
-        order.forEach(function (oldLabel, idx) { mapping[oldLabel] = 'Khóa ' + (idx + 1); });
-        slugs.forEach(function (s) { state[s].lock = mapping[state[s].lock]; });
-    }
-
-    function distinctLockCount() {
-        var set = {};
-        activeSlugs().forEach(function (s) { set[state[s].lock] = true; });
-        return Object.keys(set).length;
-    }
-
-    // Yêu cầu 1: mặc định Khóa 1, chỉ hiện dropdown khi có từ 2 khóa trở lên.
-    function updateLockUI() {
-        var slugs = activeSlugs();
-        var multi = distinctLockCount() > 1;
-
-        var maxLockNum = 0;
-        slugs.forEach(function (s) {
-            var m = /Khóa (\d+)/.exec(state[s].lock);
-            if (m) maxLockNum = Math.max(maxLockNum, parseInt(m[1], 10));
-        });
-        var options = [];
-        for (var i = 1; i <= Math.max(maxLockNum, 1); i++) options.push('Khóa ' + i);
-        var nextLock = 'Khóa ' + (Math.max(maxLockNum, 1) + 1);
+    function updateDropdownOptions() {
+        var activeSlugs = slugs.filter(function (s) { return selections[s] > 0; });
 
         slugs.forEach(function (slug) {
-            var card = document.querySelector('.quote-card[data-slug="' + slug + '"]');
-            var staticEl = card.querySelector('.qm-lock-static');
-            var selectEl = card.querySelector('.qm-lock');
-            var splitBtn = card.querySelector('.qm-lock-split');
+            if (selections[slug] <= 0) return;
+            var selectEl = document.getElementById('select-key-' + slug);
+            if (!selectEl) return;
 
-            if (multi) {
-                staticEl.hidden = true;
-                splitBtn.hidden = true;
-                selectEl.hidden = false;
-                selectEl.innerHTML = '';
-                options.concat([nextLock]).forEach(function (label, idx) {
-                    var opt = document.createElement('option');
-                    opt.value = label;
-                    opt.textContent = idx < options.length ? label : label + ' (mới)';
-                    selectEl.appendChild(opt);
-                });
-                selectEl.value = state[slug].lock;
-            } else {
-                selectEl.hidden = true;
-                staticEl.hidden = false;
-                staticEl.textContent = state[slug].lock;
-                // Chỉ cho tách khóa khi có từ 2 mô-đun trở lên đang chọn.
-                splitBtn.hidden = slugs.length < 2;
+            var current = assignedKeys[slug];
+            selectEl.innerHTML = '';
+            activeSlugs.forEach(function (activeSlug) {
+                var opt = document.createElement('option');
+                opt.value = activeSlug;
+                opt.text = 'Khóa của ' + MODULES[activeSlug].name;
+                if (activeSlug === current) opt.selected = true;
+                selectEl.appendChild(opt);
+            });
+
+            if (activeSlugs.indexOf(current) === -1) {
+                assignedKeys[slug] = slug;
+                selectEl.value = slug;
             }
         });
     }
 
-    function calc() {
-        var slugs = activeSlugs();
-        var n = slugs.length;
-        var subtotal = 0;
-        slugs.forEach(function (s) { subtotal += versionPrice(s, state[s].version); });
-
-        // Khấu trừ phí khóa trùng: mỗi mô-đun dư trong cùng 1 khóa trừ 500.000đ
-        var byLock = {};
-        slugs.forEach(function (s) { byLock[state[s].lock] = (byLock[state[s].lock] || 0) + 1; });
-        var lockDiscount = 0;
-        Object.keys(byLock).forEach(function (l) {
-            if (byLock[l] > 1) lockDiscount += (byLock[l] - 1) * LOCK_FEE;
-        });
-
-        // Chiết khấu theo số lượng module
-        var perModuleQtyDiscount = 0;
-        if (n === 1) perModuleQtyDiscount = 0;
-        else if (n === 2) perModuleQtyDiscount = 100000;
-        else if (n >= 3 && n <= 9) perModuleQtyDiscount = 300000;
-        else if (n > 9) perModuleQtyDiscount = 800000;
-        var qtyDiscount = perModuleQtyDiscount * n;
-
-        var totalDiscount = lockDiscount + qtyDiscount;
-        var total = Math.max(subtotal - totalDiscount, 0);
-        var discountPerModule = n > 0 ? totalDiscount / n : 0;
-
-        return { n: n, subtotal: subtotal, lockDiscount: lockDiscount, qtyDiscount: qtyDiscount, total: total, discountPerModule: discountPerModule, slugs: slugs };
+    function changeModuleKey(slug, targetSlug) {
+        assignedKeys[slug] = targetSlug;
+        calculatePrice();
     }
 
-    function render() {
-        renumberLocks();
-        var result = calc();
+    function calculatePrice() {
+        var selectedCount = 0;
+        var totalBasePrice = 0;
+        var activeKeysSet = {};
+        var activeSlugs = [];
 
-        Object.keys(MODULES).forEach(function (slug) {
-            var card = document.querySelector('.quote-card[data-slug="' + slug + '"]');
-            card.hidden = !state[slug].checked;
-
-            if (state[slug].checked) {
-                var listPrice = versionPrice(slug, state[slug].version);
-                var unit = Math.max(listPrice - result.discountPerModule, 0);
-                card.querySelector('.qm-unit-price').textContent = fmt(unit);
+        slugs.forEach(function (slug) {
+            var opt = selections[slug];
+            if (opt > 0) {
+                selectedCount++;
+                activeSlugs.push(slug);
+                totalBasePrice += MODULES[slug].versions[opt - 1].price;
+                activeKeysSet[assignedKeys[slug]] = true;
             }
         });
 
-        document.getElementById('quoteEmpty').hidden = result.n > 0;
-        document.getElementById('quoteSummary').hidden = result.n === 0;
-        document.getElementById('quoteCheckout').hidden = true;
+        var discountPerModule = 0;
+        if (selectedCount === 2) discountPerModule = 100000;
+        else if (selectedCount >= 3 && selectedCount <= 10) discountPerModule = 300000;
+        else if (selectedCount > 10) discountPerModule = 500000;
+        var totalQtyDiscount = discountPerModule * selectedCount;
 
-        document.getElementById('sumSubtotal').textContent = fmt(result.subtotal);
-        document.getElementById('sumLockDiscount').textContent = result.lockDiscount ? '-' + fmt(result.lockDiscount) : fmt(0);
-        document.getElementById('sumQtyDiscount').textContent = result.qtyDiscount ? '-' + fmt(result.qtyDiscount) : fmt(0);
-        document.getElementById('sumTotal').textContent = fmt(result.total);
-        document.getElementById('checkoutTotal').textContent = fmt(result.total);
-        document.getElementById('sumHint').textContent = result.n + ' mô-đun đã chọn';
+        var actualKeyCount = Object.keys(activeKeysSet).length;
+        var savedKeys = selectedCount - actualKeyCount;
+        var totalKeyDiscount = savedKeys * LOCK_FEE;
 
-        updateLockUI();
+        var finalTotal = totalBasePrice - totalQtyDiscount - totalKeyDiscount;
+        lastResult = {
+            n: selectedCount,
+            total: finalTotal,
+            slugs: activeSlugs,
+            subtotal: totalBasePrice,
+            qtyDiscount: totalQtyDiscount,
+            keyDiscount: totalKeyDiscount,
+            keyCount: actualKeyCount,
+        };
+
+        setText('res-count', selectedCount);
+        setText('res-base', fmt(totalBasePrice));
+        setText('res-discount-qty', '-' + fmt(totalQtyDiscount));
+        setText('res-discount-key', '-' + fmt(totalKeyDiscount));
+        setText('res-key-count', actualKeyCount + ' khóa');
+        setText('res-total', fmt(finalTotal));
+        setText('checkoutTotal', fmt(finalTotal));
+
+        renderKeyVisual(activeSlugs);
         persistSelection();
+    }
+
+    // Trực quan hoá khóa cứng: gom mô-đun đang chọn theo khóa vật lý đã gán, tô màu theo
+    // nhóm để khách thấy rõ sẽ nhận bao nhiêu thiết bị khóa và mô-đun nào đi kèm khóa nào.
+    function renderKeyVisual(activeSlugs) {
+        slugs.forEach(function (s) {
+            var zone = document.getElementById('key-zone-' + s);
+            if (zone) zone.style.borderLeft = 'none';
+        });
+
+        var list = document.getElementById('keyVisualList');
+        if (activeSlugs.length === 0) {
+            list.innerHTML = 'Chưa có mô-đun nào được chọn.';
+            return;
+        }
+
+        var holders = [];
+        activeSlugs.forEach(function (s) {
+            if (holders.indexOf(assignedKeys[s]) === -1) holders.push(assignedKeys[s]);
+        });
+
+        list.innerHTML = '';
+        holders.forEach(function (holder, idx) {
+            var members = activeSlugs.filter(function (s) { return assignedKeys[s] === holder; });
+            if (!members.length) return;
+            var color = KEY_COLORS[idx % KEY_COLORS.length];
+
+            var group = document.createElement('div');
+            group.className = 'key-group';
+            var badgesHTML = members.map(function (s) {
+                return '<span class="key-badge" style="background:' + color + '">' + MODULES[s].name + '</span>';
+            }).join('');
+            group.innerHTML = '<div class="key-group__label">📦 Bộ khóa cứng thứ ' + (idx + 1) + ':</div><div>' + badgesHTML + '</div>';
+            list.appendChild(group);
+
+            members.forEach(function (s) {
+                var zone = document.getElementById('key-zone-' + s);
+                if (zone) zone.style.borderLeft = '4px solid ' + color;
+            });
+        });
     }
 
     // Tự động tra cứu tên/địa chỉ công ty theo mã số thuế (dữ liệu công khai từ
@@ -441,43 +453,113 @@ require __DIR__ . '/includes/header.php';
             });
     }
 
+    // Nhãn "Bộ khóa cứng thứ N" cho từng mô-đun, khớp đúng thứ tự hiện ở khu vực
+    // trực quan hoá khóa — dùng chung khi xuất file báo giá Word.
+    function buildKeyGroupLabels(activeSlugs) {
+        var holders = [];
+        activeSlugs.forEach(function (s) {
+            if (holders.indexOf(assignedKeys[s]) === -1) holders.push(assignedKeys[s]);
+        });
+        var labelByHolder = {};
+        holders.forEach(function (h, idx) { labelByHolder[h] = 'Bộ khóa cứng thứ ' + (idx + 1); });
+
+        var labelBySlug = {};
+        activeSlugs.forEach(function (s) { labelBySlug[s] = labelByHolder[assignedKeys[s]]; });
+        return labelBySlug;
+    }
+
+    // Xuất báo giá ra file Word (.doc) — dùng kỹ thuật HTML-as-Word (không cần thư viện
+    // ngoài), có header/footer công ty theo đúng mẫu letterhead công ty cung cấp.
+    function downloadQuoteDoc() {
+        if (lastResult.n === 0) {
+            alert('Vui lòng chọn ít nhất 1 mô-đun trước khi tải báo giá.');
+            return;
+        }
+
+        var keyLabels = buildKeyGroupLabels(lastResult.slugs);
+        var today = new Date().toLocaleDateString('vi-VN');
+        var td = 'style="border:1px solid #000; padding:6px;"';
+
+        var rows = lastResult.slugs.map(function (s, i) {
+            var v = MODULES[s].versions[selections[s] - 1];
+            return '<tr>' +
+                '<td ' + td + ' align="center">' + (i + 1) + '</td>' +
+                '<td ' + td + '>' + MODULES[s].name + '</td>' +
+                '<td ' + td + '>' + v.label + '</td>' +
+                '<td ' + td + '>' + keyLabels[s] + '</td>' +
+                '<td ' + td + ' align="right">' + fmt(v.price) + '</td>' +
+                '</tr>';
+        }).join('');
+
+        var html = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">' +
+            '<head><meta charset="utf-8"><title>Báo giá Dradnet</title></head>' +
+            '<body style="font-family: Arial, sans-serif; font-size: 13px; color: #000;">' +
+
+            '<table width="100%" style="border-collapse:collapse; margin-bottom:6px;"><tr>' +
+                '<td style="font-size:22px; font-weight:bold; white-space:nowrap; vertical-align:middle;">' +
+                    '<span style="color:#E8720C;">HT</span><span style="color:#0057B8;">SOFT</span>' +
+                '</td>' +
+                '<td style="font-size:13px; padding-left:24px; vertical-align:middle;">CÔNG TY CP PHẦN MỀM CTGT HẢI THANH &ndash; MST 0305777626</td>' +
+            '</tr></table>' +
+            '<div style="border-top:3px double #000; margin:0 0 24px;"></div>' +
+
+            '<h2 style="text-align:center; margin:0 0 4px;">BÁO GIÁ SẢN PHẨM PHẦN MỀM DRADNET</h2>' +
+            '<p style="text-align:center; margin:0 0 20px; font-style:italic;">Ngày ' + today + '</p>' +
+
+            '<table width="100%" style="border-collapse:collapse; border:1px solid #000; margin-bottom:16px;">' +
+                '<tr style="background:#f0f0f0; font-weight:bold;">' +
+                    '<td ' + td + ' align="center">STT</td>' +
+                    '<td ' + td + '>Mô-đun</td>' +
+                    '<td ' + td + '>Phiên bản</td>' +
+                    '<td ' + td + '>Khóa gán</td>' +
+                    '<td ' + td + ' align="right">Đơn giá</td>' +
+                '</tr>' +
+                rows +
+            '</table>' +
+
+            '<table width="100%" style="border-collapse:collapse; margin-bottom:24px;">' +
+                '<tr><td style="padding:3px 0;">Tổng giá cơ sở</td><td align="right" style="padding:3px 0;">' + fmt(lastResult.subtotal) + '</td></tr>' +
+                '<tr><td style="padding:3px 0;">Giảm giá số lượng</td><td align="right" style="padding:3px 0;">-' + fmt(lastResult.qtyDiscount) + '</td></tr>' +
+                '<tr><td style="padding:3px 0;">Tiết kiệm gộp khóa (' + lastResult.keyCount + ' khóa thực giao)</td><td align="right" style="padding:3px 0;">-' + fmt(lastResult.keyDiscount) + '</td></tr>' +
+                '<tr style="font-weight:bold; font-size:15px;"><td style="padding-top:8px; border-top:1px solid #000;">TỔNG CỘNG</td><td align="right" style="padding-top:8px; border-top:1px solid #000;">' + fmt(lastResult.total) + '</td></tr>' +
+            '</table>' +
+
+            '<div style="border-top:3px double #000; margin:40px 0 6px;"></div>' +
+            '<p style="margin:0;">www.Dradnet.vn&nbsp;&nbsp;&nbsp;Trụ sở : Tòa nhà SBI, khu phần mềm Quang Trung, Trung Mỹ Tây, TP HCM</p>' +
+            '<p style="margin:0; text-align:right;">Tel : 0905.887.868</p>' +
+
+            '</body></html>';
+
+        var blob = new Blob(['﻿', html], { type: 'application/msword' });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'bao-gia-dradnet-' + Date.now() + '.doc';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+    }
+
     function bindEvents() {
-        document.querySelectorAll('.quote-card__remove').forEach(function (btn) {
+        document.querySelectorAll('.btn-opt').forEach(function (btn) {
+            if (btn.disabled) return;
             btn.addEventListener('click', function () {
-                state[btn.dataset.slug].checked = false;
-                render();
-            });
-        });
-
-        document.querySelectorAll('.qm-lock-split').forEach(function (btn) {
-            btn.addEventListener('click', function () {
-                var slug = btn.dataset.slug;
-                var maxLockNum = 0;
-                activeSlugs().forEach(function (s) {
-                    var m = /Khóa (\d+)/.exec(state[s].lock);
-                    if (m) maxLockNum = Math.max(maxLockNum, parseInt(m[1], 10));
-                });
-                state[slug].lock = 'Khóa ' + (maxLockNum + 1);
-                render();
-            });
-        });
-
-        document.querySelectorAll('.qm-version').forEach(function (input) {
-            input.addEventListener('change', function () {
-                if (input.type === 'radio' && !input.checked) return;
-                state[input.dataset.slug].version = input.value;
-                render();
+                selectOpt(btn.dataset.slug, parseInt(btn.dataset.opt, 10));
             });
         });
 
         document.addEventListener('change', function (e) {
-            if (e.target.classList.contains('qm-lock')) {
-                state[e.target.dataset.slug].lock = e.target.value;
-                render();
+            if (e.target.classList.contains('key-select')) {
+                changeModuleKey(e.target.dataset.slug, e.target.value);
             }
         });
 
         document.getElementById('btnCheckout').addEventListener('click', function () {
+            if (lastResult.n === 0) {
+                alert('Vui lòng chọn ít nhất 1 mô-đun trước khi thanh toán.');
+                return;
+            }
             document.getElementById('quoteCheckout').hidden = false;
             document.getElementById('quoteCheckout').scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
@@ -485,6 +567,8 @@ require __DIR__ . '/includes/header.php';
         document.getElementById('btnBackToQuote').addEventListener('click', function () {
             document.getElementById('quoteCheckout').hidden = true;
         });
+
+        document.getElementById('btnDownloadQuote').addEventListener('click', downloadQuoteDoc);
 
         document.getElementById('taxCodeInput').addEventListener('input', function (e) {
             clearTimeout(taxLookupTimer);
@@ -495,12 +579,16 @@ require __DIR__ . '/includes/header.php';
 
         document.getElementById('checkoutForm').addEventListener('submit', function (e) {
             e.preventDefault();
-            var result = calc();
             var data = Object.fromEntries(new FormData(e.target).entries());
-            data.items = result.slugs.map(function (s) {
-                return { slug: s, name: MODULES[s].name, version: state[s].version, lock: state[s].lock };
+            data.items = lastResult.slugs.map(function (s) {
+                return {
+                    slug: s,
+                    name: MODULES[s].name,
+                    version: MODULES[s].versions[selections[s] - 1].label,
+                    key_group: assignedKeys[s],
+                };
             });
-            data.total = result.total;
+            data.total = lastResult.total;
             data.business = businessInfo;
 
             // TODO: gửi `data` tới endpoint xử lý đơn hàng thật (vd. /api/orders.php),
@@ -509,16 +597,31 @@ require __DIR__ . '/includes/header.php';
             console.log('Đơn hàng báo giá:', data);
 
             e.target.hidden = true;
-            var result_el = document.getElementById('checkoutResult');
-            result_el.hidden = false;
-            result_el.innerHTML = '<p style="margin-top:14px;">Cảm ơn bạn! Chúng tôi đã ghi nhận yêu cầu báo giá và sẽ liên hệ qua số điện thoại đã cung cấp để xác nhận thanh toán ' +
+            var resultEl = document.getElementById('checkoutResult');
+            resultEl.hidden = false;
+            resultEl.innerHTML = '<p style="margin-top:14px;">Cảm ơn bạn! Chúng tôi đã ghi nhận yêu cầu báo giá và sẽ liên hệ qua số điện thoại đã cung cấp để xác nhận thanh toán ' +
                 (data.payment_method === 'qr' ? 'bằng mã QR' : 'chuyển khoản ngân hàng') + '.</p>';
         });
     }
 
-    initState();
-    bindEvents();
-    render();
+    function init() {
+        slugs.forEach(function (slug) {
+            selections[slug] = 0;
+            assignedKeys[slug] = slug;
+        });
+
+        bindEvents();
+
+        // Mô-đun đã "Chọn mua" từ trang chủ (đồng bộ qua localStorage) thì tự chọn sẵn
+        // bản phù hợp ở đây, không cần khách bấm lại.
+        getInitialSlugs().forEach(function (slug) {
+            selectOpt(slug, defaultOptIndexFor(slug));
+        });
+
+        calculatePrice();
+    }
+
+    init();
 })();
 </script>
 

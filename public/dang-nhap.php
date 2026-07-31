@@ -5,7 +5,6 @@ require __DIR__ . '/includes/header.php';
 ?>
 
 <section>
-    <span class="eyebrow">Đăng nhập</span>
     <h1 style="margin: 8px 0 20px; font-size: 1.9rem;">Đăng Nhập Bằng Số Điện Thoại</h1>
 
     <form id="loginForm" class="card-3d" style="max-width: 420px; gap: 16px;">

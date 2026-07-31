@@ -6,7 +6,6 @@ require __DIR__ . '/includes/header.php';
 ?>
 
 <section>
-    <span class="eyebrow">Hỗ trợ trực tuyến</span>
     <h1 style="margin: 8px 0 10px; font-size: 1.9rem;">Hỗ Trợ Trực Tuyến Qua UltraView</h1>
     <p style="color: var(--text-muted); max-width: 60ch; margin-bottom: 32px;">
         Kỹ thuật viên HTSOFT sẽ kết nối trực tiếp vào máy tính của bạn qua UltraView để hỗ trợ

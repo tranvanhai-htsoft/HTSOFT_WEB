@@ -12,8 +12,17 @@
                 <p>Hotline: <a href="tel:0905887868" style="color: #fff; font-weight: 700;">0905.88.78.68</a></p>
             </div>
             <div>
-                <p>&copy; <?= date('Y') ?> HTSOFT. Bảo lưu mọi quyền.</p>
+                <p>Địa chỉ: Toà nhà SBI, Công viên phần mềm Quang Trung, phường Trung Mỹ Tây, TP.HCM</p>
+                <p>Mã số thuế: 0305777626</p>
             </div>
+        </div>
+
+        <div class="footer-legal">
+            <p>Phần mềm Dradnet đã được đăng ký bản quyền tác giả số 1474/2008/QTG tại Cục Bản quyền tác giả.</p>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; <?= date('Y') ?> HTSOFT. Bảo lưu mọi quyền.</p>
         </div>
     </footer>
 
