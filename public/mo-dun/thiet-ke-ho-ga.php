@@ -1,15 +1,14 @@
 <?php
-require __DIR__ . '/../includes/config.php';
-
-$pageTitle = 'Mô-đun 4: Thiết Kế Hố Ga ' . MODULE_YEAR;
+$pageTitle = 'Mô-đun 04: Thiết Kế Hố Ga';
 $pageDescription = 'Thư viện mẫu hố ga đa dạng, thiết kế mạng lưới thoát nước và xuất khối lượng tự động.';
 
 $features = [
-    'Thư viện mẫu đa dạng' => 'Lưu trữ hàng chục mẫu hố ga thông dụng (ga thăm, ga thu thâm, ga vỉa hè, ga lòng đường).',
-    'Mạng lưới chuyên sâu' => 'Thiết kế chuyên sâu mạng lưới ga thu nước mưa và hệ thống ga thoát nước thải riêng biệt.',
-    'Xử lý giao phức tạp' => 'Giải quyết triệt để các nút giao phức tạp như ga kết hợp cống hộp khổ lớn.',
-    'Vật liệu hiện đại' => 'Cấu tạo chi tiết từ hố thu, máng thu, hệ thống đan bê tông cho đến các loại nắp composite hiện đại.',
-    'Xuất khối lượng tự động' => 'Vẽ chi tiết cốt thép hàng loạt hố ga, đồng thời xuất bảng khối lượng kèm diễn giải chi tiết từng cấu kiện.',
+    'Thư viện mẫu đa dạng' => 'Tích hợp chức năng thiết kế hàng chục mẫu hố ga thông dụng của các địa phương trên cả nước như ga thăm, ga thu thăm, ga vỉa hè, lòng đường, ga nước mưa và nước thải.',
+    'Đấu nối linh hoạt' => 'Cho phép đấu nối trực tiếp hoặc xây dựng đấu nối thông qua Excel với hệ thống cống tròn, cống hộp và mương thoát nước.',
+    'Hiệu chỉnh tham số tự động' => 'Cho phép gán đồng thời tham số cho hàng loạt ga, hỗ trợ lưu và tải mẫu các loại ga một cách nhanh chóng và linh hoạt.',
+    'Mẫu ga chuyên dụng' => 'Thiết kế ga bán lắp ghép, ga sân bay, đấu nối cống hộp khổ lớn.',
+    'Bố trí cốt thép' => 'Tùy chọn linh hoạt bố trí một lưới thép thân ga hoặc hai lưới thép theo yêu cầu chịu lực.',
+    'Xuất khối lượng chi tiết' => 'Xuất khối lượng hàng loạt ga qua Excel; tự động phân tách mỗi ga một sheet kèm công thức diễn giải và bảng tổng hợp chung ở sheet cuối cùng.',
 ];
 
 $gallery = [
@@ -21,21 +20,31 @@ $gallery = [
 require __DIR__ . '/../includes/header.php';
 ?>
 
-<section>
-    <h1 style="margin: 8px 0 10px; font-size: 1.9rem;"><?= htmlspecialchars($pageTitle) ?></h1>
-    <p style="color: var(--text-muted); max-width: 60ch; margin-bottom: 40px;">
-        <?= htmlspecialchars($pageDescription) ?>
-    </p>
+<section style="text-align: left;">
+    <h1 style="margin: 0 0 28px; font-size: 1.9rem; text-align: left;"><?= htmlspecialchars($pageTitle) ?></h1>
 </section>
 
 <section>
     <h2 style="margin: 8px 0 20px; font-size: 1.4rem;">Tính năng cốt lõi</h2>
-    <ul class="feature-list">
+    <ul class="feature-list feature-list--minimal">
         <?php foreach ($features as $label => $desc): ?>
-        <li><span class="tick-3d">&#10003;</span> <strong><?= htmlspecialchars($label) ?>:</strong>&nbsp;<?= htmlspecialchars($desc) ?></li>
+        <li><span class="feature-dot" aria-hidden="true"></span> <strong><?= htmlspecialchars($label) ?></strong> &mdash; <?= htmlspecialchars($desc) ?></li>
         <?php endforeach; ?>
     </ul>
 </section>
+
+<style>
+    .feature-list--minimal li { align-items: flex-start; }
+    .feature-dot {
+        flex-shrink: 0;
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        margin-top: 0.55em;
+        border-radius: 50%;
+        background: var(--text-muted, #888);
+    }
+</style>
 
 <section>
     <h2 style="margin: 8px 0 20px; font-size: 1.4rem;">Hình ảnh sản phẩm</h2>

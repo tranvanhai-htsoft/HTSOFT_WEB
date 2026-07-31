@@ -1,15 +1,15 @@
 <?php
-require __DIR__ . '/../includes/config.php';
-
-$pageTitle = 'Mô-đun 2: Cống Hộp Đổ Tại Chỗ ' . MODULE_YEAR;
+$pageTitle = 'Mô-đun 02: Cống Hộp Đổ Tại Chỗ';
 $pageDescription = 'Thiết kế kết cấu cống hộp đổ tại chỗ, tường cánh BTCT, tự động dựng và xuất bản vẽ phối cảnh 3D.';
 
 $features = [
-    'Thư viện chuẩn quốc gia' => 'Trang bị đầy đủ các mẫu bố trí cốt thép tiêu chuẩn, phổ biến trên cả nước.',
-    'Thiết kế toàn diện' => 'Hỗ trợ thiết kế kết cấu tường cánh bê tông và bê tông cốt thép (BTCT).',
-    'Kết cấu linh hoạt' => 'Xử lý linh hoạt kết cấu cống xiên, cống nối dài và hệ thống hầm chui dân sinh.',
-    'Hạ tầng thủy lợi' => 'Hỗ trợ mô hình cống kết hợp kênh mương thủy lợi hoặc kết hợp tường chắn địa hình.',
-    'Trực quan hóa 3D' => 'Tính năng đột phá tự động dựng và xuất kèm bản vẽ phối cảnh 3D trực quan.',
+    'Cốt thép thân cống' => 'Tích hợp đầy đủ các cấu trúc phổ biến như mẫu Tedi, mẫu khung, mẫu móng cọc và mẫu đường cao tốc.',
+    'Tường cánh bê tông BTCT' => 'Hỗ trợ đa dạng phương án thiết kế gồm tường cánh vuông góc, song song, kết hợp cống khung, tứ nón và khe phai.',
+    'Đường gom liên hoàn' => 'Đồng bộ giải pháp thiết kế cống trên trục đường chính và hai đường gom hai bên đồng thời trên một mặt cắt ngang.',
+    'Nâng cấp cải tạo' => 'Kết nối mở rộng cống linh hoạt một phía hoặc cả hai phía đi kèm hệ thống cửa xả tiêu chuẩn.',
+    'Cấu trúc cống xiên' => 'Giải quyết tối ưu và chính xác các phương án cống đặt xiên góc theo địa hình thực tế.',
+    'Cống chui dân sinh' => 'Hỗ trợ triển khai nhanh hệ thống cống chui đi kèm tường cánh thẳng và tứ nón dọc tuyến.',
+    'Khối lượng linh hoạt' => 'Xuất tổng hợp khối lượng chi tiết kèm diễn giải toàn tuyến. Hỗ trợ bóc tách và phân chia theo từng gói thầu độc lập.',
 ];
 
 $gallery = [
@@ -21,21 +21,31 @@ $gallery = [
 require __DIR__ . '/../includes/header.php';
 ?>
 
-<section>
-    <h1 style="margin: 8px 0 10px; font-size: 1.9rem;"><?= htmlspecialchars($pageTitle) ?></h1>
-    <p style="color: var(--text-muted); max-width: 60ch; margin-bottom: 40px;">
-        <?= htmlspecialchars($pageDescription) ?>
-    </p>
+<section style="text-align: left;">
+    <h1 style="margin: 0 0 28px; font-size: 1.9rem; text-align: left;"><?= htmlspecialchars($pageTitle) ?></h1>
 </section>
 
 <section>
     <h2 style="margin: 8px 0 20px; font-size: 1.4rem;">Tính năng cốt lõi</h2>
-    <ul class="feature-list">
+    <ul class="feature-list feature-list--minimal">
         <?php foreach ($features as $label => $desc): ?>
-        <li><span class="tick-3d">&#10003;</span> <strong><?= htmlspecialchars($label) ?>:</strong>&nbsp;<?= htmlspecialchars($desc) ?></li>
+        <li><span class="feature-dot" aria-hidden="true"></span> <strong><?= htmlspecialchars($label) ?></strong> &mdash; <?= htmlspecialchars($desc) ?></li>
         <?php endforeach; ?>
     </ul>
 </section>
+
+<style>
+    .feature-list--minimal li { align-items: flex-start; }
+    .feature-dot {
+        flex-shrink: 0;
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        margin-top: 0.55em;
+        border-radius: 50%;
+        background: var(--text-muted, #888);
+    }
+</style>
 
 <section>
     <h2 style="margin: 8px 0 20px; font-size: 1.4rem;">Hình ảnh sản phẩm</h2>

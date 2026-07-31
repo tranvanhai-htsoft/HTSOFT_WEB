@@ -1,14 +1,13 @@
 <?php
-require __DIR__ . '/../includes/config.php';
-
-$pageTitle = 'Mô-đun 3: Cầu Bản – Cống Bản – Tràn Liên Hợp ' . MODULE_YEAR;
+$pageTitle = 'Mô-đun 03: Cầu Bản – Cống Bản – Tràn Liên Hợp';
 $pageDescription = 'Tự động hoá thiết kế cầu bản nhiều nhịp, cống bản lắp ghép và hệ thống tràn liên hợp thoát lũ.';
 
 $features = [
-    'Tự động hóa hoàn toàn' => 'Tự động hóa quy trình thiết kế kết cấu công trình cầu bản nhiều nhịp liên tục.',
-    'Mô hình phức hợp' => 'Giải pháp tối ưu cho hệ thống cầu bản kết hợp đường tràn thoát lũ.',
-    'Tính toán lắp ghép' => 'Hỗ trợ tính toán cống bản dầm lắp ghép định hình hoặc hệ dầm đổ tại chỗ linh hoạt.',
-    'Nâng cấp tuyến đường' => 'Mô hình thông minh chuyên xử lý cống bản nối dài, phục vụ các dự án cải tạo, nâng cấp.',
+    'Hệ thống cống bản' => 'Thiết kế cống bản với dầm bản đúc sẵn hoặc đổ tại chỗ theo định hình 69-34X, mẫu địa phương và cống nối đường nâng cấp.',
+    'Cấu trúc cầu bản' => 'Tích hợp đồng bộ phương án dầm đúc sẵn và đổ tại chỗ dựa trên định hình 69-34X và 533-11-01.',
+    'Cầu tràn liên hợp' => 'Thiết kế toàn diện cho hệ thống tràn liên hợp cầu bản, đầy đủ mố, trụ, kết cấu gia cố, cọc tiêu và cọc thủy chí.',
+    'Cầu bản tải trọng 0.65HL93' => 'Thiết kế cầu dầm bản đổ tại chỗ với chiều dài nhịp lên đến 9m, với mố trụ bê tông cốt thép.',
+    'Khối lượng linh hoạt' => 'Xuất tổng hợp khối lượng chi tiết kèm diễn giải toàn tuyến. Hỗ trợ bóc tách và phân chia theo từng gói thầu độc lập.',
 ];
 
 $gallery = [
@@ -20,21 +19,31 @@ $gallery = [
 require __DIR__ . '/../includes/header.php';
 ?>
 
-<section>
-    <h1 style="margin: 8px 0 10px; font-size: 1.9rem;"><?= htmlspecialchars($pageTitle) ?></h1>
-    <p style="color: var(--text-muted); max-width: 60ch; margin-bottom: 40px;">
-        <?= htmlspecialchars($pageDescription) ?>
-    </p>
+<section style="text-align: left;">
+    <h1 style="margin: 0 0 28px; font-size: 1.9rem; text-align: left;"><?= htmlspecialchars($pageTitle) ?></h1>
 </section>
 
 <section>
     <h2 style="margin: 8px 0 20px; font-size: 1.4rem;">Tính năng cốt lõi</h2>
-    <ul class="feature-list">
+    <ul class="feature-list feature-list--minimal">
         <?php foreach ($features as $label => $desc): ?>
-        <li><span class="tick-3d">&#10003;</span> <strong><?= htmlspecialchars($label) ?>:</strong>&nbsp;<?= htmlspecialchars($desc) ?></li>
+        <li><span class="feature-dot" aria-hidden="true"></span> <strong><?= htmlspecialchars($label) ?></strong> &mdash; <?= htmlspecialchars($desc) ?></li>
         <?php endforeach; ?>
     </ul>
 </section>
+
+<style>
+    .feature-list--minimal li { align-items: flex-start; }
+    .feature-dot {
+        flex-shrink: 0;
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        margin-top: 0.55em;
+        border-radius: 50%;
+        background: var(--text-muted, #888);
+    }
+</style>
 
 <section>
     <h2 style="margin: 8px 0 20px; font-size: 1.4rem;">Hình ảnh sản phẩm</h2>
