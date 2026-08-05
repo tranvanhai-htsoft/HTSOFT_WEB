@@ -11,6 +11,13 @@ composer.phar
 /storage/downloads/*
 !/storage/downloads/README.md
 
+# Video hướng dẫn từng bước (dung lượng lớn, ~350MB tổng) — chỉ để trên máy
+# chủ/máy dev, không commit vào git. Trang huong-dan/*.php vẫn tham chiếu
+# tới các file này qua 'video_url'; nếu thiếu file, trang tự hiện placeholder
+# "Video hướng dẫn đang được cập nhật" thay vì lỗi. Copy thủ công thư mục
+# public/images/{CAUBAN_*,DUCSAN*_*,HOPLON_*}/ giữa các máy khi cần.
+/public/images/**/*.mp4
+
 # Word lock file tạm
 ~$*.docx
 ~$*.doc

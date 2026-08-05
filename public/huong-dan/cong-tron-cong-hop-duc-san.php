@@ -12,35 +12,35 @@ $scenarios = [
         'steps' => [
             [
                 'title' => 'Bước 1: Khởi tạo dự án',
-                'desc'  => 'Vào File > New (hoặc Open) để mở file. Thiết lập tỷ lệ, vật liệu, font chữ, xuất bản vẽ và gia cố taluy.',
+                'video_url' => '/images/DUCSAN1_COBAN/B1.mp4',
             ],
             [
                 'title' => 'Bước 2: Nhận dữ liệu trắc ngang',
-                'desc'  => 'Quét chọn trắc ngang từ nguồn (Nova, VnRoad, Civil 3D,...). Nhận từ tab trắc ngang và xuất sang tab bản vẽ cống làm cơ sở thiết kế.',
+                'video_url' => '/images/DUCSAN1_COBAN/B2.mp4',
             ],
             [
                 'title' => 'Bước 3: Thiết kế thân cống',
-                'desc'  => 'Chọn loại cống, số dãy. Khai báo thông số hình học tại menu Thân cống. Xem trước, chỉnh số đốt/độ dốc xuất bản vẽ và Lưu khối lượng.',
+                'video_url' => '/images/DUCSAN1_COBAN/B3.mp4',
             ],
             [
                 'title' => 'Bước 4: Thiết kế thượng lưu',
-                'desc'  => 'Chọn kết cấu phù hợp phía thượng lưu, hiệu chỉnh kích thước hoặc load file mẫu. Xuất bản vẽ, nhấn Lưu khối lượng sau khi hoàn thành.',
+                'video_url' => '/images/DUCSAN1_COBAN/B4.mp4',
             ],
             [
                 'title' => 'Bước 5: Thiết kế hạ lưu',
-                'desc'  => 'Chọn kết cấu phù hợp phía hạ lưu, hiệu chỉnh kích thước hoặc load file mẫu. Xuất bản vẽ, nhấn Lưu khối lượng sau khi hoàn thành.',
+                'video_url' => '/images/DUCSAN1_COBAN/B5.mp4',
             ],
             [
                 'title' => 'Bước 6: Thiết kế móng thân cống',
-                'desc'  => 'Thiết lập thông số, vẽ kết cấu móng thân cống phù hợp địa chất. Nhấn Lưu khối lượng.',
+                'video_url' => '/images/DUCSAN1_COBAN/B6.mp4',
             ],
             [
                 'title' => 'Bước 7: Xuất hồ sơ & Thuyết minh',
-                'desc'  => 'Xuất bảng khối lượng chi tiết và thuyết minh thiết kế phục vụ lập hồ sơ, dự toán.',
+                'video_url' => '/images/DUCSAN1_COBAN/B7.mp4',
             ],
             [
                 'title' => 'Bước 8: Tổng hợp khối lượng sang Excel',
-                'desc'  => 'Tự động gom dữ liệu toàn bộ hệ thống cống trong dự án và xuất file Excel để thống kê.',
+                'video_url' => '/images/DUCSAN1_COBAN/B8.mp4',
             ],
         ],
     ],
@@ -49,39 +49,38 @@ $scenarios = [
         'steps' => [
             [
                 'title' => 'Bước 1: Khởi tạo dự án',
-                'desc'  => 'Vào File > New (hoặc Open). Thiết lập tỷ lệ, vật liệu, font chữ, tùy chọn xuất bản vẽ và gia cố taluy.',
+                'video_url' => '/images/DUCSAN2_DOTHI/B1.mp4',
             ],
             [
                 'title' => 'Bước 2: Nhận dữ liệu trắc ngang',
-                'desc'  => 'Quét trắc ngang từ nguồn (Nova, VnRoad, Civil 3D,...). Nhận từ tab trắc ngang và xuất sang tab bản vẽ cống.',
+                'video_url' => '/images/DUCSAN2_DOTHI/B2.mp4',
             ],
             [
                 'title' => 'Bước 3: Thiết kế hố ga',
-                'desc'  => 'Chọn loại cống, nhập số dãy, khoảng cách dãy. Thiết lập đấu nối, vẽ hố ga tại vị trí chỉ định và Lưu khối lượng.',
+                'video_url' => '/images/DUCSAN2_DOTHI/B3.mp4',
             ],
             [
                 'title' => 'Bước 4: Thiết kế thân cống',
-                'desc'  => 'Mở cửa sổ Thân cống > chọn Cống đa phân đoạn. Xem trước, chỉnh số đốt/độ dốc từng phân đoạn, xuất bản vẽ và Lưu khối lượng.',
+                'video_url' => '/images/DUCSAN2_DOTHI/B4.mp4',
             ],
             [
                 'title' => 'Bước 5: Thiết kế thượng lưu',
-                'desc'  => 'Chọn kết cấu thượng lưu, chỉnh kích thước hoặc load file mẫu. Xuất bản vẽ và nhấn Lưu khối lượng.',
+                'video_url' => '/images/DUCSAN2_DOTHI/B5.mp4',
             ],
             [
                 'title' => 'Bước 6: Thiết kế hạ lưu',
-                'desc'  => 'Chọn kết cấu hạ lưu, chỉnh kích thước hoặc load file mẫu. Xuất bản vẽ và nhấn Lưu khối lượng.',
+                'video_url' => '/images/DUCSAN2_DOTHI/B6.mp4',
             ],
             [
                 'title' => 'Bước 7: Thiết kế móng cống',
-                'desc'  => 'Thiết lập thông số và vẽ kết cấu móng thân cống phù hợp địa chất. Nhấn Lưu khối lượng để cập nhật dữ liệu.',
+                'video_url' => '/images/DUCSAN2_DOTHI/B7.mp4',
             ],
             [
                 'title' => 'Bước 8: Xuất hồ sơ & Thuyết minh',
-                'desc'  => 'Xuất bảng khối lượng chi tiết và thuyết minh thiết kế hoàn chỉnh phục vụ công tác lập hồ sơ, dự toán.',
+                'video_url' => '/images/DUCSAN2_DOTHI/B8.mp4',
             ],
             [
                 'title' => 'Bước 9: Tổng hợp khối lượng sang Excel',
-                'desc'  => 'Tự động gom toàn bộ dữ liệu hệ thống cống trong dự án và xuất sang file Excel để kiểm tra, thống kê.',
             ],
         ],
     ],
@@ -90,35 +89,35 @@ $scenarios = [
         'steps' => [
             [
                 'title' => 'Bước 1: Khởi tạo dự án',
-                'desc'  => 'Vào File > New (hoặc Open) để mở file. Thiết lập tỷ lệ, vật liệu, font chữ, xuất bản vẽ và gia cố taluy.',
+                'video_url' => '/images/DUCSAN3_2DOC/B1.mp4',
             ],
             [
                 'title' => 'Bước 2: Nhận dữ liệu trắc ngang',
-                'desc'  => 'Quét chọn trắc ngang từ nguồn (Nova, VnRoad, Civil 3D,...). Nhận từ tab trắc ngang và xuất sang tab bản vẽ cống làm cơ sở thiết kế.',
+                'video_url' => '/images/DUCSAN3_2DOC/B2.mp4',
             ],
             [
                 'title' => 'Bước 3: Thiết kế thân cống',
-                'desc'  => 'Chọn loại cống, số dãy. Mở cửa sổ thiết kế thân cống, chuyển qua tuỳ chọn cống 2 dốc. Xem trước, chỉnh số đốt/độ dốc xuất bản vẽ và lưu khối lượng.',
+                'video_url' => '/images/DUCSAN3_2DOC/B3.mp4',
             ],
             [
                 'title' => 'Bước 4: Thiết kế thượng lưu',
-                'desc'  => 'Chọn kết cấu phù hợp phía thượng lưu, hiệu chỉnh kích thước hoặc load file mẫu. Xuất bản vẽ, nhấn Lưu khối lượng sau khi hoàn thành.',
+                'video_url' => '/images/DUCSAN3_2DOC/B4.mp4',
             ],
             [
                 'title' => 'Bước 5: Thiết kế hạ lưu',
-                'desc'  => 'Chọn kết cấu phù hợp phía hạ lưu, hiệu chỉnh kích thước hoặc load file mẫu. Xuất bản vẽ, nhấn Lưu khối lượng sau khi hoàn thành.',
+                'video_url' => '/images/DUCSAN3_2DOC/B5.mp4',
             ],
             [
                 'title' => 'Bước 6: Thiết kế móng thân cống',
-                'desc'  => 'Thiết lập thông số, vẽ kết cấu móng thân cống phù hợp địa chất. Nhấn Lưu khối lượng.',
+                'video_url' => '/images/DUCSAN3_2DOC/B6.mp4',
             ],
             [
                 'title' => 'Bước 7: Xuất hồ sơ & Thuyết minh',
-                'desc'  => 'Xuất bảng khối lượng chi tiết và thuyết minh thiết kế phục vụ lập hồ sơ, dự toán.',
+                'video_url' => '/images/DUCSAN3_2DOC/B7.mp4',
             ],
             [
                 'title' => 'Bước 8: Tổng hợp khối lượng sang Excel',
-                'desc'  => 'Tự động gom dữ liệu toàn bộ hệ thống cống trong dự án và xuất file Excel để thống kê.',
+                'video_url' => '/images/DUCSAN3_2DOC/B8.mp4',
             ],
         ],
     ],
@@ -127,35 +126,35 @@ $scenarios = [
         'steps' => [
             [
                 'title' => 'Bước 1: Khởi tạo dự án',
-                'desc'  => 'Vào File > New (hoặc Open) để mở file. Thiết lập tỷ lệ, vật liệu, font chữ, xuất bản vẽ và gia cố taluy.',
+                'video_url' => '/images/DUCSAN4_CONGNOI/B1.mp4',
             ],
             [
                 'title' => 'Bước 2: Nhận dữ liệu trắc ngang',
-                'desc'  => 'Quét chọn trắc ngang từ nguồn (Nova, VnRoad, Civil 3D,...). Nhận từ tab trắc ngang và xuất sang tab bản vẽ cống làm cơ sở thiết kế.',
+                'video_url' => '/images/DUCSAN4_CONGNOI/B2.mp4',
             ],
             [
                 'title' => 'Bước 3: Thiết kế thân cống',
-                'desc'  => 'Chọn loại cống, số dãy. Mở cửa sổ thiết kế thân cống, chuyển qua tuỳ chọn cống nối. Xuất bản vẽ các phân đoạn nối và lưu khối lượng.',
+                'video_url' => '/images/DUCSAN4_CONGNOI/B3.mp4',
             ],
             [
                 'title' => 'Bước 4: Thiết kế thượng lưu',
-                'desc'  => 'Chọn kết cấu phù hợp phía thượng lưu, hiệu chỉnh kích thước hoặc load file mẫu. Xuất bản vẽ, nhấn Lưu khối lượng sau khi hoàn thành.',
+                'video_url' => '/images/DUCSAN4_CONGNOI/B4.mp4',
             ],
             [
                 'title' => 'Bước 5: Thiết kế hạ lưu',
-                'desc'  => 'Chọn kết cấu phù hợp phía hạ lưu, hiệu chỉnh kích thước hoặc load file mẫu. Xuất bản vẽ, nhấn Lưu khối lượng sau khi hoàn thành.',
+                'video_url' => '/images/DUCSAN4_CONGNOI/B5.mp4',
             ],
             [
                 'title' => 'Bước 6: Thiết kế móng thân cống',
-                'desc'  => 'Thiết lập thông số, vẽ kết cấu móng thân cống phù hợp địa chất. Nhấn Lưu khối lượng.',
+                'video_url' => '/images/DUCSAN4_CONGNOI/B6.mp4',
             ],
             [
                 'title' => 'Bước 7: Xuất hồ sơ & Thuyết minh',
-                'desc'  => 'Xuất bảng khối lượng chi tiết và thuyết minh thiết kế phục vụ lập hồ sơ, dự toán.',
+                'video_url' => '/images/DUCSAN4_CONGNOI/B7.mp4',
             ],
             [
                 'title' => 'Bước 8: Tổng hợp khối lượng sang Excel',
-                'desc'  => 'Tự động gom dữ liệu toàn bộ hệ thống cống trong dự án và xuất file Excel để thống kê.',
+                'video_url' => '/images/DUCSAN4_CONGNOI/B8.mp4',
             ],
         ],
     ],
@@ -197,8 +196,18 @@ require __DIR__ . '/../includes/header.php';
                 <span class="guide-step__title"><?= htmlspecialchars($step['title']) ?></span>
             </button>
             <div class="guide-step__content">
-                <p><?= htmlspecialchars($step['desc']) ?></p>
-                <div class="guide-step__video">Video hướng dẫn 30 giây–2 phút chưa cập nhật</div>
+                <div class="guide-step__video">
+                    <?php if (!empty($step['video_url'])): ?>
+                        <video controls preload="auto" width="100%" style="border-radius: 8px; max-height: 450px; background: #000; display: block; margin-top: 12px;">
+                            <source src="<?= htmlspecialchars($step['video_url']) ?>" type="video/mp4">
+                            Trình duyệt của bạn không hỗ trợ phát video này.
+                        </video>
+                    <?php else: ?>
+                        <div style="padding: 20px; background: #f9f9f9; border: 1px dashed #ddd; border-radius: 8px; text-align: center; color: #888; font-style: italic; margin-top: 12px;">
+                            Video hướng dẫn đang được cập nhật...
+                        </div>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
         <?php endforeach; ?>
