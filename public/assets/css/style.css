@@ -586,9 +586,15 @@ footer {
   .card-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-@media (max-width: 600px) {
-  .card-grid { grid-template-columns: 1fr; }
+/* Ngưỡng 760px (không phải 600px) vì ở khoảng 600-760px, logo + hotline + menu
+   không đủ chỗ trên 1 hàng và bị dính sát vào nhau (vd "0905.88.78.68Trang chủ")
+   trước khi menu thực sự bị ẩn — đẩy ngưỡng lên để tránh khoảng "chết" đó. */
+@media (max-width: 760px) {
   .topbar nav ul { display: none; }
   .topbar__hotline { font-size: 0.85rem; }
   .logo-area img { height: 40px; }
+}
+
+@media (max-width: 600px) {
+  .card-grid { grid-template-columns: 1fr; }
 }
