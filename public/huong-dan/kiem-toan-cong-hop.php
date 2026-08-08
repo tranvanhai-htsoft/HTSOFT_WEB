@@ -1,5 +1,5 @@
 <?php
-$pageTitle = 'Hướng dẫn — Kiểm Toán Cống Hộp';
+$pageTitle = 'Kiểm Toán Cống Hộp';
 $pageDescription = 'Các bước sử dụng Phần Mềm Kiểm Toán Cống Hộp.';
 
 // TODO(SV1): thay nội dung placeholder bằng video/GIF hướng dẫn thật cho từng bước.

@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . '/../includes/config.php';
 
-$pageTitle = 'Hướng dẫn — Cầu Bản – Cống Bản – Tràn Liên Hợp';
+$pageTitle = 'Cầu Bản – Cống Bản – Tràn Liên Hợp';
 $pageDescription = 'Các bước sử dụng mô-đun Cầu Bản – Cống Bản – Tràn Liên Hợp ' . MODULE_YEAR . '.';
 
 // TODO(SV1): thay nội dung placeholder bằng video/GIF hướng dẫn thật cho từng bước, từng tình huống.
@@ -13,24 +13,27 @@ $scenarios = [
         'steps' => [
             [
                 'title' => 'Bước 1: Mở file',
+                'video_url' => '/images/CAUBAN_COBAN/B1.mp4',
             ],
             [
                 'title' => 'Bước 2: Nhập dữ liệu trắc ngang',
+                'video_url' => '/images/CAUBAN_COBAN/B2.mp4',
             ],
             [
                 'title' => 'Bước 3: Thiết kế nhịp cầu dầm bản lắp ghép',
+                'video_url' => '/images/CAUBAN_COBAN/B3.mp4',
             ],
             [
                 'title' => 'Bước 4: Thiết kế thượng lưu (hoặc hạ lưu)',
+                'video_url' => '/images/CAUBAN_COBAN/B4.mp4',
             ],
             [
                 'title' => 'Bước 5: Thiết kế hạ lưu (hoặc thượng lưu)',
+                'video_url' => '/images/CAUBAN_COBAN/B5.mp4',
             ],
             [
                 'title' => 'Bước 6: Xuất khối lượng và thuyết minh',
-            ],
-            [
-                'title' => 'Bước 7: Tổng hợp khối lượng qua Excel',
+                'video_url' => '/images/CAUBAN_COBAN/B6.mp4',
             ],
         ],
     ],
@@ -39,27 +42,31 @@ $scenarios = [
         'steps' => [
             [
                 'title' => 'Bước 1: Mở file',
+                'video_url' => '/images/CAUBAN_CONGNOI/B1.mp4',
             ],
             [
                 'title' => 'Bước 2: Nhập dữ liệu trắc ngang',
+                'video_url' => '/images/CAUBAN_CONGNOI/B2.mp4',
             ],
             [
                 'title' => 'Bước 3: Thiết kế phân đoạn nối thứ nhất',
+                'video_url' => '/images/CAUBAN_CONGNOI/B3.mp4',
             ],
             [
                 'title' => 'Bước 4: Thiết kế phân đoạn nối thứ hai',
+                'video_url' => '/images/CAUBAN_CONGNOI/B4.mp4',
             ],
             [
                 'title' => 'Bước 5: Thiết kế thượng lưu (hoặc hạ lưu)',
+                'video_url' => '/images/CAUBAN_CONGNOI/B5.mp4',
             ],
             [
                 'title' => 'Bước 6: Thiết kế hạ lưu (hoặc thượng lưu)',
+                'video_url' => '/images/CAUBAN_CONGNOI/B6.mp4',
             ],
             [
                 'title' => 'Bước 7: Xuất khối lượng và thuyết minh',
-            ],
-            [
-                'title' => 'Bước 8: Tổng hợp khối lượng qua Excel',
+                'video_url' => '/images/CAUBAN_CONGNOI/B7.mp4',
             ],
         ],
     ],
@@ -68,21 +75,27 @@ $scenarios = [
         'steps' => [
             [
                 'title' => 'Bước 1: Mở file',
+                'video_url' => '/images/CAUBAN_CONGXIEN/B1.mp4',
             ],
             [
                 'title' => 'Bước 2: Nhập dữ liệu trắc ngang',
+                'video_url' => '/images/CAUBAN_CONGXIEN/B2.mp4',
             ],
             [
                 'title' => 'Bước 3: Thiết kế thân cống',
+                'video_url' => '/images/CAUBAN_CONGXIEN/B3.mp4',
             ],
             [
                 'title' => 'Bước 4: Thiết kế thượng lưu (hoặc hạ lưu)',
+                'video_url' => '/images/CAUBAN_CONGXIEN/B4.mp4',
             ],
             [
                 'title' => 'Bước 5: Thiết kế hạ lưu (hoặc thượng lưu)',
+                'video_url' => '/images/CAUBAN_CONGXIEN/B5.mp4',
             ],
             [
                 'title' => 'Bước 6: Xuất khối lượng và thuyết minh',
+                'video_url' => '/images/CAUBAN_CONGXIEN/B6.mp4',
             ],
         ],
     ],
@@ -91,24 +104,27 @@ $scenarios = [
         'steps' => [
             [
                 'title' => 'Bước 1: Mở file',
+                'video_url' => '/images/CAUBAN_NHIPLON/B1.mp4',
             ],
             [
                 'title' => 'Bước 2: Nhập lý trình cầu và chọn mẫu cầu',
+                'video_url' => '/images/CAUBAN_NHIPLON/B2.mp4',
             ],
             [
                 'title' => 'Bước 3: Nhập dữ liệu trắc dọc',
+                'video_url' => '/images/CAUBAN_NHIPLON/B3.mp4',
             ],
             [
                 'title' => 'Bước 4: Thiết kế nhịp cầu dầm bản',
+                'video_url' => '/images/CAUBAN_NHIPLON/B4.mp4',
             ],
             [
                 'title' => 'Bước 5: Thiết kế trụ cầu (đối với cầu đa nhịp)',
+                'video_url' => '/images/CAUBAN_NHIPLON/B5.mp4',
             ],
             [
                 'title' => 'Bước 6: Xuất khối lượng và thuyết minh',
-            ],
-            [
-                'title' => 'Bước 7: Tổng hợp khối lượng qua Excel',
+                'video_url' => '/images/CAUBAN_NHIPLON/B6.mp4',
             ],
         ],
     ],

@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . '/../includes/config.php';
 
-$pageTitle = 'Hướng dẫn — Cống Tròn & Cống Hộp Đúc Sẵn';
+$pageTitle = 'Cống Tròn & Cống Hộp Đúc Sẵn';
 $pageDescription = 'Các bước sử dụng mô-đun Cống Tròn & Cống Hộp Đúc Sẵn ' . MODULE_YEAR . '.';
 
 // TODO(SV1): thay nội dung placeholder bằng video/GIF hướng dẫn thật cho từng bước, từng tình huống.
@@ -35,7 +35,7 @@ $scenarios = [
                 'video_url' => '/images/DUCSAN1_COBAN/B6.mp4',
             ],
             [
-                'title' => 'Bước 7: Xuất hồ sơ & Thuyết minh',
+                'title' => 'Bước 7: Xuất khối lượng & Thuyết minh',
                 'video_url' => '/images/DUCSAN1_COBAN/B7.mp4',
             ],
             [
@@ -76,11 +76,12 @@ $scenarios = [
                 'video_url' => '/images/DUCSAN2_DOTHI/B7.mp4',
             ],
             [
-                'title' => 'Bước 8: Xuất hồ sơ & Thuyết minh',
+                'title' => 'Bước 8: Xuất khối lượng & Thuyết minh',
                 'video_url' => '/images/DUCSAN2_DOTHI/B8.mp4',
             ],
             [
                 'title' => 'Bước 9: Tổng hợp khối lượng sang Excel',
+                'video_url' => '/images/DUCSAN2_DOTHI/B9.mp4',
             ],
         ],
     ],
@@ -112,7 +113,7 @@ $scenarios = [
                 'video_url' => '/images/DUCSAN3_2DOC/B6.mp4',
             ],
             [
-                'title' => 'Bước 7: Xuất hồ sơ & Thuyết minh',
+                'title' => 'Bước 7: Xuất khối lượng & Thuyết minh',
                 'video_url' => '/images/DUCSAN3_2DOC/B7.mp4',
             ],
             [
@@ -149,7 +150,7 @@ $scenarios = [
                 'video_url' => '/images/DUCSAN4_CONGNOI/B6.mp4',
             ],
             [
-                'title' => 'Bước 7: Xuất hồ sơ & Thuyết minh',
+                'title' => 'Bước 7: Xuất khối lượng & Thuyết minh',
                 'video_url' => '/images/DUCSAN4_CONGNOI/B7.mp4',
             ],
             [

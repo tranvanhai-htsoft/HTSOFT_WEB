@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . '/../includes/config.php';
 
-$pageTitle = 'Hướng dẫn — Cống Hộp Đổ Tại Chỗ';
+$pageTitle = 'Cống Hộp Đổ Tại Chỗ';
 $pageDescription = 'Các bước sử dụng mô-đun Cống Hộp Đổ Tại Chỗ ' . MODULE_YEAR . '.';
 
 // TODO(SV1): thay nội dung placeholder bằng video/GIF hướng dẫn thật cho từng bước, từng tình huống.
@@ -13,30 +13,39 @@ $scenarios = [
         'steps' => [
             [
                 'title' => 'Bước 1: Mở file',
+                'video_url' => '/images/HOPLON_COBAN/B1.mp4',
             ],
             [
                 'title' => 'Bước 2: Nhập dữ liệu trắc ngang',
+                'video_url' => '/images/HOPLON_COBAN/B2.mp4',
             ],
             [
                 'title' => 'Bước 3: Gán thông số, thiết kế thân cống',
+                'video_url' => '/images/HOPLON_COBAN/B3.mp4',
             ],
             [
                 'title' => 'Bước 4: Thiết kế thượng lưu (Tường cánh bê tông cốt thép)',
+                'video_url' => '/images/HOPLON_COBAN/B4.mp4',
             ],
             [
                 'title' => 'Bước 5: Thiết kế hạ lưu',
+                'video_url' => '/images/HOPLON_COBAN/B5.mp4',
             ],
             [
                 'title' => 'Bước 6: Vẽ lan can',
+                'video_url' => '/images/HOPLON_COBAN/B6.mp4',
             ],
             [
                 'title' => 'Bước 7: Vẽ bản quá độ',
+                'video_url' => '/images/HOPLON_COBAN/B7.mp4',
             ],
             [
-                'title' => 'Bước 8: Xuất hồ sơ và thuyết minh',
+                'title' => 'Bước 8: Xuất khối lượng và thuyết minh',
+                'video_url' => '/images/HOPLON_COBAN/B8.mp4',
             ],
             [
                 'title' => 'Bước 9: Tổng hợp khối lượng qua Excel',
+                'video_url' => '/images/HOPLON_COBAN/B9.mp4',
             ],
         ],
     ],
@@ -45,30 +54,39 @@ $scenarios = [
         'steps' => [
             [
                 'title' => 'Bước 1: Mở file',
+                'video_url' => '/images/HOPLON_HOPXIEN/B1.mp4',
             ],
             [
                 'title' => 'Bước 2: Nhập dữ liệu trắc ngang',
+                'video_url' => '/images/HOPLON_HOPXIEN/B2.mp4',
             ],
             [
                 'title' => 'Bước 3: Gán thông số, thiết kế thân cống',
+                'video_url' => '/images/HOPLON_HOPXIEN/B3.mp4',
             ],
             [
                 'title' => 'Bước 4: Thiết kế thượng lưu (Tường cánh bê tông cốt thép)',
+                'video_url' => '/images/HOPLON_HOPXIEN/B4.mp4',
             ],
             [
                 'title' => 'Bước 5: Thiết kế hạ lưu',
+                'video_url' => '/images/HOPLON_HOPXIEN/B5.mp4',
             ],
             [
                 'title' => 'Bước 6: Vẽ lan can',
+                'video_url' => '/images/HOPLON_HOPXIEN/B6.mp4',
             ],
             [
                 'title' => 'Bước 7: Vẽ bản quá độ',
+                'video_url' => '/images/HOPLON_HOPXIEN/B7.mp4',
             ],
             [
-                'title' => 'Bước 8: Xuất hồ sơ và thuyết minh',
+                'title' => 'Bước 8: Xuất khối lượng và thuyết minh',
+                'video_url' => '/images/HOPLON_HOPXIEN/B8.mp4',
             ],
             [
                 'title' => 'Bước 9: Tổng hợp khối lượng qua Excel',
+                'video_url' => '/images/HOPLON_HOPXIEN/B9.mp4',
             ],
         ],
     ],
@@ -77,30 +95,39 @@ $scenarios = [
         'steps' => [
             [
                 'title' => 'Bước 1: Mở file',
+                'video_url' => '/images/HOPLON_HOPCHUI/B1.mp4',
             ],
             [
                 'title' => 'Bước 2: Nhập dữ liệu trắc ngang',
+                'video_url' => '/images/HOPLON_HOPCHUI/B2.mp4',
             ],
             [
                 'title' => 'Bước 3: Thiết kế thân cống đổ tại chỗ',
+                'video_url' => '/images/HOPLON_HOPCHUI/B3.mp4',
             ],
             [
                 'title' => 'Bước 4: Thiết kế tường cánh tứ nón thượng hạ lưu',
+                'video_url' => '/images/HOPLON_HOPCHUI/B4.mp4',
             ],
             [
-                'title' => 'Bước 5: Hoàn thiện kết cấu',
+                'title' => 'Bước 5: Thiết kế tường cánh tứ nón thượng hạ lưu còn lại',
+                'video_url' => '/images/HOPLON_HOPCHUI/B5.mp4',
             ],
             [
                 'title' => 'Bước 6: Vẽ bản giảm tải đổ tại chỗ',
+                'video_url' => '/images/HOPLON_HOPCHUI/B6.mp4',
             ],
             [
                 'title' => 'Bước 7: Vẽ lan can tay vịn',
+                'video_url' => '/images/HOPLON_HOPCHUI/B7.mp4',
             ],
             [
-                'title' => 'Bước 8: Xuất hồ sơ và thuyết minh',
+                'title' => 'Bước 8: Xuất khối lượng và thuyết minh',
+                'video_url' => '/images/HOPLON_HOPCHUI/B8.mp4',
             ],
             [
                 'title' => 'Bước 9: Tổng hợp khối lượng qua Excel',
+                'video_url' => '/images/HOPLON_HOPCHUI/B9.mp4',
             ],
         ],
     ],
@@ -109,33 +136,43 @@ $scenarios = [
         'steps' => [
             [
                 'title' => 'Bước 1: Mở file',
+                'video_url' => '/images/HOPLON_LIENOAN/B1.mp4',
             ],
             [
                 'title' => 'Bước 2: Nhập dữ liệu trắc ngang',
+                'video_url' => '/images/HOPLON_LIENOAN/B2.mp4',
             ],
             [
                 'title' => 'Bước 3: Thiết kế thân cống chính',
+                'video_url' => '/images/HOPLON_LIENOAN/B3.mp4',
             ],
             [
                 'title' => 'Bước 4: Thiết kế thượng hạ lưu cống chính',
+                'video_url' => '/images/HOPLON_LIENOAN/B4.mp4',
             ],
             [
-                'title' => 'Bước 5: Thiết kế thân cống đường gom trái',
+                'title' => 'Bước 5: Thiết kế thân cống đường gom phải',
+                'video_url' => '/images/HOPLON_LIENOAN/B5.mp4',
             ],
             [
-                'title' => 'Bước 6: Thiết kế thượng hạ lưu cống đường gom trái',
+                'title' => 'Bước 6: Thiết kế thượng hạ lưu cống đường gom phải',
+                'video_url' => '/images/HOPLON_LIENOAN/B6.mp4',
             ],
             [
-                'title' => 'Bước 7: Thiết kế thân cống đường gom phải',
+                'title' => 'Bước 7: Thiết kế thân cống đường gom trái',
+                'video_url' => '/images/HOPLON_LIENOAN/B7.mp4',
             ],
             [
-                'title' => 'Bước 8: Thiết kế thượng hạ lưu cống đường gom phải',
+                'title' => 'Bước 8: Thiết kế thượng hạ lưu cống đường gom trái',
+                'video_url' => '/images/HOPLON_LIENOAN/B8.mp4',
             ],
             [
                 'title' => 'Bước 9: Xuất khối lượng và thuyết minh',
+                'video_url' => '/images/HOPLON_LIENOAN/B9.mp4',
             ],
             [
                 'title' => 'Bước 10: Tổng hợp khối lượng qua Excel',
+                'video_url' => '/images/HOPLON_LIENOAN/B10.mp4',
             ],
         ],
     ],

@@ -1,5 +1,5 @@
 <?php
-$pageTitle = 'Hướng dẫn — Kiểm Toán Cầu Giản Đơn';
+$pageTitle = 'Kiểm Toán Cầu Giản Đơn';
 $pageDescription = 'Các bước sử dụng Phần Mềm Kiểm Toán Cầu Giản Đơn.';
 
 // TODO(SV1): thay nội dung placeholder bằng video/GIF hướng dẫn thật cho từng bước.

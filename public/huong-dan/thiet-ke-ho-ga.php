@@ -1,47 +1,53 @@
 <?php
 require __DIR__ . '/../includes/config.php';
 
-$pageTitle = 'Hướng dẫn — Thiết Kế Hố Ga';
+$pageTitle = 'Thiết Kế Hố Ga';
 $pageDescription = 'Các bước sử dụng mô-đun Thiết Kế Hố Ga ' . MODULE_YEAR . '.';
 
-// TODO(SV1): thay nội dung placeholder bằng video/GIF hướng dẫn thật cho từng bước, từng tình huống.
-// Bạn chỉ cần điền 'video_url' cho từng bước (ví dụ: '/assets/videos/buoc-2.mp4') là video thật sẽ chạy ngay.
-// Ghi chú: 4 tình huống dưới đây có cùng 4 bước — đây là quy trình chung áp dụng cho mọi loại hố ga.
+// Ghi chú: 4 tình huống dưới đây có cùng 4 bước — đây là quy trình chung áp dụng cho mọi loại hố ga,
+// mỗi tình huống lấy video từ thư mục riêng trong public/images/.
 
-$hoGaSteps = [
-    [
-        'title' => 'Bước 1: Thiết lập tham số hệ thống',
-    ],
-    [
-        'title' => 'Bước 2: Gán đấu nối ga',
-    ],
-    [
-        'title' => 'Bước 3: Xuất bản vẽ hố ga',
-    ],
-    [
-        'title' => 'Bước 4: Xuất bảng tổng hợp khối lượng',
-    ],
-    [
-        'title' => 'Bước 5: Xuất bảng thống kê cốt thép qua excel (nếu cần)',
-    ],
-];
+function hoGaSteps($folder) {
+    return [
+        [
+            'title' => 'Bước 1: Thiết lập tham số hệ thống',
+            'video_url' => "/images/$folder/B1.mp4",
+        ],
+        [
+            'title' => 'Bước 2: Gán đấu nối ga',
+            'video_url' => "/images/$folder/B2.mp4",
+        ],
+        [
+            'title' => 'Bước 3: Xuất bản vẽ hố ga',
+            'video_url' => "/images/$folder/B3.mp4",
+        ],
+        [
+            'title' => 'Bước 4: Xuất bảng tổng hợp khối lượng',
+            'video_url' => "/images/$folder/B4.mp4",
+        ],
+        [
+            'title' => 'Bước 5: Xuất bảng thống kê cốt thép qua excel (nếu cần)',
+            'video_url' => "/images/$folder/B5.mp4",
+        ],
+    ];
+}
 
 $scenarios = [
     'tham-long-duong' => [
         'label' => 'Hố ga thăm lòng đường',
-        'steps' => $hoGaSteps,
+        'steps' => hoGaSteps('GATHAMLONGDUONG'),
     ],
     'tham-via-he' => [
         'label' => 'Hố ga thăm vỉa hè',
-        'steps' => $hoGaSteps,
+        'steps' => hoGaSteps('GATHUTHANVIAHE'),
     ],
     'ban-lap-ghep' => [
         'label' => 'Hố ga bán lắp ghép',
-        'steps' => $hoGaSteps,
+        'steps' => hoGaSteps('GABANLAPGHEP'),
     ],
     'cong-hop-kho-lon' => [
         'label' => 'Hố ga cống hộp khổ lớn',
-        'steps' => $hoGaSteps,
+        'steps' => hoGaSteps('GAHOPLON'),
     ],
 ];
 
